@@ -1155,33 +1155,23 @@
             <div class="perks-traits-grid">
                 <div class="perks-column">
                     <h4>Perks</h4>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 1..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 2..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 3..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 4..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 5..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 6..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 7..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 8..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 9..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 10..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 11..."></div>
-                    <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 12..."></div>
+                    <div id="perks-list">
+                        <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 1..."></div>
+                        <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 2..."></div>
+                        <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 3..."></div>
+                        <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 4..."></div>
+                    </div>
+                    <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addPerk()">+ Add Perk</button>
                 </div>
                 <div class="traits-column">
                     <h4>Traits</h4>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 1..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 2..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 3..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 4..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 5..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 6..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 7..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 8..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 9..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 10..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 11..."></div>
-                    <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 12..."></div>
+                    <div id="traits-list">
+                        <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 1..."></div>
+                        <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 2..."></div>
+                        <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 3..."></div>
+                        <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 4..."></div>
+                    </div>
+                    <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addTrait()">+ Add Trait</button>
                 </div>
             </div>
         </div>
@@ -1232,7 +1222,7 @@
 
         <div class="section blessings-section">
             <div class="section-title">Blessings</div>
-            <div class="blessings-grid">
+            <div class="blessings-grid" id="blessings-list">
                 <div class="blessing-item">
                     <div class="blessing-name">
                         <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
@@ -1241,46 +1231,9 @@
                         <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
                     </div>
                 </div>
-                <div class="blessing-item">
-                    <div class="blessing-name">
-                        <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
-                    </div>
-                    <div class="blessing-description">
-                        <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
-                    </div>
-                </div>
-                <div class="blessing-item">
-                    <div class="blessing-name">
-                        <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
-                    </div>
-                    <div class="blessing-description">
-                        <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
-                    </div>
-                </div>
-                <div class="blessing-item">
-                    <div class="blessing-name">
-                        <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
-                    </div>
-                    <div class="blessing-description">
-                        <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
-                    </div>
-                </div>
-                <div class="blessing-item">
-                    <div class="blessing-name">
-                        <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
-                    </div>
-                    <div class="blessing-description">
-                        <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
-                    </div>
-                </div>
-                <div class="blessing-item">
-                    <div class="blessing-name">
-                        <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
-                    </div>
-                    <div class="blessing-description">
-                        <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
-                    </div>
-                </div>
+            </div>
+            <div style="text-align:center; margin-top:16px;">
+                <button class="btn" style="padding:8px 18px; font-size:0.8em;" onclick="addBlessing()">+ Add Blessing</button>
             </div>
         </div>
         
@@ -1668,34 +1621,56 @@
             document.querySelectorAll('.blessing-name-input').forEach(input => input.value = '');
             document.querySelectorAll('.blessing-desc-input').forEach(input => input.value = '');
 
-            const perkInputs = document.querySelectorAll('.perk-input');
             if (data.perks) {
+                const perkList = document.getElementById('perks-list');
+                // Add extra rows if needed
+                while (perkList.querySelectorAll('.perk-input').length < data.perks.length) {
+                    const count = perkList.querySelectorAll('.perk-input').length + 1;
+                    const div = document.createElement('div');
+                    div.className = 'perk-item';
+                    div.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${count}...">`;
+                    perkList.appendChild(div);
+                }
+                const perkInputs = perkList.querySelectorAll('.perk-input');
                 data.perks.forEach((perk, index) => {
-                    if (perkInputs[index]) {
-                        perkInputs[index].value = perk;
-                    }
+                    if (perkInputs[index]) perkInputs[index].value = perk;
                 });
             }
 
-            const traitInputs = document.querySelectorAll('.trait-input');
             if (data.traits) {
+                const traitList = document.getElementById('traits-list');
+                while (traitList.querySelectorAll('.trait-input').length < data.traits.length) {
+                    const count = traitList.querySelectorAll('.trait-input').length + 1;
+                    const div = document.createElement('div');
+                    div.className = 'trait-item';
+                    div.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${count}...">`;
+                    traitList.appendChild(div);
+                }
+                const traitInputs = traitList.querySelectorAll('.trait-input');
                 data.traits.forEach((trait, index) => {
-                    if (traitInputs[index]) {
-                        traitInputs[index].value = trait;
-                    }
+                    if (traitInputs[index]) traitInputs[index].value = trait;
                 });
             }
 
-            const blessingNames = document.querySelectorAll('.blessing-name-input');
-            const blessingDescs = document.querySelectorAll('.blessing-desc-input');
             if (data.blessings) {
+                const blessingList = document.getElementById('blessings-list');
+                while (blessingList.querySelectorAll('.blessing-name-input').length < data.blessings.length) {
+                    const div = document.createElement('div');
+                    div.className = 'blessing-item';
+                    div.innerHTML = `
+                        <div class="blessing-name">
+                            <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
+                        </div>
+                        <div class="blessing-description">
+                            <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
+                        </div>`;
+                    blessingList.appendChild(div);
+                }
+                const blessingNames = blessingList.querySelectorAll('.blessing-name-input');
+                const blessingDescs = blessingList.querySelectorAll('.blessing-desc-input');
                 data.blessings.forEach((blessing, index) => {
-                    if (blessingNames[index]) {
-                        blessingNames[index].value = blessing.name || '';
-                    }
-                    if (blessingDescs[index]) {
-                        blessingDescs[index].value = blessing.description || '';
-                    }
+                    if (blessingNames[index]) blessingNames[index].value = blessing.name || '';
+                    if (blessingDescs[index]) blessingDescs[index].value = blessing.description || '';
                 });
             }
 
@@ -1769,6 +1744,38 @@
                 }
             });
         });
+
+        function addPerk() {
+            const list = document.getElementById('perks-list');
+            const count = list.querySelectorAll('.perk-input').length + 1;
+            const div = document.createElement('div');
+            div.className = 'perk-item';
+            div.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${count}...">`;
+            list.appendChild(div);
+        }
+
+        function addTrait() {
+            const list = document.getElementById('traits-list');
+            const count = list.querySelectorAll('.trait-input').length + 1;
+            const div = document.createElement('div');
+            div.className = 'trait-item';
+            div.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${count}...">`;
+            list.appendChild(div);
+        }
+
+        function addBlessing() {
+            const list = document.getElementById('blessings-list');
+            const div = document.createElement('div');
+            div.className = 'blessing-item';
+            div.innerHTML = `
+                <div class="blessing-name">
+                    <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
+                </div>
+                <div class="blessing-description">
+                    <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
+                </div>`;
+            list.appendChild(div);
+        }
     </script>
 </body>
 </html>
