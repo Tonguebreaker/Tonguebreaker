@@ -1238,6 +1238,24 @@
             </div>
         </div>
         
+        <div class="section blessings-section">
+            <div class="section-title">Contracts</div>
+            <div class="blessings-grid" id="contracts-list">
+                <div class="blessing-item">
+                    <div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
+                        <input type="text" class="blessing-name-input" placeholder="Outsider Name..." style="flex:1;">
+                        <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeContractItem(this)">✕</button>
+                    </div>
+                    <div class="blessing-description">
+                        <textarea class="blessing-desc-input" placeholder="Describe the powers granted to you..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:16px;">
+                <button class="btn" style="padding:8px 18px; font-size:0.8em;" onclick="addContract()">Add Contract</button>
+            </div>
+        </div>
+
         <div class="section equipment-section">
             <div class="section-title">Equipment & Belongings</div>
             <div class="equipment-grid">
@@ -1790,6 +1808,25 @@
         }
 
         function removeBlessingItem(btn) {
+            btn.closest('.blessing-item').remove();
+        }
+
+        function addContract() {
+            const list = document.getElementById('contracts-list');
+            const div = document.createElement('div');
+            div.className = 'blessing-item';
+            div.innerHTML = `
+                <div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
+                    <input type="text" class="blessing-name-input" placeholder="Outsider Name..." style="flex:1;">
+                    <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeContractItem(this)">✕</button>
+                </div>
+                <div class="blessing-description">
+                    <textarea class="blessing-desc-input" placeholder="Describe the powers granted to you..."></textarea>
+                </div>`;
+            list.appendChild(div);
+        }
+
+        function removeContractItem(btn) {
             btn.closest('.blessing-item').remove();
         }
     </script>
