@@ -1156,20 +1156,20 @@
                 <div class="perks-column">
                     <h4>Perks</h4>
                     <div id="perks-list">
-                        <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 1..."></div>
-                        <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 2..."></div>
-                        <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 3..."></div>
-                        <div class="perk-item"><input type="text" class="perk-input" placeholder="Perk 4..."></div>
+                        <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 1..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
+                        <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 2..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
+                        <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 3..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
+                        <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 4..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
                     </div>
                     <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addPerk()">Add Perk</button>
                 </div>
                 <div class="traits-column">
                     <h4>Traits</h4>
                     <div id="traits-list">
-                        <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 1..."></div>
-                        <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 2..."></div>
-                        <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 3..."></div>
-                        <div class="trait-item"><input type="text" class="trait-input" placeholder="Trait 4..."></div>
+                        <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 1..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
+                        <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 2..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
+                        <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 3..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
+                        <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 4..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
                     </div>
                     <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addTrait()">Add Trait</button>
                 </div>
@@ -1224,8 +1224,9 @@
             <div class="section-title">Blessings</div>
             <div class="blessings-grid" id="blessings-list">
                 <div class="blessing-item">
-                    <div class="blessing-name">
-                        <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
+                    <div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
+                        <input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;">
+                        <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeBlessingItem(this)">✕</button>
                     </div>
                     <div class="blessing-description">
                         <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
@@ -1750,7 +1751,8 @@
             const count = list.querySelectorAll('.perk-input').length + 1;
             const div = document.createElement('div');
             div.className = 'perk-item';
-            div.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${count}...">`;
+            div.style.cssText = 'display:flex;align-items:center;gap:8px;';
+            div.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${count}..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button>`;
             list.appendChild(div);
         }
 
@@ -1759,7 +1761,8 @@
             const count = list.querySelectorAll('.trait-input').length + 1;
             const div = document.createElement('div');
             div.className = 'trait-item';
-            div.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${count}...">`;
+            div.style.cssText = 'display:flex;align-items:center;gap:8px;';
+            div.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${count}..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button>`;
             list.appendChild(div);
         }
 
@@ -1768,13 +1771,26 @@
             const div = document.createElement('div');
             div.className = 'blessing-item';
             div.innerHTML = `
-                <div class="blessing-name">
-                    <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
+                <div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
+                    <input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;">
+                    <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeBlessingItem(this)">✕</button>
                 </div>
                 <div class="blessing-description">
                     <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
                 </div>`;
             list.appendChild(div);
+        }
+
+        function removePerkItem(btn) {
+            btn.closest('.perk-item').remove();
+        }
+
+        function removeTraitItem(btn) {
+            btn.closest('.trait-item').remove();
+        }
+
+        function removeBlessingItem(btn) {
+            btn.closest('.blessing-item').remove();
         }
     </script>
 </body>
