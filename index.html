@@ -1549,7 +1549,7 @@ function buildHackPage(lucidity, difficulty) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Antares Master Key - ${difficulty.toUpperCase()}</title>
+<title>Antares Master Key — ${difficulty.toUpperCase()}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -1739,7 +1739,7 @@ hr{border:none;border-top:1px solid #333333;margin:18px 0;}
 <div id="lockout-veil">
   <div class="lockout-box">
     <div class="lockout-title">Terminal Locked</div>
-    <div class="lockout-sub">Access Denied - Security Protocol Engaged</div>
+    <div class="lockout-sub">Access Denied — Security Protocol Engaged</div>
   </div>
 </div>
 <div id="wrap">
@@ -1756,7 +1756,7 @@ hr{border:none;border-top:1px solid #333333;margin:18px 0;}
   <div><div class="col-hdr">Segment 0xA4${password.length > 8 ? 'D0' : 'B2'}</div><div id="RC"></div></div>
 </div>
 <hr>
-<div id="log"><div class="le ld">&gt; Antares Master Key v2.4 - Awaiting Input<span class="blink">_</span></div></div>
+<div id="log"><div class="le ld">&gt; Antares Master Key v2.4 — Awaiting Input<span class="blink">_</span></div></div>
 <div id="go"></div>
 </div>
 <script>
@@ -2163,6 +2163,8 @@ function loadFormData(data) {
 
     artImages = data.artImages || [];
     renderArtGallery();
+    const n = document.getElementById('characterName');
+    if (n) document.title = n.value.trim() || 'Character Codex';
 }
 
 function showNotification(message, type = 'success') {
@@ -2226,6 +2228,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nameInput.style.textShadow = nameInput.value.length > 0
             ? '0 0 15px rgba(255,255,255,0.8), 0 0 25px rgba(255,255,255,0.4)'
             : '0 0 15px rgba(255,255,255,0.5)';
+        document.title = nameInput.value.trim() || 'Character Codex';
     });
 });
 </script>
