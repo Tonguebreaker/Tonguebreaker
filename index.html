@@ -544,6 +544,104 @@
             color: #ff0000;
         }
 
+        /* ── HACKER EYE BUTTON ── */
+        .hack-eye-btn {
+            background: linear-gradient(135deg, #001a00 0%, #003300 50%, #001a00 100%);
+            border: 2px solid #3ef73e;
+            color: #3ef73e;
+            padding: 4px 10px;
+            font-size: 0.7em;
+            white-space: nowrap;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 8px rgba(62,247,62,0.4);
+            animation: hackGlow 1.5s ease-in-out infinite alternate;
+        }
+        .hack-eye-btn:hover {
+            background: #3ef73e;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(62,247,62,0.8);
+        }
+        @keyframes hackGlow {
+            from { box-shadow: 0 0 4px rgba(62,247,62,0.3); }
+            to   { box-shadow: 0 0 14px rgba(62,247,62,0.7); }
+        }
+
+        /* ── DIFFICULTY MODAL ── */
+        #hackModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        #hackModal.open { display: flex; }
+        .hack-modal-box {
+            background: #050e05;
+            border: 2px solid #3ef73e;
+            padding: 40px;
+            max-width: 420px;
+            width: 90%;
+            font-family: 'Share Tech Mono', monospace, 'Cinzel', serif;
+            box-shadow: 0 0 40px rgba(62,247,62,0.4);
+            color: #3ef73e;
+        }
+        .hack-modal-box h2 {
+            font-size: 1.1em;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            color: #98ff98;
+        }
+        .hack-modal-box p {
+            font-size: 0.85em;
+            color: #1a7a1a;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        .diff-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .diff-btn {
+            background: transparent;
+            border: 2px solid #3ef73e;
+            color: #3ef73e;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85em;
+            padding: 10px 20px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+        }
+        .diff-btn:hover {
+            background: #3ef73e;
+            color: #050e05;
+        }
+        .diff-btn.easy:hover  { background: #3ef73e; }
+        .diff-btn.medium:hover{ background: #ff9900; border-color: #ff9900; color: #050e05; }
+        .diff-btn.hard:hover  { background: #ff3333; border-color: #ff3333; color: #050e05; }
+        .modal-cancel {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.75em;
+            color: #1a7a1a;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+        .modal-cancel:hover { color: #3ef73e; }
+        .lucidity-note {
+            font-size: 0.8em;
+            color: #3ef73e;
+            margin-bottom: 20px;
+        }
+
         .blessings-section {
             grid-column: 1 / -1;
             margin-top: 30px;
@@ -637,20 +735,6 @@
         .equipment-list {
             height: auto;
             overflow: visible;
-        }
-        
-        .equipment-list::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        .equipment-list::-webkit-scrollbar-track {
-            background: #000000;
-            border: 1px solid #666666;
-        }
-        
-        .equipment-list::-webkit-scrollbar-thumb {
-            background: #ffffff;
-            border-radius: 0;
         }
 
         .equipment-list textarea {
@@ -935,900 +1019,1021 @@
             background: rgba(255, 255, 255, 0.02);
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #000000;
-            border: 1px solid #333333;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #ffffff;
-            border-radius: 0;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #cccccc;
-        }
-
-        @media (max-width: 1400px) {
-            .main-grid {
-                grid-template-columns: 2fr 1fr;
-                gap: 25px;
-            }
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000000; border: 1px solid #333333; }
+        ::-webkit-scrollbar-thumb { background: #ffffff; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #cccccc; }
 
         @media (max-width: 1200px) {
-            .character-sheet {
-                max-width: 100%;
-                padding: 20px;
-            }
-            
-            .main-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
-            
-            .stats-stats {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
+            .character-sheet { max-width: 100%; padding: 20px; }
+            .main-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+            .stats-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
         }
-
         @media (max-width: 900px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-stats {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
+            .main-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
-            .attributes-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .perks-traits-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .equipment-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .facets-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .title {
-                font-size: 2em;
-            }
-            
-            .name-input {
-                font-size: 1.8em;
-            }
+            .attributes-grid { grid-template-columns: 1fr; }
+            .perks-traits-grid { grid-template-columns: 1fr; }
+            .equipment-grid { grid-template-columns: 1fr; }
+            .facets-grid { grid-template-columns: 1fr 1fr; }
+            .title { font-size: 2em; }
+            .name-input { font-size: 1.8em; }
         }
     </style>
 </head>
 <body>
-    <div class="character-sheet">
-        <div class="header">
-            <div class="title">CHARACTER CODEX</div>
-            <div class="share-buttons">
-                <button class="btn" onclick="exportCharacter()">Export Data</button>
-                <button class="btn" onclick="showImportSection()">Import Data</button>
-            </div>
-            
-            <div id="importSection" class="load-section hidden">
-                <h4 style="color: #fff; margin-top: 0;">Import Character Data</h4>
-                <div style="margin: 15px 0;">
-                    <label style="color: #ccc; display: block; margin-bottom: 5px;">Import from file:</label>
-                    <input type="file" id="importFile" accept=".json" onchange="importFromFile(this)">
-                </div>
-                <div class="storage-info">
-                    Use Export/Import to save and load your characters or transfer between devices.
-                </div>
-            </div>
-        </div>
-        
-        <div class="name-section">
-            <input type="text" class="name-input" id="characterName" placeholder="Enter Character Name..." maxlength="50">
-            <br>
-            <input type="text" class="titles-input" id="titles" placeholder="Titles, Epithets, or Monikers..." maxlength="100">
-        </div>
-        
-        <div class="main-grid">
-            <div class="section basic-info">
-                <div class="section-title">Character Details</div>
-                <div class="info-field">
-                    <label>Level</label>
-                    <input type="text" id="level" placeholder="1">
-                </div>
-                <div class="info-field">
-                    <label>Race</label>
-                    <input type="text" id="race" placeholder="Enter race...">
-                </div>
-                <div class="info-field">
-                    <label>Age</label>
-                    <input type="text" id="age" placeholder="Enter age...">
-                </div>
-                <div class="info-field">
-                    <label>Alignment</label>
-                    <input type="text" id="alignment" placeholder="Enter alignment...">
-                </div>
-            </div>
-        </div>
-        
-        <div class="main-grid">
-            <div class="section">
-                <div class="section-title">Core Attributes</div>
-                <div class="attributes-grid">
-                    <div class="attribute">
-                        <div class="attribute-letter">I</div>
-                        <div class="attribute-details">
-                            <div class="attribute-name">Indomitability</div>
-                            <div class="attribute-desc">Melee, strength, toughness, will</div>
-                        </div>
-                        <div class="attribute-score">
-                            <input type="text" id="indomitability" placeholder="0">
-                        </div>
-                    </div>
 
-                    <div class="attribute">
-                        <div class="attribute-letter">F</div>
-                        <div class="attribute-details">
-                            <div class="attribute-name">Fluidity</div>
-                            <div class="attribute-desc">Initiative, sneak, ranged, finesse</div>
-                        </div>
-                        <div class="attribute-score">
-                            <input type="text" id="fluidity" placeholder="0">
-                        </div>
-                    </div>
-                    
-                    <div class="attribute">
-                        <div class="attribute-letter">L</div>
-                        <div class="attribute-details">
-                            <div class="attribute-name">Lucidity</div>
-                            <div class="attribute-desc">Problem-solving, Thaumaturgy</div>
-                        </div>
-                        <div class="attribute-score">
-                            <input type="text" id="lucidity" placeholder="0">
-                        </div>
-                    </div>
-                    
-                    <div class="attribute">
-                        <div class="attribute-letter">A</div>
-                        <div class="attribute-details">
-                            <div class="attribute-name">Authority</div>
-                            <div class="attribute-desc">Persuasion, leadership, presence</div>
-                        </div>
-                        <div class="attribute-score">
-                            <input type="text" id="authority" placeholder="0">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section stats-section">
-                <div class="section-title">Stats</div>
-                <div class="stats-stats">
-                    <div class="stat-box">
-                        <div class="stat-label">HP</div>
-                        <div class="stat-value">
-                            <input type="text" class="stat-input" id="currentHP" placeholder="0"> / 
-                            <input type="text" class="stat-input" id="maxHP" placeholder="0">
-                        </div>
-                    </div>
-                    
-                    <div class="stat-box">
-                        <div class="stat-label">DEF</div>
-                        <div class="stat-value">
-                            <input type="text" class="stat-input" id="defense" placeholder="0">
-                        </div>
-                    </div>
-                    
-                    <div class="stat-box">
-                        <div class="stat-label">AT</div>
-                        <div class="stat-value">
-                            <input type="text" class="stat-input" id="currentAtramenta" placeholder="0"> / 
-                            <input type="text" class="stat-input" id="maxAtramenta" placeholder="0">
-                        </div>
-                    </div>
-                    
-                    <div class="stat-box">
-                        <div class="stat-label">FT</div>
-                        <div class="stat-value">
-                            <input type="text" class="stat-input" id="movement" placeholder="0">
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ── DIFFICULTY MODAL ── -->
+<div id="hackModal">
+    <div class="hack-modal-box">
+        <h2>ROBCO INDUSTRIES (TM)</h2>
+        <h2>TERMLINK ACCESS REQUEST</h2>
+        <p style="margin-top:12px;">Select security clearance level to initiate hack.</p>
+        <div class="lucidity-note" id="modalLucidityNote">LUCIDITY: — | ATTEMPTS: —</div>
+        <div class="diff-buttons">
+            <button class="diff-btn easy"   onclick="launchHack('easy')">EASY</button>
+            <button class="diff-btn medium" onclick="launchHack('medium')">MEDIUM</button>
+            <button class="diff-btn hard"   onclick="launchHack('hard')">HARD</button>
         </div>
-        
-        <div class="section perks-traits-section">
-            <div class="section-title">Perks & Traits</div>
-            <div class="perks-traits-grid">
-                <div class="perks-column">
-                    <h4>Perks</h4>
-                    <div id="perks-list">
-                        <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 1..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
-                        <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 2..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
-                        <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 3..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
-                        <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 4..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
-                    </div>
-                    <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addPerk()">Add Perk</button>
-                </div>
-                <div class="traits-column">
-                    <h4>Traits</h4>
-                    <div id="traits-list">
-                        <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 1..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
-                        <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 2..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
-                        <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 3..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
-                        <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 4..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
-                    </div>
-                    <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addTrait()">Add Trait</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section thaumaturgy-section">
-            <div class="section-title">Thaumaturgy</div>
-            <div class="quote-section">
-                "I reject your reality and substitute my own."
-            </div>
-            
-            <div class="facets-grid">
-                <div class="facet" onclick="toggleFacet(this)" data-facet="space">
-                    <div class="facet-name">Space</div>
-                    <div class="facet-desc">Connection, distance, position</div>
-                </div>
-                
-                <div class="facet" onclick="toggleFacet(this)" data-facet="probability">
-                    <div class="facet-name">Probability</div>
-                    <div class="facet-desc">Principle of chance</div>
-                </div>
-                
-                <div class="facet" onclick="toggleFacet(this)" data-facet="forces">
-                    <div class="facet-name">Forces</div>
-                    <div class="facet-desc">Gravity, electromagnetism, thermodynamics</div>
-                </div>
-                
-                <div class="facet" onclick="toggleFacet(this)" data-facet="matter">
-                    <div class="facet-name">Matter</div>
-                    <div class="facet-desc">Structure, transformation</div>
-                </div>
-                
-                <div class="facet" onclick="toggleFacet(this)" data-facet="spirit">
-                    <div class="facet-name">Spirit</div>
-                    <div class="facet-desc">Rephva, prayers, outsiders</div>
-                </div>
-                
-                <div class="facet" onclick="toggleFacet(this)" data-facet="time">
-                    <div class="facet-name">Time</div>
-                    <div class="facet-desc">Past, present, future</div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 25px;">
-                <label style="color: #ffffff; font-weight: 600; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Known Directives:</label>
-                <textarea id="directives" style="width: 100%; height: 90px; background: #000000; border: 2px solid #ffffff; color: #ffffff; font-family: 'Cinzel', serif; border-radius: 0; padding: 15px; resize: vertical; margin-top: 10px; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8); box-sizing: border-box;" placeholder="List your known directives..."></textarea>
-            </div>
-        </div>
+        <span class="modal-cancel" onclick="closeHackModal()">[ ABORT ]</span>
+    </div>
+</div>
 
-        <div class="section blessings-section">
-            <div class="section-title">Blessings</div>
-            <div class="blessings-grid" id="blessings-list">
-                <div class="blessing-item">
-                    <div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
-                        <input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;">
-                        <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeBlessingItem(this)">✕</button>
+<div class="character-sheet">
+    <div class="header">
+        <div class="title">CHARACTER CODEX</div>
+        <div class="share-buttons">
+            <button class="btn" onclick="exportCharacter()">Export Data</button>
+            <button class="btn" onclick="showImportSection()">Import Data</button>
+        </div>
+        
+        <div id="importSection" class="load-section hidden">
+            <h4 style="color: #fff; margin-top: 0;">Import Character Data</h4>
+            <div style="margin: 15px 0;">
+                <label style="color: #ccc; display: block; margin-bottom: 5px;">Import from file:</label>
+                <input type="file" id="importFile" accept=".json" onchange="importFromFile(this)">
+            </div>
+            <div class="storage-info">
+                Use Export/Import to save and load your characters or transfer between devices.
+            </div>
+        </div>
+    </div>
+    
+    <div class="name-section">
+        <input type="text" class="name-input" id="characterName" placeholder="Enter Character Name..." maxlength="50">
+        <br>
+        <input type="text" class="titles-input" id="titles" placeholder="Titles, Epithets, or Monikers..." maxlength="100">
+    </div>
+    
+    <div class="main-grid">
+        <div class="section basic-info">
+            <div class="section-title">Character Details</div>
+            <div class="info-field">
+                <label>Level</label>
+                <input type="text" id="level" placeholder="1">
+            </div>
+            <div class="info-field">
+                <label>Race</label>
+                <input type="text" id="race" placeholder="Enter race...">
+            </div>
+            <div class="info-field">
+                <label>Age</label>
+                <input type="text" id="age" placeholder="Enter age...">
+            </div>
+            <div class="info-field">
+                <label>Alignment</label>
+                <input type="text" id="alignment" placeholder="Enter alignment...">
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-grid">
+        <div class="section">
+            <div class="section-title">Core Attributes</div>
+            <div class="attributes-grid">
+                <div class="attribute">
+                    <div class="attribute-letter">I</div>
+                    <div class="attribute-details">
+                        <div class="attribute-name">Indomitability</div>
+                        <div class="attribute-desc">Melee, strength, toughness, will</div>
                     </div>
-                    <div class="blessing-description">
-                        <textarea class="blessing-desc-input" placeholder="Explain the blessing's effects and abilities..."></textarea>
+                    <div class="attribute-score">
+                        <input type="text" id="indomitability" placeholder="0">
                     </div>
                 </div>
-            </div>
-            <div style="text-align:center; margin-top:16px;">
-                <button class="btn" style="padding:8px 18px; font-size:0.8em;" onclick="addBlessing()">Add Blessing</button>
+                <div class="attribute">
+                    <div class="attribute-letter">F</div>
+                    <div class="attribute-details">
+                        <div class="attribute-name">Fluidity</div>
+                        <div class="attribute-desc">Initiative, sneak, ranged, finesse</div>
+                    </div>
+                    <div class="attribute-score">
+                        <input type="text" id="fluidity" placeholder="0">
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="attribute-letter">L</div>
+                    <div class="attribute-details">
+                        <div class="attribute-name">Lucidity</div>
+                        <div class="attribute-desc">Problem-solving, Thaumaturgy</div>
+                    </div>
+                    <div class="attribute-score">
+                        <input type="text" id="lucidity" placeholder="0">
+                    </div>
+                </div>
+                <div class="attribute">
+                    <div class="attribute-letter">A</div>
+                    <div class="attribute-details">
+                        <div class="attribute-name">Authority</div>
+                        <div class="attribute-desc">Persuasion, leadership, presence</div>
+                    </div>
+                    <div class="attribute-score">
+                        <input type="text" id="authority" placeholder="0">
+                    </div>
+                </div>
             </div>
         </div>
         
-        <div class="section blessings-section">
-            <div class="section-title">Contracts</div>
-            <div class="blessings-grid" id="contracts-list">
-                <div class="blessing-item">
-                    <div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
-                        <input type="text" class="blessing-name-input" placeholder="Outsider Name..." style="flex:1;">
-                        <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeContractItem(this)">✕</button>
-                    </div>
-                    <div class="blessing-description">
-                        <textarea class="blessing-desc-input" placeholder="Explain the powers granted to you..."></textarea>
+        <div class="section stats-section">
+            <div class="section-title">Stats</div>
+            <div class="stats-stats">
+                <div class="stat-box">
+                    <div class="stat-label">HP</div>
+                    <div class="stat-value">
+                        <input type="text" class="stat-input" id="currentHP" placeholder="0"> / 
+                        <input type="text" class="stat-input" id="maxHP" placeholder="0">
                     </div>
                 </div>
-            </div>
-            <div style="text-align:center; margin-top:16px;">
-                <button class="btn" style="padding:8px 18px; font-size:0.8em;" onclick="addContract()">Add Contract</button>
-            </div>
-        </div>
-
-        <div class="section equipment-section">
-            <div class="section-title">Equipment & Belongings</div>
-            <div class="equipment-grid">
-                <div class="equipment-category">
-                    <h4>Weapons</h4>
-                    <div class="equipment-list">
-                        <textarea id="weapons" placeholder="List weapons..."></textarea>
+                <div class="stat-box">
+                    <div class="stat-label">DEF</div>
+                    <div class="stat-value">
+                        <input type="text" class="stat-input" id="defense" placeholder="0">
                     </div>
                 </div>
-                
-                <div class="equipment-category">
-                    <h4>Armor & Protection</h4>
-                    <div class="equipment-list">
-                        <textarea id="armor" placeholder="List armor..."></textarea>
+                <div class="stat-box">
+                    <div class="stat-label">AT</div>
+                    <div class="stat-value">
+                        <input type="text" class="stat-input" id="currentAtramenta" placeholder="0"> / 
+                        <input type="text" class="stat-input" id="maxAtramenta" placeholder="0">
                     </div>
                 </div>
-                
-                <div class="equipment-category">
-                    <h4>Tools & Gear</h4>
-                    <div class="equipment-list">
-                        <textarea id="tools" placeholder="List gear..."></textarea>
+                <div class="stat-box">
+                    <div class="stat-label">FT</div>
+                    <div class="stat-value">
+                        <input type="text" class="stat-input" id="movement" placeholder="0">
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="section notes-section">
-            <div class="section-title">Background & Notes</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
-                <div>
-                    <label style="color: #ffffff; font-weight: 600; display: block; margin-bottom: 8px; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Personal History:</label>
-                    <textarea id="history" class="notes-textarea" placeholder="Character background..."></textarea>
+    </div>
+    
+    <div class="section perks-traits-section">
+        <div class="section-title">Perks & Traits</div>
+        <div class="perks-traits-grid">
+            <div class="perks-column">
+                <h4>Perks</h4>
+                <div id="perks-list">
+                    <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 1..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
+                    <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 2..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
+                    <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 3..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
+                    <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 4..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
                 </div>
-                
-                <div>
-                    <label style="color: #ffffff; font-weight: 600; display: block; margin-bottom: 8px; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Goals & Motivations:</label>
-                    <textarea id="goals" class="notes-textarea" placeholder="What drives this character..."></textarea>
+                <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addPerk()">Add Perk</button>
+            </div>
+            <div class="traits-column">
+                <h4>Traits</h4>
+                <div id="traits-list">
+                    <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 1..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
+                    <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 2..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
+                    <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 3..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
+                    <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 4..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
                 </div>
+                <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addTrait()">Add Trait</button>
             </div>
         </div>
-
-        <div class="section art-library-section">
-            <div class="art-library-title">Character Art Library</div>
-            
-            <div class="art-drop-zone" id="artDropZone" onclick="document.getElementById('fileInput').click()">
-                <div class="drop-text">Drop Images Here or Click to Browse</div>
-                <div class="drop-subtext">Concept Art, Portraits, References - All Welcome</div>
-                <input type="file" id="fileInput" class="file-input" multiple accept="image/*">
+    </div>
+    
+    <div class="section thaumaturgy-section">
+        <div class="section-title">Thaumaturgy</div>
+        <div class="quote-section">
+            "I reject your reality and substitute my own."
+        </div>
+        <div class="facets-grid">
+            <div class="facet" onclick="toggleFacet(this)" data-facet="space">
+                <div class="facet-name">Space</div>
+                <div class="facet-desc">Connection, distance, position</div>
             </div>
-            
-            <div class="art-gallery" id="artGallery">
+            <div class="facet" onclick="toggleFacet(this)" data-facet="probability">
+                <div class="facet-name">Probability</div>
+                <div class="facet-desc">Principle of chance</div>
+            </div>
+            <div class="facet" onclick="toggleFacet(this)" data-facet="forces">
+                <div class="facet-name">Forces</div>
+                <div class="facet-desc">Gravity, electromagnetism, thermodynamics</div>
+            </div>
+            <div class="facet" onclick="toggleFacet(this)" data-facet="matter">
+                <div class="facet-name">Matter</div>
+                <div class="facet-desc">Structure, transformation</div>
+            </div>
+            <div class="facet" onclick="toggleFacet(this)" data-facet="spirit">
+                <div class="facet-name">Spirit</div>
+                <div class="facet-desc">Rephva, prayers, outsiders</div>
+            </div>
+            <div class="facet" onclick="toggleFacet(this)" data-facet="time">
+                <div class="facet-name">Time</div>
+                <div class="facet-desc">Past, present, future</div>
             </div>
         </div>
-        
-        <div class="ornamental">⧨ ⟡ ⧨</div>
+        <div style="margin-top: 25px;">
+            <label style="color: #ffffff; font-weight: 600; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Known Directives:</label>
+            <textarea id="directives" style="width: 100%; height: 90px; background: #000000; border: 2px solid #ffffff; color: #ffffff; font-family: 'Cinzel', serif; border-radius: 0; padding: 15px; resize: vertical; margin-top: 10px; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8); box-sizing: border-box;" placeholder="List your known directives..."></textarea>
+        </div>
     </div>
 
-    <div id="notification" class="notification">Character saved!</div>
-    
-    <script>
-        let artImages = [];
-
-        function compressImage(file, maxWidth = 600, quality = 0.85) {
-            return new Promise((resolve) => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                const img = new Image();
-                
-                img.onload = () => {
-                    let newWidth = img.width;
-                    let newHeight = img.height;
-                    
-                    if (img.width > maxWidth || img.height > maxWidth) {
-                        const ratio = Math.min(maxWidth / img.width, maxWidth / img.height);
-                        newWidth = Math.round(img.width * ratio);
-                        newHeight = Math.round(img.height * ratio);
-                    }
-                    
-                    canvas.width = newWidth;
-                    canvas.height = newHeight;
-                    
-                    ctx.imageSmoothingEnabled = true;
-                    ctx.imageSmoothingQuality = 'high';
-                    ctx.drawImage(img, 0, 0, newWidth, newHeight);
-                    
-                    let compressedDataUrl;
-                    try {
-                        compressedDataUrl = canvas.toDataURL('image/webp', quality);
-                        if (!compressedDataUrl.startsWith('data:image/webp') || compressedDataUrl.length >= file.length) {
-                            throw new Error('WebP not supported or not smaller');
-                        }
-                    } catch (e) {
-                        compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
-                    }
-                    
-                    resolve(compressedDataUrl);
-                };
-                
-                img.src = file;
-            });
-        }
-
-        function compressTextData(data) {
-            const compressed = { ...data };
-            
-            Object.keys(compressed).forEach(key => {
-                if (compressed[key] === '' || 
-                    (Array.isArray(compressed[key]) && compressed[key].length === 0)) {
-                    delete compressed[key];
-                }
-            });
-            
-            ['perks', 'traits', 'blessings', 'facets'].forEach(arrayKey => {
-                if (compressed[arrayKey]) {
-                    if (arrayKey === 'blessings') {
-                        compressed[arrayKey] = compressed[arrayKey].filter(blessing => 
-                            blessing.name?.trim() || blessing.description?.trim()
-                        );
-                    } else {
-                        compressed[arrayKey] = compressed[arrayKey].filter(item => 
-                            typeof item === 'string' ? item.trim() : item
-                        );
-                    }
-                    if (compressed[arrayKey].length === 0) {
-                        delete compressed[arrayKey];
-                    }
-                }
-            });
-            
-            return compressed;
-        }
-
-        function exportCharacter() {
-            const rawData = getAllFormData();
-            const compressedData = compressTextData(rawData);
-            
-            Promise.all(artImages.map(async (art) => {
-                const compressed = await compressImage(art.src);
-                return { 
-                    id: art.id, 
-                    src: compressed, 
-                    title: art.title?.trim() || '' 
-                };
-            })).then(compressedImages => {
-                const validImages = compressedImages.filter(img => 
-                    img.title || img.src !== artImages.find(a => a.id === img.id)?.src
-                );
-                
-                const exportData = {
-                    v: 2,
-                    d: new Date().toISOString().split('T')[0],
-                    data: { 
-                        ...compressedData, 
-                        artImages: validImages.length > 0 ? validImages : undefined 
-                    }
-                };
-
-                const jsonString = JSON.stringify(exportData);
-                const blob = new Blob([jsonString], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                
-                const name = compressedData.characterName?.replace(/[^a-zA-Z0-9]/g, '') || 'character';
-                a.download = `${name}_${Date.now()}.json`;
-                
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                showNotification('Character exported successfully!');
-            });
-        }
-
-        function importFromFile(input) {
-            const file = input.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const importData = JSON.parse(e.target.result);
-                    
-                    let data;
-                    if (importData.v === 2) {
-                        data = importData.data;
-                    } else {
-                        data = importData.data || importData;
-                    }
-                    
-                    loadFormData(data);
-                    showNotification('Character imported successfully!');
-                    document.getElementById('importSection').classList.add('hidden');
-                } catch (error) {
-                    showNotification('Error importing file: Invalid format', 'error');
-                    console.error('Import error:', error);
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function showImportSection() {
-            const section = document.getElementById('importSection');
-            section.classList.toggle('hidden');
-        }
-
-        function toggleFacet(element) {
-            element.classList.toggle('active');
-        }
-
-        function initializeArtLibrary() {
-            const dropZone = document.getElementById('artDropZone');
-            const fileInput = document.getElementById('fileInput');
-
-            dropZone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropZone.classList.add('dragover');
-            });
-
-            dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('dragover');
-            });
-
-            dropZone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('dragover');
-                handleFiles(e.dataTransfer.files);
-            });
-
-            fileInput.addEventListener('change', (e) => {
-                handleFiles(e.target.files);
-            });
-        }
-
-        function handleFiles(files) {
-            Array.from(files).forEach(file => {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        addArtImage(e.target.result, file.name);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-
-        function addArtImage(src, originalName) {
-            const artId = Date.now() + Math.random();
-            const artItem = {
-                id: artId,
-                src: src,
-                title: originalName.replace(/\.[^/.]+$/, "")
-            };
-
-            artImages.push(artItem);
-            renderArtGallery();
-        }
-
-        function removeArtImage(artId) {
-            artImages = artImages.filter(art => art.id !== artId);
-            renderArtGallery();
-        }
-
-        function updateArtTitle(artId, newTitle) {
-            const artItem = artImages.find(art => art.id === artId);
-            if (artItem) {
-                artItem.title = newTitle;
-            }
-        }
-
-        function renderArtGallery() {
-            const gallery = document.getElementById('artGallery');
-            gallery.innerHTML = '';
-
-            artImages.forEach(art => {
-                const artDiv = document.createElement('div');
-                artDiv.className = 'art-item';
-                artDiv.innerHTML = `
-                    <button class="remove-btn" onclick="removeArtImage(${art.id})">×</button>
-                    <img src="${art.src}" alt="${art.title}" class="art-image">
-                    <input type="text" class="art-title" value="${art.title}" 
-                           onchange="updateArtTitle(${art.id}, this.value)"
-                           placeholder="Image title...">
-                `;
-                gallery.appendChild(artDiv);
-            });
-        }
-
-        function getAllFormData() {
-            const data = {
-                characterName: document.getElementById('characterName').value,
-                titles: document.getElementById('titles').value,
-                level: document.getElementById('level').value,
-                race: document.getElementById('race').value,
-                age: document.getElementById('age').value,
-                alignment: document.getElementById('alignment').value,
-                indomitability: document.getElementById('indomitability').value,
-                fluidity: document.getElementById('fluidity').value,
-                lucidity: document.getElementById('lucidity').value,
-                authority: document.getElementById('authority').value,
-                currentHP: document.getElementById('currentHP').value,
-                maxHP: document.getElementById('maxHP').value,
-                defense: document.getElementById('defense').value,
-                currentAtramenta: document.getElementById('currentAtramenta').value,
-                maxAtramenta: document.getElementById('maxAtramenta').value,
-                movement: document.getElementById('movement').value,
-                directives: document.getElementById('directives').value,
-                weapons: document.getElementById('weapons').value,
-                armor: document.getElementById('armor').value,
-                tools: document.getElementById('tools').value,
-                history: document.getElementById('history').value,
-                goals: document.getElementById('goals').value,
-                perks: [],
-                traits: [],
-                blessings: [],
-                facets: [],
-                artImages: artImages
-            };
-
-            document.querySelectorAll('.perk-input').forEach(input => {
-                if (input.value.trim()) {
-                    data.perks.push(input.value);
-                }
-            });
-
-            document.querySelectorAll('.trait-input').forEach(input => {
-                if (input.value.trim()) {
-                    data.traits.push(input.value);
-                }
-            });
-
-            const blessingNames = document.querySelectorAll('.blessing-name-input');
-            const blessingDescs = document.querySelectorAll('.blessing-desc-input');
-            for (let i = 0; i < blessingNames.length; i++) {
-                if (blessingNames[i].value.trim() || blessingDescs[i].value.trim()) {
-                    data.blessings.push({
-                        name: blessingNames[i].value,
-                        description: blessingDescs[i].value
-                    });
-                }
-            }
-
-            document.querySelectorAll('.facet.active').forEach(facet => {
-                data.facets.push(facet.dataset.facet);
-            });
-
-            return data;
-        }
-
-        function loadFormData(data) {
-            if (!data) return;
-
-            document.getElementById('characterName').value = data.characterName || '';
-            document.getElementById('titles').value = data.titles || '';
-            document.getElementById('level').value = data.level || '';
-            document.getElementById('race').value = data.race || '';
-            document.getElementById('age').value = data.age || '';
-            document.getElementById('alignment').value = data.alignment || '';
-
-            document.getElementById('indomitability').value = data.indomitability || '';
-            document.getElementById('fluidity').value = data.fluidity || '';
-            document.getElementById('lucidity').value = data.lucidity || '';
-            document.getElementById('authority').value = data.authority || '';
-
-            document.getElementById('currentHP').value = data.currentHP || '';
-            document.getElementById('maxHP').value = data.maxHP || '';
-            document.getElementById('defense').value = data.defense || '';
-            document.getElementById('currentAtramenta').value = data.currentAtramenta || '';
-            document.getElementById('maxAtramenta').value = data.maxAtramenta || '';
-            document.getElementById('movement').value = data.movement || '';
-
-            document.getElementById('directives').value = data.directives || '';
-            document.getElementById('weapons').value = data.weapons || '';
-            document.getElementById('armor').value = data.armor || '';
-            document.getElementById('tools').value = data.tools || '';
-            document.getElementById('history').value = data.history || '';
-            document.getElementById('goals').value = data.goals || '';
-
-            document.querySelectorAll('.perk-input').forEach(input => input.value = '');
-            document.querySelectorAll('.trait-input').forEach(input => input.value = '');
-            document.querySelectorAll('.blessing-name-input').forEach(input => input.value = '');
-            document.querySelectorAll('.blessing-desc-input').forEach(input => input.value = '');
-
-            if (data.perks) {
-                const perkList = document.getElementById('perks-list');
-                // Add extra rows if needed
-                while (perkList.querySelectorAll('.perk-input').length < data.perks.length) {
-                    const count = perkList.querySelectorAll('.perk-input').length + 1;
-                    const div = document.createElement('div');
-                    div.className = 'perk-item';
-                    div.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${count}...">`;
-                    perkList.appendChild(div);
-                }
-                const perkInputs = perkList.querySelectorAll('.perk-input');
-                data.perks.forEach((perk, index) => {
-                    if (perkInputs[index]) perkInputs[index].value = perk;
-                });
-            }
-
-            if (data.traits) {
-                const traitList = document.getElementById('traits-list');
-                while (traitList.querySelectorAll('.trait-input').length < data.traits.length) {
-                    const count = traitList.querySelectorAll('.trait-input').length + 1;
-                    const div = document.createElement('div');
-                    div.className = 'trait-item';
-                    div.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${count}...">`;
-                    traitList.appendChild(div);
-                }
-                const traitInputs = traitList.querySelectorAll('.trait-input');
-                data.traits.forEach((trait, index) => {
-                    if (traitInputs[index]) traitInputs[index].value = trait;
-                });
-            }
-
-            if (data.blessings) {
-                const blessingList = document.getElementById('blessings-list');
-                while (blessingList.querySelectorAll('.blessing-name-input').length < data.blessings.length) {
-                    const div = document.createElement('div');
-                    div.className = 'blessing-item';
-                    div.innerHTML = `
-                        <div class="blessing-name">
-                            <input type="text" class="blessing-name-input" placeholder="Blessing Name...">
-                        </div>
-                        <div class="blessing-description">
-                            <textarea class="blessing-desc-input" placeholder="Explain the blessing's effects and abilities..."></textarea>
-                        </div>`;
-                    blessingList.appendChild(div);
-                }
-                const blessingNames = blessingList.querySelectorAll('.blessing-name-input');
-                const blessingDescs = blessingList.querySelectorAll('.blessing-desc-input');
-                data.blessings.forEach((blessing, index) => {
-                    if (blessingNames[index]) blessingNames[index].value = blessing.name || '';
-                    if (blessingDescs[index]) blessingDescs[index].value = blessing.description || '';
-                });
-            }
-
-            document.querySelectorAll('.facet').forEach(facet => {
-                facet.classList.remove('active');
-            });
-
-            if (data.facets) {
-                data.facets.forEach(facetName => {
-                    const facet = document.querySelector(`[data-facet="${facetName}"]`);
-                    if (facet) {
-                        facet.classList.add('active');
-                    }
-                });
-            }
-
-            artImages = [];
-            if (data.artImages) {
-                artImages = data.artImages;
-                renderArtGallery();
-            }
-        }
-
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.classList.add('show');
-            
-            if (type === 'error') {
-                notification.style.background = 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)';
-                notification.style.borderColor = '#ff0000';
-                notification.style.boxShadow = '0 0 30px rgba(255, 0, 0, 0.5)';
-            } else {
-                notification.style.background = 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)';
-                notification.style.borderColor = '#00ff00';
-                notification.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.5)';
-            }
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 2000);
-        }
-
-        window.addEventListener('load', () => {
-            initializeArtLibrary();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey || e.metaKey) {
-                if (e.key === 'e') {
-                    e.preventDefault();
-                    exportCharacter();
-                }
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const inputs = document.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('focus', () => {
-                    input.style.transition = 'all 0.3s ease';
-                });
-            });
-
-            const nameInput = document.getElementById('characterName');
-            nameInput.addEventListener('input', () => {
-                if (nameInput.value.length > 0) {
-                    nameInput.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.4)';
-                } else {
-                    nameInput.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
-                }
-            });
-        });
-
-        function addPerk() {
-            const list = document.getElementById('perks-list');
-            const count = list.querySelectorAll('.perk-input').length + 1;
-            const div = document.createElement('div');
-            div.className = 'perk-item';
-            div.style.cssText = 'display:flex;align-items:center;gap:8px;';
-            div.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${count}..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button>`;
-            list.appendChild(div);
-        }
-
-        function addTrait() {
-            const list = document.getElementById('traits-list');
-            const count = list.querySelectorAll('.trait-input').length + 1;
-            const div = document.createElement('div');
-            div.className = 'trait-item';
-            div.style.cssText = 'display:flex;align-items:center;gap:8px;';
-            div.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${count}..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button>`;
-            list.appendChild(div);
-        }
-
-        function addBlessing() {
-            const list = document.getElementById('blessings-list');
-            const div = document.createElement('div');
-            div.className = 'blessing-item';
-            div.innerHTML = `
+    <div class="section blessings-section">
+        <div class="section-title">Blessings</div>
+        <div class="blessings-grid" id="blessings-list">
+            <div class="blessing-item">
                 <div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
                     <input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;">
                     <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeBlessingItem(this)">✕</button>
                 </div>
                 <div class="blessing-description">
-                    <textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea>
-                </div>`;
-            list.appendChild(div);
-        }
-
-        function removePerkItem(btn) {
-            btn.closest('.perk-item').remove();
-        }
-
-        function removeTraitItem(btn) {
-            btn.closest('.trait-item').remove();
-        }
-
-        function removeBlessingItem(btn) {
-            btn.closest('.blessing-item').remove();
-        }
-
-        function addContract() {
-            const list = document.getElementById('contracts-list');
-            const div = document.createElement('div');
-            div.className = 'blessing-item';
-            div.innerHTML = `
+                    <textarea class="blessing-desc-input" placeholder="Explain the blessing's effects and abilities..."></textarea>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:16px;">
+            <button class="btn" style="padding:8px 18px; font-size:0.8em;" onclick="addBlessing()">Add Blessing</button>
+        </div>
+    </div>
+    
+    <div class="section blessings-section">
+        <div class="section-title">Contracts</div>
+        <div class="blessings-grid" id="contracts-list">
+            <div class="blessing-item">
                 <div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
                     <input type="text" class="blessing-name-input" placeholder="Outsider Name..." style="flex:1;">
                     <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeContractItem(this)">✕</button>
                 </div>
                 <div class="blessing-description">
-                    <textarea class="blessing-desc-input" placeholder="Describe the powers granted to you..."></textarea>
-                </div>`;
-            list.appendChild(div);
-        }
+                    <textarea class="blessing-desc-input" placeholder="Explain the powers granted to you..."></textarea>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:16px;">
+            <button class="btn" style="padding:8px 18px; font-size:0.8em;" onclick="addContract()">Add Contract</button>
+        </div>
+    </div>
 
-        function removeContractItem(btn) {
-            btn.closest('.blessing-item').remove();
+    <div class="section equipment-section">
+        <div class="section-title">Equipment & Belongings</div>
+        <div class="equipment-grid">
+            <div class="equipment-category">
+                <h4>Weapons</h4>
+                <div class="equipment-list">
+                    <textarea id="weapons" placeholder="List weapons..."></textarea>
+                </div>
+            </div>
+            <div class="equipment-category">
+                <h4>Armor & Protection</h4>
+                <div class="equipment-list">
+                    <textarea id="armor" placeholder="List armor..."></textarea>
+                </div>
+            </div>
+            <div class="equipment-category">
+                <h4>Tools & Gear</h4>
+                <div class="equipment-list">
+                    <textarea id="tools" placeholder="List gear..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section notes-section">
+        <div class="section-title">Background & Notes</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+            <div>
+                <label style="color: #ffffff; font-weight: 600; display: block; margin-bottom: 8px; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Personal History:</label>
+                <textarea id="history" class="notes-textarea" placeholder="Character background..."></textarea>
+            </div>
+            <div>
+                <label style="color: #ffffff; font-weight: 600; display: block; margin-bottom: 8px; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Goals & Motivations:</label>
+                <textarea id="goals" class="notes-textarea" placeholder="What drives this character..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="section art-library-section">
+        <div class="art-library-title">Character Art Library</div>
+        <div class="art-drop-zone" id="artDropZone" onclick="document.getElementById('fileInput').click()">
+            <div class="drop-text">Drop Images Here or Click to Browse</div>
+            <div class="drop-subtext">Concept Art, Portraits, References - All Welcome</div>
+            <input type="file" id="fileInput" class="file-input" multiple accept="image/*">
+        </div>
+        <div class="art-gallery" id="artGallery"></div>
+    </div>
+    
+    <div class="ornamental">⧨ ⟡ ⧨</div>
+</div>
+
+<div id="notification" class="notification">Character saved!</div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   HACKING MINIGAME — WORD LISTS & BUILDER
+═══════════════════════════════════════════════════ */
+const HACK_WORDS = {
+    easy: [
+        "ABLE","ACID","AGED","ALSO","AREA","ARMY","AWAY","BACK","BALL","BAND",
+        "BANK","BASE","BATH","BEAR","BEAT","BELL","BEST","BILL","BLOW","BLUE",
+        "BOAT","BODY","BOND","BONE","BOOK","BORE","BORN","BOTH","BULL","BURN",
+        "BUSY","CALL","CAME","CAMP","CARD","CARE","CART","CASE","CASH","CAST",
+        "CAVE","CELL","CHAT","CHIP","CITY","CLAD","COAL","COAT","CODE","COIL",
+        "COLD","COME","COOK","COOL","COPE","CORD","CORE","CORN","COST","CREW",
+        "CROP","CROW","CURE","CURL","DARK","DATA","DATE","DAYS","DEAD","DEAL",
+        "DEAR","DEBT","DECK","DEED","DEEP","DENY","DESK","DIAL","DICE","DIET",
+        "DIRT","DISK","DOCK","DONE","DOOR","DOSE","DOWN","DRAW","DROP","DRUM",
+        "DUAL","DULL","DUMB","DUMP","DUSK","DUST","DUTY","EARL","EARN","EASE",
+        "EAST","EDGE","EVEN","EVER","EVIL","EXIT","FACE","FACT","FAIL","FAIR",
+        "FALL","FAME","FARM","FAST","FATE","FEAR","FEED","FEEL","FEET","FELL",
+        "FILE","FILL","FILM","FIND","FINE","FIRE","FIRM","FISH","FIST","FLAG"
+    ],
+    medium: [
+        "ABORT","ABOVE","ABUSE","ACUTE","ADMIT","ADOPT","ADULT","AFTER","AGENT",
+        "AGREE","AHEAD","ALARM","ALBUM","ALERT","ALIEN","ALIGN","ALIVE","ALONE",
+        "ALONG","ALTAR","ALTER","AMONG","ANGEL","ANGER","ANGLE","ANNEX","ANVIL",
+        "APART","APPLY","ARENA","ARGUE","ARISE","ARMOR","ARROW","ASKED","ASSET",
+        "ATONE","ATTIC","AUDIO","AUDIT","AVERT","AVOID","AWAKE","AWARD","AWARE",
+        "AWFUL","BASIC","BASIN","BATCH","BEACH","BEGIN","BEING","BELOW","BENCH",
+        "BIRTH","BLACK","BLADE","BLAME","BLAND","BLANK","BLAST","BLAZE","BLEED",
+        "BLEND","BLESS","BLIND","BLOCK","BLOOD","BLOOM","BLOWN","BOARD","BOOST",
+        "BOUND","BRAIN","BRAND","BRAVE","BREAK","BREED","BRICK","BRIEF","BRING",
+        "BROKE","BROOK","BROOM","BROWN","BUILD","BUILT","BUNCH","BURST","BUYER",
+        "CABIN","CABLE","CARGO","CARRY","CAUSE","CEASE","CHAIN","CHAIR","CHAOS",
+        "CHARM","CHART","CHASE","CHEAP","CHECK","CHEER","CHESS","CHEST","CHIEF",
+        "CHILD","CHOIR","CHORD","CIVIL","CLAIM","CLASS","CLEAN","CLEAR","CLERK",
+        "CLICK","CLIMB","CLING","CLOCK","CLONE","CLOSE","CLOTH","CLOUD","COACH"
+    ],
+    hard: [
+        "ABDUCT","ABRUPT","ABSENT","ABSORB","ACCENT","ACCEPT","ACCESS","ACCRUE",
+        "ACTIVE","ACTUAL","AFFIRM","AFFORD","ANCHOR","ANNEAL","ANTLER","ARCADE",
+        "ARDENT","ARMORY","ARREST","ASCEND","ASSESS","ASSIST","ASSORT","ASTUTE",
+        "ATTACH","ATTAIN","ATTEND","ATTUNE","AUGUST","AUTHOR","AVENGE","AVENUE",
+        "BADGER","BALLOT","BANISH","BANTER","BARREN","BATTLE","BECKON","BEHOLD",
+        "BERATE","BETRAY","BEWARE","BEYOND","BLIGHT","BOUNTY","BRANCH","BREACH",
+        "BURIED","CANOPY","CAREER","CASTLE","CAUGHT","CAVERN","CHORUS","CINDER",
+        "CIPHER","CIRCLE","COMBAT","COMPLY","CONCUR","CONVEY","CORPSE","COSTLY",
+        "CRATER","CREDIT","CURFEW","CURSOR","DEBRIS","DECODE","DECREE","DEFEAT",
+        "DEFEND","DEFILE","DELETE","DEPLOY","DESERT","DEVISE","DIVINE","DOMAIN",
+        "DRIVEN","EMBARK","EMPIRE","ENABLE","ENCODE","ENDURE","ENERGY","ENGAGE",
+        "ENSURE","ENTITY","EQUATE","ESCAPE","EVOLVE","EXCESS","EXHALE","EXILED",
+        "EXPAND","EXPIRE","EXPORT","EXTORT","FAMINE","FALLEN","FAULTS","FERRET",
+        "FESTER","FILTER","FOLLOW","FORBID","FOREGO","FOREST","FORMED","FROZEN"
+    ]
+};
+
+const JUNK_CHARS = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`\\\'"';
+const COLS = 12, ROWS = 16;
+
+function randJunk() {
+    return JUNK_CHARS[Math.floor(Math.random() * JUNK_CHARS.length)];
+}
+
+function buildTerminalCells(words) {
+    // Two columns, each COLS*ROWS cells
+    const left  = Array.from({length: COLS*ROWS}, () => ({t:'j', ch:randJunk(), word:'', wpos:-1, bid:'', blen:0}));
+    const right = Array.from({length: COLS*ROWS}, () => ({t:'j', ch:randJunk(), word:'', wpos:-1, bid:'', blen:0}));
+
+    const placed = {0: new Set(), 1: new Set()};
+
+    function tryPlace(word, side) {
+        const cells = side === 0 ? left : right;
+        for (let a = 0; a < 300; a++) {
+            const row = Math.floor(Math.random() * (ROWS - 1));
+            const col = Math.floor(Math.random() * (COLS - word.length));
+            const idx = row * COLS + col;
+            let ok = true;
+            for (let i = -1; i <= word.length; i++) {
+                if (placed[side].has(idx + i)) { ok = false; break; }
+            }
+            if (ok) {
+                for (let i = 0; i < word.length; i++) {
+                    placed[side].add(idx + i);
+                    cells[idx + i] = {t:'w', ch:word[i], word:word, wpos:i, bid:'', blen:0};
+                }
+                return true;
+            }
         }
-    </script>
+        return false;
+    }
+
+    const half = Math.ceil(words.length / 2);
+    words.slice(0, half).forEach(w => tryPlace(w, 0));
+    words.slice(half).forEach(w => tryPlace(w, 1));
+
+    // Add bracket pairs to junk
+    function addBrackets(cells, side) {
+        const OPEN  = ['(','[','<','{'];
+        const CLOSE = [')',']','>','}'];
+        for (let b = 0; b < 4; b++) {
+            const len = 2 + Math.floor(Math.random() * 4);
+            for (let a = 0; a < 200; a++) {
+                const row = Math.floor(Math.random() * ROWS);
+                const col = Math.floor(Math.random() * (COLS - len));
+                const idx = row * COLS + col;
+                let ok = true;
+                for (let i = 0; i < len; i++) {
+                    const c = cells[idx + i];
+                    if (!c || c.t !== 'j' || placed[side].has(idx + i)) { ok = false; break; }
+                }
+                if (ok) {
+                    const t = Math.floor(Math.random() * OPEN.length);
+                    const bid = 's' + side + 'b' + b;
+                    cells[idx] = {t:'bo', ch:OPEN[t], word:'', wpos:-1, bid, blen:len};
+                    for (let i = 1; i < len - 1; i++)
+                        cells[idx + i] = {t:'bm', ch:randJunk(), word:'', wpos:-1, bid, blen:0};
+                    cells[idx + len - 1] = {t:'bc', ch:CLOSE[t], word:'', wpos:-1, bid, blen:0};
+                    for (let i = 0; i < len; i++) placed[side].add(idx + i);
+                    break;
+                }
+            }
+        }
+    }
+    addBrackets(left, 0);
+    addBrackets(right, 1);
+
+    return {left, right};
+}
+
+function buildHackPage(lucidity, difficulty) {
+    const divMap = {easy:2, medium:3, hard:4};
+    const maxAttempts = Math.max(1, Math.floor(lucidity / divMap[difficulty]));
+    const pool = HACK_WORDS[difficulty];
+    const wordCount = difficulty === 'easy' ? 8 : difficulty === 'medium' ? 12 : 16;
+    const words = [...pool].sort(() => Math.random() - 0.5).slice(0, wordCount);
+    const password = words[Math.floor(Math.random() * words.length)];
+    const {left, right} = buildTerminalCells(words);
+
+    // Serialize cells compactly
+    const enc = c => [c.t, c.ch, c.word, c.wpos, c.bid, c.blen];
+
+    const gameData = JSON.stringify({
+        password, words, maxAttempts, difficulty, lucidity,
+        wlen: password.length,
+        L: left.map(enc),
+        R: right.map(enc),
+        COLS, ROWS
+    });
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RobCo Industries — Termlink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050e05;color:#3ef73e;font-family:'Share Tech Mono',monospace;font-size:14px;line-height:1.5;min-height:100vh;overflow-x:hidden;padding:20px;}
+.scanline{pointer-events:none;position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);z-index:100;}
+.crt{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.65) 100%);pointer-events:none;z-index:99;}
+#wrap{max-width:820px;margin:0 auto;position:relative;z-index:1;}
+.hdr{margin-bottom:14px;}
+.hdr p{margin:1px 0;}
+.dim{color:#1a7a1a;}
+.hi{color:#98ff98;}
+.warn{color:#ff9900;}
+.err{color:#ff3333;}
+.info-row{display:flex;gap:28px;margin:8px 0 10px;font-size:13px;color:#1a7a1a;}
+.info-row b{color:#98ff98;}
+.bar{display:flex;gap:3px;margin:6px 0 12px;align-items:center;}
+.ab{display:inline-block;width:13px;height:19px;background:#3ef73e;}
+.ab.gone{background:#0a2a0a;border:1px solid #1a4a1a;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin:10px 0;}
+.col-hdr{color:#1a7a1a;font-size:12px;margin-bottom:3px;}
+.trow{display:flex;margin-bottom:1px;}
+.hex{color:#1a7a1a;min-width:52px;font-size:12px;user-select:none;margin-right:5px;}
+.chars{display:flex;flex-wrap:nowrap;cursor:default;letter-spacing:0.5px;}
+.cell{cursor:default;transition:background .05s,color .05s;}
+.hw{background:#3ef73e;color:#050e05;cursor:pointer;}
+.hb{background:#ff9900;color:#050e05;cursor:pointer;}
+.dead{color:#0f3a0f;}
+hr{border:none;border-top:1px solid #1a4a1a;margin:10px 0;}
+#log{min-height:72px;margin:8px 0;font-size:13px;}
+.le{margin:1px 0;}
+.lm{color:#98ff98;} .ld{color:#ff9900;} .lr{color:#00ccff;} .lf{color:#ff3333;} .lw{color:#00ff88;}
+.gameover{font-size:17px;line-height:2.2;margin:20px 0;}
+.rbtn{background:transparent;border:1px solid #3ef73e;color:#3ef73e;font-family:'Share Tech Mono',monospace;font-size:14px;padding:8px 22px;cursor:pointer;margin-top:10px;letter-spacing:1px;}
+.rbtn:hover{background:#3ef73e;color:#050e05;}
+.blink{animation:bl 1s step-end infinite;}
+@keyframes bl{50%{opacity:0}}
+</style>
+</head>
+<body>
+<div class="scanline"></div>
+<div class="crt"></div>
+<div id="wrap">
+<div class="hdr">
+  <p class="hi">ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</p>
+  <p class="dim">ENTER PASSWORD NOW</p>
+  <p>&nbsp;</p>
+  <p class="dim">SECURITY CLEARANCE: <span class="hi">${difficulty.toUpperCase()}</span></p>
+</div>
+<div class="info-row">
+  <span>LUCIDITY <b>${lucidity}</b></span>
+  <span>ATTEMPTS <b id="aLeft">${maxAttempts}</b></span>
+  <span>WORD LEN <b>${password.length}</b></span>
+</div>
+<div class="bar" id="bar"></div>
+<div class="grid">
+  <div><div class="col-hdr">0xF400</div><div id="LC"></div></div>
+  <div><div class="col-hdr">0xF4${password.length > 5 ? 'CC' : 'A4'}</div><div id="RC"></div></div>
+</div>
+<hr>
+<div id="log"><div class="le dim">&gt; WELCOME TO ROBCO INDUSTRIES (TM) TERMLINK<span class="blink">_</span></div></div>
+<div id="go" style="display:none"></div>
+</div>
+<script>
+const G=${gameData};
+let att=G.maxAttempts, active=true;
+const deadWords=new Set(), deadBrackets=new Set();
+
+function like(a,b){let n=0;for(let i=0;i<a.length;i++)if(a[i]===b[i])n++;return n;}
+
+function buildBar(){
+  const bar=document.getElementById('bar');
+  bar.innerHTML='';
+  for(let i=0;i<G.maxAttempts;i++){
+    const s=document.createElement('span');
+    s.className='ab'+(i>=att?' gone':'');
+    s.id='ab'+i;
+    bar.appendChild(s);
+  }
+}
+
+function syncBar(){
+  for(let i=0;i<G.maxAttempts;i++){
+    const el=document.getElementById('ab'+i);
+    if(el)el.className='ab'+(i>=att?' gone':'');
+  }
+  document.getElementById('aLeft').textContent=att;
+}
+
+function addLog(html,cls){
+  const d=document.createElement('div');
+  d.className='le '+cls;d.innerHTML=html;
+  document.getElementById('log').appendChild(d);
+}
+
+function buildCol(data,id,side){
+  const wrap=document.getElementById(id);
+  wrap.innerHTML='';
+  const base=side===0?0xF400:0xF4A4;
+  for(let r=0;r<G.ROWS;r++){
+    const row=document.createElement('div');row.className='trow';
+    const hex=document.createElement('span');
+    hex.className='hex';hex.textContent='0x'+(base+r*G.COLS).toString(16).toUpperCase().padStart(4,'0');
+    row.appendChild(hex);
+    const chars=document.createElement('span');chars.className='chars';
+    for(let c=0;c<G.COLS;c++){
+      const idx=r*G.COLS+c;
+      const cell=data[idx];
+      const s=document.createElement('span');
+      s.className='cell';s.textContent=cell[1];
+      s.dataset.t=cell[0];s.dataset.w=cell[2];s.dataset.wp=cell[3];
+      s.dataset.bid=cell[4];s.dataset.bl=cell[5];s.dataset.i=idx;s.dataset.side=side;
+      chars.appendChild(s);
+    }
+    row.appendChild(chars);
+    wrap.appendChild(row);
+  }
+}
+
+function getSide(side){return side===0?'LC':'RC';}
+function getWord(w,side){return[...document.querySelectorAll('#'+getSide(side)+' .cell[data-w="'+w+'"]')];}
+function getBrak(bid,side){return[...document.querySelectorAll('#'+getSide(side)+' .cell[data-bid="'+bid+'"]')];}
+
+function clearHL(){document.querySelectorAll('.hw,.hb').forEach(s=>s.classList.remove('hw','hb'));}
+function hlWord(w,side){getWord(w,side).forEach(s=>s.classList.add('hw'));}
+function hlBrak(bid,side){getBrak(bid,side).forEach(s=>s.classList.add('hb'));}
+
+function killDud(word,side){
+  const key=word+'-'+side;
+  if(deadWords.has(key))return;
+  deadWords.add(key);
+  getWord(word,side).forEach(s=>{s.dataset.t='dead';s.dataset.w='';s.className='cell dead';s.textContent='.';});
+  addLog('&gt; DUPE REMOVED','ld');
+  addLog('&gt; ENTRY DENIED','ld');
+}
+
+function replenish(){
+  att=G.maxAttempts;syncBar();
+  addLog('&gt; ATTEMPTS REPLENISHED','lr');
+}
+
+function triggerBracket(bid,side){
+  const key=bid+'-'+side;
+  if(deadBrackets.has(key))return;
+  deadBrackets.add(key);
+  getBrak(bid,side).forEach(s=>{s.dataset.bid='';s.dataset.t='j';});
+  const duds=G.words.filter(w=>w!==G.password&&!deadWords.has(w+'-0')&&!deadWords.has(w+'-1'));
+  if(Math.random()<0.5&&duds.length>0){
+    const pick=duds[Math.floor(Math.random()*duds.length)];
+    const s0=getWord(pick,0).length>0?0:1;
+    killDud(pick,s0);
+  } else {
+    replenish();
+  }
+}
+
+function guess(word){
+  if(!active)return;
+  att--;syncBar();
+  addLog('&gt; '+word,'lm');
+  if(word===G.password){
+    addLog('&gt; EXACT MATCH!','lw');
+    addLog('&gt; PLEASE STAND BY...','lw');
+    active=false;
+    setTimeout(()=>{
+      document.getElementById('go').style.display='block';
+      document.getElementById('go').innerHTML='<div class="gameover hi">&gt; ACCESS GRANTED<br>&gt; PASSWORD: '+G.password+'<br>&gt; WELCOME, USER.</div>';
+    },700);
+    return;
+  }
+  const l=like(word,G.password);
+  addLog('&gt; LIKENESS='+l+'/'+G.wlen,'ld');
+  if(att<=0){
+    active=false;
+    setTimeout(()=>{
+      document.getElementById('go').style.display='block';
+      document.getElementById('go').innerHTML='<div class="gameover err">&gt; TERMINAL LOCKED<br>&gt; CONTACT ADMINISTRATOR<br>&gt; ...<br></div><button class="rbtn" onclick="location.reload()">RETRY HACK</button>';
+    },600);
+  }
+}
+
+document.addEventListener('mouseover',e=>{
+  const cell=e.target.closest('.cell');
+  if(!cell||!active)return;
+  clearHL();
+  const t=cell.dataset.t,w=cell.dataset.w,bid=cell.dataset.bid,side=+cell.dataset.side;
+  if(t==='w'&&w&&!deadWords.has(w+'-'+side)){hlWord(w,side);}
+  else if(bid&&(t==='bo'||t==='bm'||t==='bc')&&!deadBrackets.has(bid+'-'+side)){hlBrak(bid,side);}
+});
+document.addEventListener('mouseout',e=>{if(e.target.closest('.cell'))clearHL();});
+document.addEventListener('click',e=>{
+  const cell=e.target.closest('.cell');
+  if(!cell||!active)return;
+  const t=cell.dataset.t,w=cell.dataset.w,bid=cell.dataset.bid,side=+cell.dataset.side;
+  if(t==='w'&&w&&!deadWords.has(w+'-'+side)){guess(w);}
+  else if(bid&&(t==='bo'||t==='bm'||t==='bc')&&!deadBrackets.has(bid+'-'+side)){triggerBracket(bid,side);}
+});
+
+buildCol(G.L,'LC',0);
+buildCol(G.R,'RC',1);
+buildBar();
+<\/script>
+</body>
+</html>`;
+}
+
+/* ═══════════════════════════════════════════════════
+   HACKER PERK DETECTION & MODAL
+═══════════════════════════════════════════════════ */
+function checkHackerPerk(input) {
+    const val = input.value.trim().toLowerCase();
+    const perkItem = input.closest('.perk-item');
+    if (!perkItem) return;
+
+    // Remove existing eye button if present
+    const existingEye = perkItem.querySelector('.hack-eye-btn');
+    if (existingEye) existingEye.remove();
+
+    if (val === 'hacker') {
+        const eyeBtn = document.createElement('button');
+        eyeBtn.className = 'hack-eye-btn';
+        eyeBtn.title = 'Launch hacking terminal';
+        eyeBtn.innerHTML = '&#x1F441;'; // eye emoji as unicode to avoid emoji ban — using HTML entity
+        // Actually use SVG eye icon for consistency:
+        eyeBtn.textContent = '';
+        eyeBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;vertical-align:middle;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+        eyeBtn.onclick = function(e) {
+            e.preventDefault();
+            openHackModal();
+        };
+        // Insert before the X button
+        const xBtn = perkItem.querySelector('.btn');
+        perkItem.insertBefore(eyeBtn, xBtn);
+    }
+}
+
+function openHackModal() {
+    const lucVal = parseInt(document.getElementById('lucidity').value) || 0;
+    const note = document.getElementById('modalLucidityNote');
+    note.innerHTML =
+        'LUCIDITY: <strong>' + lucVal + '</strong>' +
+        ' &nbsp;|&nbsp; EASY: ' + Math.max(1,Math.floor(lucVal/2)) + ' attempts' +
+        ' &nbsp;|&nbsp; MED: ' + Math.max(1,Math.floor(lucVal/3)) + ' attempts' +
+        ' &nbsp;|&nbsp; HARD: ' + Math.max(1,Math.floor(lucVal/4)) + ' attempts';
+    document.getElementById('hackModal').classList.add('open');
+}
+
+function closeHackModal() {
+    document.getElementById('hackModal').classList.remove('open');
+}
+
+function launchHack(difficulty) {
+    closeHackModal();
+    const lucidity = parseInt(document.getElementById('lucidity').value) || 1;
+    const html = buildHackPage(lucidity, difficulty);
+    const blob = new Blob([html], {type: 'text/html'});
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+
+/* ═══════════════════════════════════════════════════
+   ORIGINAL CHARACTER SHEET CODE
+═══════════════════════════════════════════════════ */
+let artImages = [];
+
+function compressImage(file, maxWidth = 600, quality = 0.85) {
+    return new Promise((resolve) => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        img.onload = () => {
+            let nw = img.width, nh = img.height;
+            if (img.width > maxWidth || img.height > maxWidth) {
+                const ratio = Math.min(maxWidth / img.width, maxWidth / img.height);
+                nw = Math.round(img.width * ratio);
+                nh = Math.round(img.height * ratio);
+            }
+            canvas.width = nw; canvas.height = nh;
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(img, 0, 0, nw, nh);
+            let out;
+            try {
+                out = canvas.toDataURL('image/webp', quality);
+                if (!out.startsWith('data:image/webp')) throw 0;
+            } catch(e) { out = canvas.toDataURL('image/jpeg', quality); }
+            resolve(out);
+        };
+        img.src = file;
+    });
+}
+
+function compressTextData(data) {
+    const compressed = {...data};
+    Object.keys(compressed).forEach(key => {
+        if (compressed[key] === '' || (Array.isArray(compressed[key]) && compressed[key].length === 0))
+            delete compressed[key];
+    });
+    ['perks','traits','blessings','facets'].forEach(k => {
+        if (compressed[k]) {
+            if (k === 'blessings')
+                compressed[k] = compressed[k].filter(b => b.name?.trim() || b.description?.trim());
+            else
+                compressed[k] = compressed[k].filter(i => typeof i === 'string' ? i.trim() : i);
+            if (compressed[k].length === 0) delete compressed[k];
+        }
+    });
+    return compressed;
+}
+
+function exportCharacter() {
+    const rawData = getAllFormData();
+    const compressedData = compressTextData(rawData);
+    Promise.all(artImages.map(async (art) => {
+        const compressed = await compressImage(art.src);
+        return {id: art.id, src: compressed, title: art.title?.trim() || ''};
+    })).then(compressedImages => {
+        const exportData = {
+            v: 2,
+            d: new Date().toISOString().split('T')[0],
+            data: {...compressedData, artImages: compressedImages.length > 0 ? compressedImages : undefined}
+        };
+        const blob = new Blob([JSON.stringify(exportData)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = (compressedData.characterName?.replace(/[^a-zA-Z0-9]/g, '') || 'character') + '_' + Date.now() + '.json';
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(url);
+        showNotification('Character exported!');
+    });
+}
+
+function importFromFile(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const importData = JSON.parse(e.target.result);
+            loadFormData(importData.v === 2 ? importData.data : (importData.data || importData));
+            showNotification('Character imported!');
+            document.getElementById('importSection').classList.add('hidden');
+        } catch(err) {
+            showNotification('Error: Invalid format', 'error');
+        }
+    };
+    reader.readAsText(file);
+}
+
+function showImportSection() {
+    document.getElementById('importSection').classList.toggle('hidden');
+}
+
+function toggleFacet(el) { el.classList.toggle('active'); }
+
+function initializeArtLibrary() {
+    const dz = document.getElementById('artDropZone');
+    const fi = document.getElementById('fileInput');
+    dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+    dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+    dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+    fi.addEventListener('change', e => handleFiles(e.target.files));
+}
+
+function handleFiles(files) {
+    Array.from(files).forEach(file => {
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = e => addArtImage(e.target.result, file.name);
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+function addArtImage(src, name) {
+    artImages.push({id: Date.now() + Math.random(), src, title: name.replace(/\.[^/.]+$/, "")});
+    renderArtGallery();
+}
+
+function removeArtImage(id) { artImages = artImages.filter(a => a.id !== id); renderArtGallery(); }
+function updateArtTitle(id, t) { const a = artImages.find(x => x.id === id); if (a) a.title = t; }
+
+function renderArtGallery() {
+    const g = document.getElementById('artGallery');
+    g.innerHTML = '';
+    artImages.forEach(art => {
+        const d = document.createElement('div');
+        d.className = 'art-item';
+        d.innerHTML = `<button class="remove-btn" onclick="removeArtImage(${art.id})">×</button>
+            <img src="${art.src}" alt="${art.title}" class="art-image">
+            <input type="text" class="art-title" value="${art.title}" onchange="updateArtTitle(${art.id},this.value)" placeholder="Image title...">`;
+        g.appendChild(d);
+    });
+}
+
+function getAllFormData() {
+    const ids = ['characterName','titles','level','race','age','alignment',
+        'indomitability','fluidity','lucidity','authority',
+        'currentHP','maxHP','defense','currentAtramenta','maxAtramenta','movement',
+        'directives','weapons','armor','tools','history','goals'];
+    const data = {};
+    ids.forEach(id => { data[id] = document.getElementById(id)?.value || ''; });
+    data.perks = [];
+    document.querySelectorAll('.perk-input').forEach(i => { if (i.value.trim()) data.perks.push(i.value); });
+    data.traits = [];
+    document.querySelectorAll('.trait-input').forEach(i => { if (i.value.trim()) data.traits.push(i.value); });
+    data.blessings = [];
+    const bns = document.querySelectorAll('#blessings-list .blessing-name-input');
+    const bds = document.querySelectorAll('#blessings-list .blessing-desc-input');
+    for (let i = 0; i < bns.length; i++) {
+        if (bns[i].value.trim() || bds[i].value.trim())
+            data.blessings.push({name: bns[i].value, description: bds[i].value});
+    }
+    data.facets = [];
+    document.querySelectorAll('.facet.active').forEach(f => data.facets.push(f.dataset.facet));
+    data.artImages = artImages;
+    return data;
+}
+
+function loadFormData(data) {
+    if (!data) return;
+    const ids = ['characterName','titles','level','race','age','alignment',
+        'indomitability','fluidity','lucidity','authority',
+        'currentHP','maxHP','defense','currentAtramenta','maxAtramenta','movement',
+        'directives','weapons','armor','tools','history','goals'];
+    ids.forEach(id => { const el = document.getElementById(id); if (el) el.value = data[id] || ''; });
+
+    if (data.perks) {
+        const list = document.getElementById('perks-list');
+        while (list.querySelectorAll('.perk-input').length < data.perks.length) {
+            const c = list.querySelectorAll('.perk-input').length + 1;
+            const d = document.createElement('div');
+            d.className = 'perk-item';
+            d.style.cssText = 'display:flex;align-items:center;gap:8px;';
+            d.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${c}..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button>`;
+            list.appendChild(d);
+        }
+        list.querySelectorAll('.perk-input').forEach((inp, i) => {
+            if (data.perks[i] !== undefined) { inp.value = data.perks[i]; checkHackerPerk(inp); }
+        });
+    }
+
+    if (data.traits) {
+        const list = document.getElementById('traits-list');
+        while (list.querySelectorAll('.trait-input').length < data.traits.length) {
+            const c = list.querySelectorAll('.trait-input').length + 1;
+            const d = document.createElement('div');
+            d.className = 'trait-item';
+            d.style.cssText = 'display:flex;align-items:center;gap:8px;';
+            d.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${c}..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button>`;
+            list.appendChild(d);
+        }
+        list.querySelectorAll('.trait-input').forEach((inp, i) => { if (data.traits[i] !== undefined) inp.value = data.traits[i]; });
+    }
+
+    if (data.blessings) {
+        const bl = document.getElementById('blessings-list');
+        while (bl.querySelectorAll('.blessing-name-input').length < data.blessings.length) {
+            const d = document.createElement('div'); d.className = 'blessing-item';
+            d.innerHTML = `<div class="blessing-name" style="display:flex;align-items:center;gap:8px;"><input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;" onclick="removeBlessingItem(this)">✕</button></div><div class="blessing-description"><textarea class="blessing-desc-input" placeholder="Effects..."></textarea></div>`;
+            bl.appendChild(d);
+        }
+        const bns = bl.querySelectorAll('.blessing-name-input'), bds = bl.querySelectorAll('.blessing-desc-input');
+        data.blessings.forEach((b, i) => { if (bns[i]) bns[i].value = b.name||''; if (bds[i]) bds[i].value = b.description||''; });
+    }
+
+    document.querySelectorAll('.facet').forEach(f => f.classList.remove('active'));
+    (data.facets||[]).forEach(n => { const f = document.querySelector('[data-facet="'+n+'"]'); if (f) f.classList.add('active'); });
+
+    artImages = data.artImages || [];
+    renderArtGallery();
+}
+
+function showNotification(message, type = 'success') {
+    const n = document.getElementById('notification');
+    n.textContent = message;
+    n.classList.add('show');
+    n.style.borderColor = type === 'error' ? '#ff0000' : '#00ff00';
+    n.style.boxShadow = type === 'error' ? '0 0 30px rgba(255,0,0,0.5)' : '0 0 30px rgba(0,255,0,0.5)';
+    setTimeout(() => n.classList.remove('show'), 2000);
+}
+
+function addPerk() {
+    const list = document.getElementById('perks-list');
+    const c = list.querySelectorAll('.perk-input').length + 1;
+    const d = document.createElement('div');
+    d.className = 'perk-item';
+    d.style.cssText = 'display:flex;align-items:center;gap:8px;';
+    d.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${c}..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button>`;
+    list.appendChild(d);
+}
+
+function addTrait() {
+    const list = document.getElementById('traits-list');
+    const c = list.querySelectorAll('.trait-input').length + 1;
+    const d = document.createElement('div');
+    d.className = 'trait-item';
+    d.style.cssText = 'display:flex;align-items:center;gap:8px;';
+    d.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${c}..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button>`;
+    list.appendChild(d);
+}
+
+function addBlessing() {
+    const list = document.getElementById('blessings-list');
+    const d = document.createElement('div'); d.className = 'blessing-item';
+    d.innerHTML = `<div class="blessing-name" style="display:flex;align-items:center;gap:8px;"><input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeBlessingItem(this)">✕</button></div><div class="blessing-description"><textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea></div>`;
+    list.appendChild(d);
+}
+
+function addContract() {
+    const list = document.getElementById('contracts-list');
+    const d = document.createElement('div'); d.className = 'blessing-item';
+    d.innerHTML = `<div class="blessing-name" style="display:flex;align-items:center;gap:8px;"><input type="text" class="blessing-name-input" placeholder="Outsider Name..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeContractItem(this)">✕</button></div><div class="blessing-description"><textarea class="blessing-desc-input" placeholder="Describe the powers granted to you..."></textarea></div>`;
+    list.appendChild(d);
+}
+
+function removePerkItem(btn) {
+    const item = btn.closest('.perk-item');
+    item.remove();
+}
+function removeTraitItem(btn) { btn.closest('.trait-item').remove(); }
+function removeBlessingItem(btn) { btn.closest('.blessing-item').remove(); }
+function removeContractItem(btn) { btn.closest('.blessing-item').remove(); }
+
+window.addEventListener('load', initializeArtLibrary);
+
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'e') { e.preventDefault(); exportCharacter(); }
+    if (e.key === 'Escape') closeHackModal();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const nameInput = document.getElementById('characterName');
+    nameInput.addEventListener('input', () => {
+        nameInput.style.textShadow = nameInput.value.length > 0
+            ? '0 0 15px rgba(255,255,255,0.8), 0 0 25px rgba(255,255,255,0.4)'
+            : '0 0 15px rgba(255,255,255,0.5)';
+    });
+});
+</script>
 </body>
 </html>
