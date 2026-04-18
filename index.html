@@ -1938,8 +1938,8 @@ function openHackModal() {
     const note = document.getElementById('modalLucidityNote');
     note.innerHTML =
         'Lucidity: <strong>' + lucVal + '</strong>' +
-        ' &nbsp;|&nbsp; Easy: <strong>' + Math.max(1,Math.floor(lucVal/1)) + '</strong> attempts' +
-        ' &nbsp;|&nbsp; Medium: <strong>' + Math.max(1,Math.floor(lucVal/2)) + '</strong> attempts' +
+        ' &nbsp;|&nbsp; Easy: <strong>' + Math.max(1,Math.floor(lucVal/2)) + '</strong> attempts' +
+        ' &nbsp;|&nbsp; Medium: <strong>' + Math.max(1,Math.floor(lucVal/3)) + '</strong> attempts' +
         ' &nbsp;|&nbsp; Hard: <strong>' + Math.max(1,Math.floor(lucVal/4)) + '</strong> attempts';
     document.getElementById('hackModal').classList.add('open');
 }
