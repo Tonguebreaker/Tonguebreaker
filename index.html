@@ -1531,7 +1531,7 @@ function buildTerminalCells(words) {
 }
 
 function buildHackPage(lucidity, difficulty) {
-    const divMap = {easy:2, medium:3, hard:4};
+    const divMap = {easy:1, medium:2, hard:3};
     const maxAttempts = Math.min(100, Math.max(1, Math.floor(lucidity / divMap[difficulty])));
     const pool = HACK_WORDS[difficulty];
     // More words = more duds to wade through
@@ -1938,9 +1938,9 @@ function openHackModal() {
     const note = document.getElementById('modalLucidityNote');
     note.innerHTML =
         'Lucidity: <strong>' + lucVal + '</strong>' +
-        ' &nbsp;|&nbsp; Easy: <strong>' + Math.max(1,Math.floor(lucVal/2)) + '</strong> attempts' +
-        ' &nbsp;|&nbsp; Medium: <strong>' + Math.max(1,Math.floor(lucVal/3)) + '</strong> attempts' +
-        ' &nbsp;|&nbsp; Hard: <strong>' + Math.max(1,Math.floor(lucVal/4)) + '</strong> attempts';
+        ' &nbsp;|&nbsp; Easy: <strong>' + Math.max(1,Math.floor(lucVal/1)) + '</strong> attempts' +
+        ' &nbsp;|&nbsp; Medium: <strong>' + Math.max(1,Math.floor(lucVal/2)) + '</strong> attempts' +
+        ' &nbsp;|&nbsp; Hard: <strong>' + Math.max(1,Math.floor(lucVal/3)) + '</strong> attempts';
     document.getElementById('hackModal').classList.add('open');
 }
 
