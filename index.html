@@ -544,102 +544,143 @@
             color: #ff0000;
         }
 
-        /* ── HACKER EYE BUTTON ── */
+        /* ── HACKER EYE BUTTON — now matching sheet aesthetic ── */
         .hack-eye-btn {
-            background: linear-gradient(135deg, #001a00 0%, #003300 50%, #001a00 100%);
-            border: 2px solid #3ef73e;
-            color: #3ef73e;
+            background: linear-gradient(135deg, #000000 0%, #333333 50%, #000000 100%);
+            border: 2px solid #ffffff;
+            color: #ffffff;
             padding: 4px 10px;
             font-size: 0.7em;
             white-space: nowrap;
             cursor: pointer;
             font-family: 'Cinzel', serif;
             letter-spacing: 1px;
-            transition: all 0.2s ease;
-            box-shadow: 0 0 8px rgba(62,247,62,0.4);
-            animation: hackGlow 1.5s ease-in-out infinite alternate;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
         .hack-eye-btn:hover {
-            background: #3ef73e;
+            background: linear-gradient(135deg, #ffffff 0%, #cccccc 50%, #ffffff 100%);
             color: #000000;
-            box-shadow: 0 0 20px rgba(62,247,62,0.8);
-        }
-        @keyframes hackGlow {
-            from { box-shadow: 0 0 4px rgba(62,247,62,0.3); }
-            to   { box-shadow: 0 0 14px rgba(62,247,62,0.7); }
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
         }
 
-        /* ── DIFFICULTY MODAL ── */
+        /* ── DIFFICULTY MODAL — matching sheet aesthetic ── */
         #hackModal {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.9);
             z-index: 9999;
             align-items: center;
             justify-content: center;
         }
         #hackModal.open { display: flex; }
         .hack-modal-box {
-            background: #050e05;
-            border: 2px solid #3ef73e;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            border: 3px solid #ffffff;
             padding: 40px;
-            max-width: 420px;
+            max-width: 480px;
             width: 90%;
-            font-family: 'Share Tech Mono', monospace, 'Cinzel', serif;
-            box-shadow: 0 0 40px rgba(62,247,62,0.4);
-            color: #3ef73e;
+            font-family: 'Cinzel', serif;
+            box-shadow:
+                0 0 50px rgba(255, 255, 255, 0.2),
+                inset 0 0 50px rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            position: relative;
+        }
+        .hack-modal-box::before {
+            content: '';
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+            pointer-events: none;
         }
         .hack-modal-box h2 {
-            font-size: 1.1em;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.6em;
+            font-weight: 700;
             letter-spacing: 3px;
-            margin-bottom: 8px;
-            color: #98ff98;
+            margin-bottom: 12px;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 12px;
         }
         .hack-modal-box p {
-            font-size: 0.85em;
-            color: #1a7a1a;
-            margin-bottom: 24px;
+            font-size: 0.9em;
+            color: #cccccc;
+            margin-bottom: 20px;
             line-height: 1.6;
+            text-align: center;
+            font-style: italic;
         }
         .diff-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
+            margin: 20px 0;
         }
         .diff-btn {
-            background: transparent;
-            border: 2px solid #3ef73e;
-            color: #3ef73e;
-            font-family: 'Share Tech Mono', monospace;
+            background: linear-gradient(135deg, #000000 0%, #333333 50%, #000000 100%);
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
             font-size: 0.85em;
-            padding: 10px 20px;
+            padding: 12px 22px;
             cursor: pointer;
             letter-spacing: 2px;
-            transition: all 0.2s;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
         .diff-btn:hover {
-            background: #3ef73e;
-            color: #050e05;
+            transform: translateY(-2px);
         }
-        .diff-btn.easy:hover  { background: #3ef73e; }
-        .diff-btn.medium:hover{ background: #ff9900; border-color: #ff9900; color: #050e05; }
-        .diff-btn.hard:hover  { background: #ff3333; border-color: #ff3333; color: #050e05; }
+        .diff-btn.easy:hover {
+            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+            color: #000000;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+        }
+        .diff-btn.medium:hover {
+            background: #ff0000;
+            border-color: #ff0000;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(255,0,0,0.4);
+        }
+        .diff-btn.hard:hover {
+            background: #ff0000;
+            border-color: #ff0000;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(255,0,0,0.6);
+        }
         .modal-cancel {
             display: block;
             text-align: center;
             margin-top: 16px;
-            font-size: 0.75em;
-            color: #1a7a1a;
+            font-size: 0.8em;
+            color: #666666;
             cursor: pointer;
             letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            transition: color 0.2s;
         }
-        .modal-cancel:hover { color: #3ef73e; }
+        .modal-cancel:hover { color: #ffffff; }
         .lucidity-note {
-            font-size: 0.8em;
-            color: #3ef73e;
+            font-size: 0.78em;
+            color: #aaaaaa;
             margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #333333;
+            padding: 10px;
+            background: rgba(0,0,0,0.5);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+        .lucidity-note strong {
+            color: #ffffff;
         }
 
         .blessings-section {
@@ -1047,16 +1088,15 @@
 <!-- ── DIFFICULTY MODAL ── -->
 <div id="hackModal">
     <div class="hack-modal-box">
-        <h2>ANTARES MASTER KEY</h2>
-        <h2>CIPHER BREACH REQUEST</h2>
-        <p style="margin-top:12px;">Select security clearance level to initiate hack.</p>
+        <h2>Antares Master Key</h2>
+        <p>Select security clearance level to initiate hack.</p>
         <div class="lucidity-note" id="modalLucidityNote">LUCIDITY: — | ATTEMPTS: —</div>
         <div class="diff-buttons">
-            <button class="diff-btn easy"   onclick="launchHack('easy')">EASY</button>
-            <button class="diff-btn medium" onclick="launchHack('medium')">MEDIUM</button>
-            <button class="diff-btn hard"   onclick="launchHack('hard')">HARD</button>
+            <button class="diff-btn easy"   onclick="launchHack('easy')">Easy</button>
+            <button class="diff-btn medium" onclick="launchHack('medium')">Medium</button>
+            <button class="diff-btn hard"   onclick="launchHack('hard')">Hard</button>
         </div>
-        <span class="modal-cancel" onclick="closeHackModal()">[ ABORT ]</span>
+        <span class="modal-cancel" onclick="closeHackModal()">[ Abort ]</span>
     </div>
 </div>
 
@@ -1420,7 +1460,6 @@ function randJunk() {
 }
 
 function buildTerminalCells(words) {
-    // Two columns, each COLS*ROWS cells
     const left  = Array.from({length: COLS*ROWS}, () => ({t:'j', ch:randJunk(), word:'', wpos:-1, bid:'', blen:0}));
     const right = Array.from({length: COLS*ROWS}, () => ({t:'j', ch:randJunk(), word:'', wpos:-1, bid:'', blen:0}));
 
@@ -1451,7 +1490,6 @@ function buildTerminalCells(words) {
     words.slice(0, half).forEach(w => tryPlace(w, 0));
     words.slice(half).forEach(w => tryPlace(w, 1));
 
-    // Add bracket pairs to junk
     function addBrackets(cells, side) {
         const OPEN  = ['(','[','<','{'];
         const CLOSE = [')',']','>','}'];
@@ -1494,7 +1532,6 @@ function buildHackPage(lucidity, difficulty) {
     const password = words[Math.floor(Math.random() * words.length)];
     const {left, right} = buildTerminalCells(words);
 
-    // Serialize cells compactly
     const enc = c => [c.t, c.ch, c.word, c.wpos, c.bid, c.blen];
 
     const gameData = JSON.stringify({
@@ -1505,177 +1542,227 @@ function buildHackPage(lucidity, difficulty) {
         COLS, ROWS
     });
 
+    /* ─── TERMINAL PAGE — BLACK / WHITE / RED CINZEL AESTHETIC ─── */
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ANTARES MASTER KEY — ${difficulty.toUpperCase()}</title>
+<title>Antares Master Key — ${difficulty.toUpperCase()}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0e0000;color:#ff3a1a;font-family:'Share Tech Mono',monospace;font-size:14px;line-height:1.5;min-height:100vh;overflow-x:hidden;padding:20px;}
-.scanline{pointer-events:none;position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.07) 2px,rgba(0,0,0,0.07) 4px);z-index:100;}
-.crt{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.72) 100%);pointer-events:none;z-index:99;}
-#wrap{max-width:840px;margin:0 auto;position:relative;z-index:1;}
-.hdr{margin-bottom:14px;border-bottom:1px solid #3a0a00;padding-bottom:12px;}
-.hdr p{margin:1px 0;}
-.dim{color:#5a1a0a;}
-.hi{color:#ff8060;}
-.warn{color:#ff9900;}
-.err{color:#ff2020;}
-.suc{color:#ff6030;}
-.info-row{display:flex;gap:28px;margin:8px 0 10px;font-size:13px;color:#5a1a0a;}
-.info-row b{color:#ff8060;}
-.bar{display:flex;gap:3px;margin:6px 0 12px;align-items:center;}
-.ab{display:inline-block;width:13px;height:19px;background:#ff3a1a;}
-.ab.gone{background:#1a0500;border:1px solid #3a0a00;}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin:10px 0;}
-.col-hdr{color:#5a1a0a;font-size:12px;margin-bottom:3px;}
-.trow{display:flex;margin-bottom:1px;}
-.hex{color:#5a1a0a;min-width:52px;font-size:12px;user-select:none;margin-right:5px;}
-.chars{display:flex;flex-wrap:nowrap;cursor:default;letter-spacing:0.5px;}
-.cell{cursor:default;transition:background .04s,color .04s;}
-.hw{background:#ff3a1a;color:#0e0000;cursor:pointer;}
-.hb{background:#ff9900;color:#0e0000;cursor:pointer;}
-.dead{color:#2a0500;}
-hr{border:none;border-top:1px solid #3a0a00;margin:10px 0;}
-#log{min-height:72px;margin:8px 0;font-size:13px;}
-.le{margin:1px 0;}
-.lm{color:#ff8060;} .ld{color:#ff9900;} .lr{color:#ff5500;} .lf{color:#ff2020;} .lw{color:#ff6030;}
-.gameover{font-size:17px;line-height:2.2;margin:20px 0;}
-.rbtn{background:transparent;border:1px solid #ff3a1a;color:#ff3a1a;font-family:'Share Tech Mono',monospace;font-size:14px;padding:8px 22px;cursor:pointer;margin-top:10px;letter-spacing:1px;}
-.rbtn:hover{background:#ff3a1a;color:#0e0000;}
+body{
+  background:#000000;
+  color:#ffffff;
+  font-family:'Cinzel',serif;
+  font-size:13px;
+  line-height:1.6;
+  min-height:100vh;
+  padding:30px 20px;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,0,0,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+}
+#wrap{
+  max-width:860px;
+  margin:0 auto;
+  background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 50%,#000000 100%);
+  border:3px solid #ffffff;
+  padding:35px;
+  position:relative;
+  box-shadow:0 0 50px rgba(255,255,255,0.15), inset 0 0 50px rgba(0,0,0,0.8);
+}
+#wrap::before{
+  content:'';position:absolute;top:10px;left:10px;right:10px;bottom:10px;
+  border:1px solid rgba(255,255,255,0.2);pointer-events:none;
+}
+.page-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:1.8em;
+  font-weight:700;
+  letter-spacing:4px;
+  color:#ffffff;
+  text-align:center;
+  text-shadow:0 0 10px rgba(255,255,255,0.4),0 0 20px rgba(255,255,255,0.2);
+  border-bottom:3px solid #ffffff;
+  padding-bottom:16px;
+  margin-bottom:20px;
+  position:relative;
+}
+.page-title::after{
+  content:'';position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);
+  width:60px;height:3px;background:#ff0000;
+}
+.info-bar{
+  display:flex;gap:30px;margin:0 0 16px;
+  font-size:0.85em;letter-spacing:2px;color:#aaaaaa;
+  border-bottom:1px solid #333333;padding-bottom:14px;
+  flex-wrap:wrap;
+}
+.info-bar b{color:#ffffff;}
+.attempts-bar{display:flex;gap:4px;margin:0 0 22px;align-items:center;}
+.ab{
+  display:inline-block;width:16px;height:22px;
+  background:linear-gradient(135deg,#ffffff 0%,#cccccc 100%);
+  border:1px solid #ffffff;
+}
+.ab.gone{background:#000000;border:1px solid #444444;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin:10px 0;}
+.col-hdr{
+  color:#aaaaaa;font-size:0.78em;margin-bottom:5px;
+  letter-spacing:2px;text-transform:uppercase;
+  border-bottom:1px solid #333333;padding-bottom:4px;
+}
+.trow{display:flex;margin-bottom:2px;}
+.hex{
+  color:#555555;min-width:56px;font-size:0.78em;
+  user-select:none;margin-right:6px;letter-spacing:1px;
+}
+.chars{display:flex;flex-wrap:nowrap;cursor:default;}
+.cell{cursor:default;letter-spacing:0.5px;transition:background .05s,color .05s;}
+/* word highlight — white bg / black text */
+.hw{background:#ffffff;color:#000000;cursor:pointer;}
+/* bracket highlight — red bg / white text */
+.hb{background:#ff0000;color:#ffffff;cursor:pointer;}
+/* dead/used cells */
+.dead{color:#333333;}
+hr{border:none;border-top:1px solid #333333;margin:18px 0;}
+#log{min-height:80px;margin:10px 0;border:1px solid #333333;padding:12px;background:rgba(0,0,0,0.5);}
+.le{margin:2px 0;font-size:0.88em;letter-spacing:1px;}
+.lm{color:#ffffff;}
+.ld{color:#aaaaaa;}
+.lr{color:#ff0000;}
+.lf{color:#ff0000;}
+.lw{color:#ffffff;font-weight:700;}
+.gameover{font-size:1em;line-height:2.4;margin:20px 0;letter-spacing:1px;}
+.rbtn{
+  background:linear-gradient(135deg,#000000 0%,#333333 50%,#000000 100%);
+  border:2px solid #ffffff;
+  color:#ffffff;
+  font-family:'Cinzel',serif;
+  font-size:0.9em;
+  padding:10px 28px;
+  cursor:pointer;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:14px;
+  transition:all 0.3s ease;
+}
+.rbtn:hover{
+  background:linear-gradient(135deg,#ffffff 0%,#cccccc 100%);
+  color:#000000;
+}
 .blink{animation:bl 1s step-end infinite;}
 @keyframes bl{50%{opacity:0}}
-#lockout-veil{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(14,0,0,0.92);z-index:500;align-items:center;justify-content:center;flex-direction:column;gap:20px;}
+#lockout-veil{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.95);z-index:500;
+  align-items:center;justify-content:center;flex-direction:column;gap:20px;
+}
 #lockout-veil.on{display:flex;}
-.lockout-msg{color:#ff2020;font-size:22px;letter-spacing:3px;text-align:center;line-height:2;}
-.lockout-sub{color:#5a1a0a;font-size:13px;letter-spacing:2px;text-align:center;}
-.rbtn2{background:transparent;border:1px solid #ff3a1a;color:#ff3a1a;font-family:'Share Tech Mono',monospace;font-size:14px;padding:10px 28px;cursor:pointer;letter-spacing:2px;margin-top:10px;}
-.rbtn2:hover{background:#ff3a1a;color:#0e0000;}
+.lockout-box{
+  background:linear-gradient(135deg,#000000 0%,#1a1a1a 50%,#000000 100%);
+  border:3px solid #ff0000;
+  padding:50px 60px;
+  text-align:center;
+  position:relative;
+  box-shadow:0 0 60px rgba(255,0,0,0.3),inset 0 0 40px rgba(0,0,0,0.8);
+}
+.lockout-box::before{
+  content:'';position:absolute;top:10px;left:10px;right:10px;bottom:10px;
+  border:1px solid rgba(255,0,0,0.3);pointer-events:none;
+}
+.lockout-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:1.6em;letter-spacing:4px;color:#ff0000;
+  margin-bottom:16px;
+  text-shadow:0 0 20px rgba(255,0,0,0.5);
+}
+.lockout-sub{
+  color:#666666;font-size:0.85em;letter-spacing:3px;
+  margin-bottom:24px;text-transform:uppercase;
+}
+.rbtn2{
+  background:transparent;
+  border:2px solid #ffffff;
+  color:#ffffff;
+  font-family:'Cinzel',serif;
+  font-size:0.85em;
+  padding:12px 30px;
+  cursor:pointer;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:all 0.3s ease;
+}
+.rbtn2:hover{background:#ffffff;color:#000000;}
+.success-box{
+  background:linear-gradient(135deg,#000000 0%,#1a1a1a 50%,#000000 100%);
+  border:3px solid #ffffff;
+  padding:20px 25px;
+  position:relative;
+  box-shadow:0 0 40px rgba(255,255,255,0.2),inset 0 0 30px rgba(0,0,0,0.8);
+  margin-top:10px;
+}
+.success-box::before{
+  content:'';position:absolute;top:8px;left:8px;right:8px;bottom:8px;
+  border:1px solid rgba(255,255,255,0.3);pointer-events:none;
+}
+.suc-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:1.2em;letter-spacing:3px;color:#ffffff;
+  text-shadow:0 0 10px rgba(255,255,255,0.5);
+  margin-bottom:10px;
+}
+.suc-pass{
+  font-family:'Cinzel Decorative',serif;
+  font-size:1.8em;color:#ffffff;letter-spacing:4px;
+  text-shadow:0 0 15px rgba(255,255,255,0.5);
+  border:2px solid #ffffff;
+  padding:10px 20px;
+  display:inline-block;
+  margin:10px 0;
+}
 </style>
 </head>
 <body>
-<div class="scanline"></div>
-<div class="crt"></div>
 <div id="lockout-veil">
-  <div class="lockout-msg">TERMINAL LOCKED<br>ACCESS DENIED<br>SECURITY PROTOCOL ENGAGED</div>
-  <div class="lockout-sub">FURTHER INTERACTION PROHIBITED</div>
-  <button class="rbtn2" onclick="location.reload()">ATTEMPT OVERRIDE</button>
+  <div class="lockout-box">
+    <div class="lockout-title">Terminal Locked</div>
+    <div class="lockout-sub">Access Denied — Security Protocol Engaged</div>
+    <button class="rbtn2" onclick="location.reload()">Attempt Override</button>
+  </div>
 </div>
 <div id="wrap">
-<div class="hdr">
-  <p class="hi">ANTARES MASTER KEY — CIPHER BREACH PROTOCOL</p>
-  <p class="dim">CLEARANCE: <span class="hi">${difficulty.toUpperCase()}</span> &nbsp;&nbsp; ENTER PASSPHRASE NOW</p>
+<div class="page-title">Antares Master Key</div>
+<div class="info-bar">
+  <span>Clearance: <b>${difficulty.toUpperCase()}</b></span>
+  <span>Lucidity: <b>${lucidity}</b></span>
+  <span>Attempts: <b id="aLeft">${maxAttempts}</b></span>
+  <span>Cipher Length: <b>${password.length}</b></span>
 </div>
-<div class="info-row">
-  <span>LUCIDITY <b>${lucidity}</b></span>
-  <span>ATTEMPTS <b id="aLeft">${maxAttempts}</b></span>
-  <span>CIPHER LEN <b>${password.length}</b></span>
-</div>
-<div class="bar" id="bar"></div>
+<div class="attempts-bar" id="bar"></div>
 <div class="grid">
-  <div><div class="col-hdr">0xA400</div><div id="LC"></div></div>
-  <div><div class="col-hdr">0xA4${password.length > 8 ? 'D0' : 'B2'}</div><div id="RC"></div></div>
+  <div><div class="col-hdr">Segment 0xA400</div><div id="LC"></div></div>
+  <div><div class="col-hdr">Segment 0xA4${password.length > 8 ? 'D0' : 'B2'}</div><div id="RC"></div></div>
 </div>
 <hr>
-<div id="log"><div class="le dim">&gt; ANTARES MASTER KEY v2.4 — INITIALIZING<span class="blink">_</span></div></div>
-<div id="go" style="display:none"></div>
+<div id="log"><div class="le ld">&gt; Antares Master Key v2.4 — Awaiting Input<span class="blink">_</span></div></div>
+<div id="go"></div>
 </div>
 <script>
 const G=${gameData};
 let att=G.maxAttempts, active=true;
 const deadWords=new Set(), deadBrackets=new Set();
 
-// ── WEB AUDIO ENGINE ──
-const AC=new (window.AudioContext||window.webkitAudioContext)();
-
-function playTick(){
-  const o=AC.createOscillator(),g=AC.createGain();
-  o.connect(g);g.connect(AC.destination);
-  o.type='square';o.frequency.setValueAtTime(1200,AC.currentTime);
-  o.frequency.exponentialRampToValueAtTime(800,AC.currentTime+0.04);
-  g.gain.setValueAtTime(0.18,AC.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+0.06);
-  o.start();o.stop(AC.currentTime+0.07);
-}
-
-function playSelect(){
-  const o=AC.createOscillator(),g=AC.createGain();
-  o.connect(g);g.connect(AC.destination);
-  o.type='sawtooth';
-  o.frequency.setValueAtTime(440,AC.currentTime);
-  o.frequency.exponentialRampToValueAtTime(660,AC.currentTime+0.05);
-  o.frequency.exponentialRampToValueAtTime(550,AC.currentTime+0.12);
-  g.gain.setValueAtTime(0.22,AC.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+0.18);
-  o.start();o.stop(AC.currentTime+0.2);
-}
-
-function playBracket(){
-  [0,1].forEach(i=>{
-    const o=AC.createOscillator(),g=AC.createGain();
-    o.connect(g);g.connect(AC.destination);
-    o.type='triangle';
-    const t=AC.currentTime+i*0.07;
-    o.frequency.setValueAtTime(900-i*300,t);
-    g.gain.setValueAtTime(0.2,t);
-    g.gain.exponentialRampToValueAtTime(0.001,t+0.1);
-    o.start(t);o.stop(t+0.12);
-  });
-}
-
-function playWrong(){
-  const o=AC.createOscillator(),g=AC.createGain();
-  o.connect(g);g.connect(AC.destination);
-  o.type='sawtooth';
-  o.frequency.setValueAtTime(220,AC.currentTime);
-  o.frequency.exponentialRampToValueAtTime(110,AC.currentTime+0.25);
-  g.gain.setValueAtTime(0.28,AC.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+0.3);
-  o.start();o.stop(AC.currentTime+0.32);
-}
-
-function playWin(){
-  const notes=[523,659,784,1047];
-  notes.forEach((f,i)=>{
-    const o=AC.createOscillator(),g=AC.createGain();
-    o.connect(g);g.connect(AC.destination);
-    o.type='triangle';
-    const t=AC.currentTime+i*0.12;
-    o.frequency.setValueAtTime(f,t);
-    g.gain.setValueAtTime(0.25,t);
-    g.gain.exponentialRampToValueAtTime(0.001,t+0.22);
-    o.start(t);o.stop(t+0.25);
-  });
-}
-
-function playLockout(){
-  [0,1,2].forEach(i=>{
-    const o=AC.createOscillator(),g=AC.createGain();
-    o.connect(g);g.connect(AC.destination);
-    o.type='sawtooth';
-    const t=AC.currentTime+i*0.15;
-    o.frequency.setValueAtTime(180-i*40,t);
-    g.gain.setValueAtTime(0.32,t);
-    g.gain.exponentialRampToValueAtTime(0.001,t+0.2);
-    o.start(t);o.stop(t+0.22);
-  });
-}
-
-function resumeAC(){if(AC.state==='suspended')AC.resume();}
-
 function like(a,b){let n=0;for(let i=0;i<a.length;i++)if(a[i]===b[i])n++;return n;}
 
 function buildBar(){
-  const bar=document.getElementById('bar');
-  bar.innerHTML='';
+  const bar=document.getElementById('bar');bar.innerHTML='';
   for(let i=0;i<G.maxAttempts;i++){
     const s=document.createElement('span');
-    s.className='ab'+(i>=att?' gone':'');
-    s.id='ab'+i;
+    s.className='ab'+(i>=att?' gone':'');s.id='ab'+i;
     bar.appendChild(s);
   }
 }
@@ -1689,14 +1776,13 @@ function syncBar(){
 }
 
 function addLog(html,cls){
-  const d=document.createElement('div');
-  d.className='le '+cls;d.innerHTML=html;
+  const d=document.createElement('div');d.className='le '+cls;d.innerHTML=html;
   document.getElementById('log').appendChild(d);
+  document.getElementById('log').scrollTop=9999;
 }
 
 function buildCol(data,id,side){
-  const wrap=document.getElementById(id);
-  wrap.innerHTML='';
+  const wrap=document.getElementById(id);wrap.innerHTML='';
   const base=side===0?0xA400:0xA4B2;
   for(let r=0;r<G.ROWS;r++){
     const row=document.createElement('div');row.className='trow';
@@ -1705,16 +1791,14 @@ function buildCol(data,id,side){
     row.appendChild(hex);
     const chars=document.createElement('span');chars.className='chars';
     for(let c=0;c<G.COLS;c++){
-      const idx=r*G.COLS+c;
-      const cell=data[idx];
+      const idx=r*G.COLS+c;const cell=data[idx];
       const s=document.createElement('span');
       s.className='cell';s.textContent=cell[1];
       s.dataset.t=cell[0];s.dataset.w=cell[2];s.dataset.wp=cell[3];
       s.dataset.bid=cell[4];s.dataset.bl=cell[5];s.dataset.i=idx;s.dataset.side=side;
       chars.appendChild(s);
     }
-    row.appendChild(chars);
-    wrap.appendChild(row);
+    row.appendChild(chars);wrap.appendChild(row);
   }
 }
 
@@ -1735,8 +1819,8 @@ document.addEventListener('mouseover',e=>{
   const key=t+w+bid+side;
   if(key!==lastHover){
     lastHover=key;
-    if(t==='w'&&w&&!deadWords.has(w+'-'+side)){hlWord(w,side);resumeAC();playTick();}
-    else if(bid&&(t==='bo'||t==='bm'||t==='bc')&&!deadBrackets.has(bid+'-'+side)){hlBrak(bid,side);resumeAC();playTick();}
+    if(t==='w'&&w&&!deadWords.has(w+'-'+side))hlWord(w,side);
+    else if(bid&&(t==='bo'||t==='bm'||t==='bc')&&!deadBrackets.has(bid+'-'+side))hlBrak(bid,side);
   }
 });
 document.addEventListener('mouseout',e=>{if(e.target.closest('.cell')){clearHL();lastHover='';}});
@@ -1746,13 +1830,13 @@ function killDud(word,side){
   if(deadWords.has(key))return;
   deadWords.add(key);
   getWord(word,side).forEach(s=>{s.dataset.t='dead';s.dataset.w='';s.className='cell dead';s.textContent='.';});
-  addLog('&gt; DUPE REMOVED','ld');
-  addLog('&gt; ENTRY DENIED','ld');
+  addLog('&gt; Duplicate removed','ld');
+  addLog('&gt; Entry denied','ld');
 }
 
 function replenish(){
   att=G.maxAttempts;syncBar();
-  addLog('&gt; ATTEMPTS REPLENISHED','lr');
+  addLog('&gt; Attempts replenished','lr');
 }
 
 function triggerBracket(bid,side){
@@ -1760,7 +1844,6 @@ function triggerBracket(bid,side){
   if(deadBrackets.has(key))return;
   deadBrackets.add(key);
   getBrak(bid,side).forEach(s=>{s.dataset.bid='';s.dataset.t='j';});
-  resumeAC();playBracket();
   const duds=G.words.filter(w=>w!==G.password&&!deadWords.has(w+'-0')&&!deadWords.has(w+'-1'));
   if(Math.random()<0.5&&duds.length>0){
     const pick=duds[Math.floor(Math.random()*duds.length)];
@@ -1773,29 +1856,23 @@ function triggerBracket(bid,side){
 
 function guess(word){
   if(!active)return;
-  resumeAC();
   att--;syncBar();
   addLog('&gt; '+word,'lm');
   if(word===G.password){
-    playWin();
-    addLog('&gt; EXACT MATCH!','lw');
-    addLog('&gt; ACCESS GRANTED. STAND BY...','lw');
+    addLog('&gt; Exact match found.','lw');
+    addLog('&gt; Access granted.','lw');
     active=false;
     setTimeout(()=>{
-      document.getElementById('go').style.display='block';
-      document.getElementById('go').innerHTML='<div class="gameover suc">&gt; ACCESS GRANTED<br>&gt; PASSPHRASE: '+G.password+'<br>&gt; ANTARES ACKNOWLEDGES.</div>';
-    },700);
+      const go=document.getElementById('go');
+      go.innerHTML='<div class="success-box"><div class="suc-title">Access Granted</div><div class="suc-pass">'+G.password+'</div></div>';
+    },400);
     return;
   }
-  playWrong();
   const l=like(word,G.password);
-  addLog('&gt; LIKENESS='+l+'/'+G.wlen,'ld');
+  addLog('&gt; Likeness: '+l+' / '+G.wlen,'ld');
   if(att<=0){
     active=false;
-    playLockout();
-    setTimeout(()=>{
-      document.getElementById('lockout-veil').classList.add('on');
-    },700);
+    setTimeout(()=>{document.getElementById('lockout-veil').classList.add('on');},600);
   }
 }
 
@@ -1803,9 +1880,8 @@ document.addEventListener('click',e=>{
   const cell=e.target.closest('.cell');
   if(!cell||!active)return;
   const t=cell.dataset.t,w=cell.dataset.w,bid=cell.dataset.bid,side=+cell.dataset.side;
-  resumeAC();
-  if(t==='w'&&w&&!deadWords.has(w+'-'+side)){playSelect();guess(w);}
-  else if(bid&&(t==='bo'||t==='bm'||t==='bc')&&!deadBrackets.has(bid+'-'+side)){triggerBracket(bid,side);}
+  if(t==='w'&&w&&!deadWords.has(w+'-'+side))guess(w);
+  else if(bid&&(t==='bo'||t==='bm'||t==='bc')&&!deadBrackets.has(bid+'-'+side))triggerBracket(bid,side);
 });
 
 buildCol(G.L,'LC',0);
@@ -1824,23 +1900,18 @@ function checkHackerPerk(input) {
     const perkItem = input.closest('.perk-item');
     if (!perkItem) return;
 
-    // Remove existing eye button if present
     const existingEye = perkItem.querySelector('.hack-eye-btn');
     if (existingEye) existingEye.remove();
 
     if (val === 'hacker') {
         const eyeBtn = document.createElement('button');
         eyeBtn.className = 'hack-eye-btn';
+        eyeBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block;vertical-align:middle;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
         eyeBtn.title = 'Launch hacking terminal';
-        eyeBtn.innerHTML = '&#x1F441;'; // eye emoji as unicode to avoid emoji ban — using HTML entity
-        // Actually use SVG eye icon for consistency:
-        eyeBtn.textContent = '';
-        eyeBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;vertical-align:middle;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
         eyeBtn.onclick = function(e) {
             e.preventDefault();
             openHackModal();
         };
-        // Insert before the X button
         const xBtn = perkItem.querySelector('.btn');
         perkItem.insertBefore(eyeBtn, xBtn);
     }
@@ -1850,10 +1921,10 @@ function openHackModal() {
     const lucVal = parseInt(document.getElementById('lucidity').value) || 0;
     const note = document.getElementById('modalLucidityNote');
     note.innerHTML =
-        'LUCIDITY: <strong>' + lucVal + '</strong>' +
-        ' &nbsp;|&nbsp; EASY: ' + Math.max(1,Math.floor(lucVal/1)) + ' attempts' +
-        ' &nbsp;|&nbsp; MED: ' + Math.max(1,Math.floor(lucVal/2)) + ' attempts' +
-        ' &nbsp;|&nbsp; HARD: ' + Math.max(1,Math.floor(lucVal/4)) + ' attempts';
+        'Lucidity: <strong>' + lucVal + '</strong>' +
+        ' &nbsp;|&nbsp; Easy: <strong>' + Math.max(1,Math.floor(lucVal/1)) + '</strong> attempts' +
+        ' &nbsp;|&nbsp; Medium: <strong>' + Math.max(1,Math.floor(lucVal/2)) + '</strong> attempts' +
+        ' &nbsp;|&nbsp; Hard: <strong>' + Math.max(1,Math.floor(lucVal/4)) + '</strong> attempts';
     document.getElementById('hackModal').classList.add('open');
 }
 
@@ -1872,7 +1943,7 @@ function launchHack(difficulty) {
 }
 
 /* ═══════════════════════════════════════════════════
-   ORIGINAL CHARACTER SHEET CODE
+   CHARACTER SHEET CORE
 ═══════════════════════════════════════════════════ */
 let artImages = [];
 
@@ -2128,10 +2199,7 @@ function addContract() {
     list.appendChild(d);
 }
 
-function removePerkItem(btn) {
-    const item = btn.closest('.perk-item');
-    item.remove();
-}
+function removePerkItem(btn) { btn.closest('.perk-item').remove(); }
 function removeTraitItem(btn) { btn.closest('.trait-item').remove(); }
 function removeBlessingItem(btn) { btn.closest('.blessing-item').remove(); }
 function removeContractItem(btn) { btn.closest('.blessing-item').remove(); }
