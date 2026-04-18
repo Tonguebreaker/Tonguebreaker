@@ -639,15 +639,16 @@
             transform: translateY(-2px);
         }
         .diff-btn.easy:hover {
-            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+            background: #00cc44;
+            border-color: #00cc44;
             color: #000000;
-            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+            box-shadow: 0 4px 15px rgba(0,204,68,0.4);
         }
         .diff-btn.medium:hover {
-            background: #ff0000;
-            border-color: #ff0000;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(255,0,0,0.4);
+            background: #ff9900;
+            border-color: #ff9900;
+            color: #000000;
+            box-shadow: 0 4px 15px rgba(255,153,0,0.4);
         }
         .diff-btn.hard:hover {
             background: #ff0000;
@@ -1525,7 +1526,7 @@ function buildTerminalCells(words) {
 
 function buildHackPage(lucidity, difficulty) {
     const divMap = {easy:1, medium:2, hard:4};
-    const maxAttempts = Math.max(1, Math.floor(lucidity / divMap[difficulty]));
+    const maxAttempts = Math.min(100, Math.max(1, Math.floor(lucidity / divMap[difficulty])));
     const pool = HACK_WORDS[difficulty];
     const wordCount = difficulty === 'easy' ? 10 : difficulty === 'medium' ? 12 : 14;
     const words = [...pool].sort(() => Math.random() - 0.5).slice(0, wordCount);
@@ -1593,7 +1594,7 @@ body{
 }
 .page-title::after{
   content:'';position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);
-  width:60px;height:3px;background:#ff0000;
+  width:60px;height:3px;background:${ difficulty==='easy' ? '#00cc44' : difficulty==='medium' ? '#ff9900' : '#ff0000' };
 }
 .info-bar{
   display:flex;gap:30px;margin:0 0 16px;
@@ -1626,10 +1627,18 @@ body{
 .hw{background:#ffffff;color:#000000;cursor:pointer;}
 /* bracket highlight — red bg / white text */
 .hb{background:#ff0000;color:#ffffff;cursor:pointer;}
+/* junk hover — red glow, not clickable */
+.hj{color:#ff0000;text-shadow:0 0 8px rgba(255,0,0,0.8);cursor:default;}
 /* dead/used cells */
 .dead{color:#333333;}
 hr{border:none;border-top:1px solid #333333;margin:18px 0;}
-#log{min-height:80px;margin:10px 0;border:1px solid #333333;padding:12px;background:rgba(0,0,0,0.5);}
+#log{
+  height:110px;
+  overflow-y:scroll;
+  margin:10px 0;border:1px solid #333333;padding:12px;background:rgba(0,0,0,0.5);
+  scrollbar-width:none;
+}
+#log::-webkit-scrollbar{display:none;}
 .le{margin:2px 0;font-size:0.88em;letter-spacing:1px;}
 .lm{color:#ffffff;}
 .ld{color:#aaaaaa;}
@@ -1731,7 +1740,6 @@ hr{border:none;border-top:1px solid #333333;margin:18px 0;}
   <div class="lockout-box">
     <div class="lockout-title">Terminal Locked</div>
     <div class="lockout-sub">Access Denied — Security Protocol Engaged</div>
-    <button class="rbtn2" onclick="location.reload()">Attempt Override</button>
   </div>
 </div>
 <div id="wrap">
@@ -1806,7 +1814,7 @@ function getSide(side){return side===0?'LC':'RC';}
 function getWord(w,side){return[...document.querySelectorAll('#'+getSide(side)+' .cell[data-w="'+w+'"]')];}
 function getBrak(bid,side){return[...document.querySelectorAll('#'+getSide(side)+' .cell[data-bid="'+bid+'"]')];}
 
-function clearHL(){document.querySelectorAll('.hw,.hb').forEach(s=>s.classList.remove('hw','hb'));}
+function clearHL(){document.querySelectorAll('.hw,.hb,.hj').forEach(s=>s.classList.remove('hw','hb','hj'));}
 function hlWord(w,side){getWord(w,side).forEach(s=>s.classList.add('hw'));}
 function hlBrak(bid,side){getBrak(bid,side).forEach(s=>s.classList.add('hb'));}
 
@@ -1821,6 +1829,7 @@ document.addEventListener('mouseover',e=>{
     lastHover=key;
     if(t==='w'&&w&&!deadWords.has(w+'-'+side))hlWord(w,side);
     else if(bid&&(t==='bo'||t==='bm'||t==='bc')&&!deadBrackets.has(bid+'-'+side))hlBrak(bid,side);
+    else if(t==='j')cell.classList.add('hj');
   }
 });
 document.addEventListener('mouseout',e=>{if(e.target.closest('.cell')){clearHL();lastHover='';}});
