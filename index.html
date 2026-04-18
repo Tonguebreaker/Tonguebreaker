@@ -1495,7 +1495,7 @@ function buildTerminalCells(words) {
     // Distribute: 2 on one side, 1 on the other (random)
     const OPEN  = ['(','[','<','{'];
     const CLOSE = [')',']','>','}'];
-    const bracketDist = Math.random() < 0.5 ? [2, 1] : [1, 2];
+    const bracketDist = Math.random() < 0.5 ? [3, 2] : [2, 3];
 
     function addBrackets(cells, side, count) {
         let placed_count = 0;
