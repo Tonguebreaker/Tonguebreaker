@@ -1454,7 +1454,7 @@ const HACK_WORDS = {
 };
 
 const JUNK_CHARS = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`\\\'"';
-const COLS = 14, ROWS = 16;
+const COLS = 14, ROWS = 22;
 
 function randJunk() {
     return JUNK_CHARS[Math.floor(Math.random() * JUNK_CHARS.length)];
@@ -1468,7 +1468,7 @@ function buildTerminalCells(words) {
 
     function tryPlace(word, side) {
         const cells = side === 0 ? left : right;
-        for (let a = 0; a < 300; a++) {
+        for (let a = 0; a < 400; a++) {
             const row = Math.floor(Math.random() * (ROWS - 1));
             const col = Math.floor(Math.random() * (COLS - word.length));
             const idx = row * COLS + col;
@@ -1491,12 +1491,17 @@ function buildTerminalCells(words) {
     words.slice(0, half).forEach(w => tryPlace(w, 0));
     words.slice(half).forEach(w => tryPlace(w, 1));
 
-    function addBrackets(cells, side) {
-        const OPEN  = ['(','[','<','{'];
-        const CLOSE = [')',']','>','}'];
-        for (let b = 0; b < 4; b++) {
-            const len = 2 + Math.floor(Math.random() * 4);
-            for (let a = 0; a < 200; a++) {
+    // Only 3 bracket pairs total across both columns
+    // Distribute: 2 on one side, 1 on the other (random)
+    const OPEN  = ['(','[','<','{'];
+    const CLOSE = [')',']','>','}'];
+    const bracketDist = Math.random() < 0.5 ? [2, 1] : [1, 2];
+
+    function addBrackets(cells, side, count) {
+        let placed_count = 0;
+        for (let b = 0; b < count; b++) {
+            const len = 2 + Math.floor(Math.random() * 3);
+            for (let a = 0; a < 300; a++) {
                 const row = Math.floor(Math.random() * ROWS);
                 const col = Math.floor(Math.random() * (COLS - len));
                 const idx = row * COLS + col;
@@ -1507,19 +1512,20 @@ function buildTerminalCells(words) {
                 }
                 if (ok) {
                     const t = Math.floor(Math.random() * OPEN.length);
-                    const bid = 's' + side + 'b' + b;
+                    const bid = 's' + side + 'b' + placed_count;
                     cells[idx] = {t:'bo', ch:OPEN[t], word:'', wpos:-1, bid, blen:len};
                     for (let i = 1; i < len - 1; i++)
                         cells[idx + i] = {t:'bm', ch:randJunk(), word:'', wpos:-1, bid, blen:0};
                     cells[idx + len - 1] = {t:'bc', ch:CLOSE[t], word:'', wpos:-1, bid, blen:0};
                     for (let i = 0; i < len; i++) placed[side].add(idx + i);
+                    placed_count++;
                     break;
                 }
             }
         }
     }
-    addBrackets(left, 0);
-    addBrackets(right, 1);
+    addBrackets(left, 0, bracketDist[0]);
+    addBrackets(right, 1, bracketDist[1]);
 
     return {left, right};
 }
@@ -1528,7 +1534,8 @@ function buildHackPage(lucidity, difficulty) {
     const divMap = {easy:1, medium:2, hard:4};
     const maxAttempts = Math.min(100, Math.max(1, Math.floor(lucidity / divMap[difficulty])));
     const pool = HACK_WORDS[difficulty];
-    const wordCount = difficulty === 'easy' ? 10 : difficulty === 'medium' ? 12 : 14;
+    // More words = more duds to wade through
+    const wordCount = difficulty === 'easy' ? 16 : difficulty === 'medium' ? 20 : 24;
     const words = [...pool].sort(() => Math.random() - 0.5).slice(0, wordCount);
     const password = words[Math.floor(Math.random() * words.length)];
     const {left, right} = buildTerminalCells(words);
@@ -1854,7 +1861,7 @@ function triggerBracket(bid,side){
   deadBrackets.add(key);
   getBrak(bid,side).forEach(s=>{s.dataset.bid='';s.dataset.t='j';});
   const duds=G.words.filter(w=>w!==G.password&&!deadWords.has(w+'-0')&&!deadWords.has(w+'-1'));
-  if(Math.random()<0.5&&duds.length>0){
+  if(Math.random()<0.667&&duds.length>0){
     const pick=duds[Math.floor(Math.random()*duds.length)];
     const s0=getWord(pick,0).length>0?0:1;
     killDud(pick,s0);
