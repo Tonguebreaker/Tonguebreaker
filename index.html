@@ -20,6 +20,16 @@
                 radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
         }
         
+        /* ── SMOOTH, PLEASING TYPING FEEL — applies to all text fields ── */
+        input[type="text"], textarea, .rich-field {
+            caret-color: #ff3333;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, width 0.15s ease;
+        }
+        input[type="text"]::selection, textarea::selection, .rich-field ::selection {
+            background: rgba(255, 0, 0, 0.35);
+            color: #ffffff;
+        }
+
         .character-sheet {
             max-width: 1400px;
             margin: 0 auto;
@@ -160,6 +170,11 @@
             pointer-events: none;
         }
         
+        .name-input-row {
+            display: flex;
+            justify-content: center;
+        }
+
         .name-input {
             font-family: 'Cinzel Decorative', serif;
             font-size: 2.5em;
@@ -169,8 +184,8 @@
             border-bottom: 4px solid #ffffff;
             color: #ffffff;
             text-align: center;
-            width: 100%;
-            max-width: 600px;
+            width: min(600px, 100%);
+            max-width: 100%;
             padding: 15px;
             margin-bottom: 20px;
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
@@ -519,30 +534,74 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
         
-        .perk-item, .trait-item {
-            background: #000000;
+        .col-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .col-header-row h4 {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        /* ── RICH TEXT FIELDS (contenteditable) ── */
+        .rich-field-wrap {
+            position: relative;
+        }
+
+        .rich-toolbar {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 4px;
+            z-index: 5;
+        }
+
+        .rf-btn {
+            width: 26px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.85);
             border: 1px solid #666666;
-            border-radius: 0;
-            padding: 10px;
-            margin-bottom: 10px;
+            color: #cccccc;
             font-family: 'Cinzel', serif;
-            font-size: 0.9em;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+            font-size: 0.75em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            line-height: 1;
         }
-        
-        .perk-item input, .trait-item input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-family: 'Cinzel', serif;
-            box-sizing: border-box;
+
+        .rf-btn:hover, .rf-btn.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
         }
-        
-        .perk-item input:focus, .trait-item input:focus {
-            outline: none;
-            color: #ff0000;
+
+        .rich-field {
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            overflow-y: auto;
+            cursor: text;
         }
+
+        .rich-field:empty:before {
+            content: attr(data-placeholder);
+            color: #666666;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .rich-field b, .rich-field strong { color: #ffffff; font-weight: 700; }
+        .rich-field i, .rich-field em { color: #dddddd; }
 
         /* ── HACKER EYE BUTTON — now matching sheet aesthetic ── */
         .hack-eye-btn {
@@ -730,7 +789,8 @@
             color: #ff0000;
         }
 
-        .blessing-description textarea {
+        .blessing-description textarea,
+        .blessing-description .rich-field {
             width: 100%;
             height: 70px;
             background: #000000;
@@ -746,7 +806,12 @@
             min-height: 70px;
         }
 
-        .blessing-description textarea:focus {
+        .blessing-description .rich-field {
+            padding-right: 40px;
+        }
+
+        .blessing-description textarea:focus,
+        .blessing-description .rich-field:focus {
             outline: none;
             border-color: #ffffff;
             color: #ffffff;
@@ -779,7 +844,8 @@
             overflow: visible;
         }
 
-        .equipment-list textarea {
+        .equipment-list textarea,
+        .equipment-list .rich-field {
             background: #000000;
             border: 2px solid #ffffff;
             color: #ffffff;
@@ -794,7 +860,12 @@
             box-sizing: border-box;
         }
 
-        .equipment-list textarea:focus {
+        .equipment-list .rich-field {
+            padding-right: 42px;
+        }
+
+        .equipment-list textarea:focus,
+        .equipment-list .rich-field:focus {
             outline: none;
             border-color: #ff0000;
             box-shadow: 
@@ -819,6 +890,10 @@
             padding: 15px;
             box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
             box-sizing: border-box;
+        }
+
+        .notes-textarea.rich-field {
+            padding-right: 46px;
         }
 
         .notes-textarea:focus {
@@ -1122,7 +1197,10 @@
     </div>
     
     <div class="name-section">
-        <input type="text" class="name-input" id="characterName" placeholder="Enter Character Name..." maxlength="50">
+        <div class="name-input-row">
+            <input type="text" class="name-input" id="characterName" placeholder="Enter Character Name..." maxlength="50">
+        </div>
+        <span id="nameMeasure" class="name-input" aria-hidden="true" style="position:absolute; visibility:hidden; white-space:pre; width:auto; left:-9999px; top:0; padding:0; border:none; margin:0;"></span>
         <br>
         <input type="text" class="titles-input" id="titles" placeholder="Titles, Epithets, or Monikers..." maxlength="100">
     </div>
@@ -1230,27 +1308,33 @@
     </div>
     
     <div class="section perks-traits-section">
-        <div class="section-title">Perks & Traits</div>
+        <div class="section-title">Backgrounds & Traits</div>
         <div class="perks-traits-grid">
             <div class="perks-column">
-                <h4>Perks</h4>
-                <div id="perks-list">
-                    <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 1..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
-                    <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 2..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
-                    <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 3..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
-                    <div class="perk-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="perk-input" placeholder="Perk 4..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button></div>
+                <div class="col-header-row">
+                    <h4>Backgrounds</h4>
+                    <span id="bgHackSlot"></span>
                 </div>
-                <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addPerk()">Add Perk</button>
+                <div class="rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div id="backgrounds" class="notes-textarea rich-field" contenteditable="true" data-placeholder="List your backgrounds..." oninput="checkHackerBackground(this)"></div>
+                </div>
             </div>
             <div class="traits-column">
-                <h4>Traits</h4>
-                <div id="traits-list">
-                    <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 1..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
-                    <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 2..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
-                    <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 3..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
-                    <div class="trait-item" style="display:flex;align-items:center;gap:8px;"><input type="text" class="trait-input" placeholder="Trait 4..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button></div>
+                <div class="col-header-row">
+                    <h4>Traits</h4>
+                    <span></span>
                 </div>
-                <button class="btn" style="margin-top:12px; padding:8px 18px; font-size:0.8em;" onclick="addTrait()">Add Trait</button>
+                <div class="rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div id="traits" class="notes-textarea rich-field" contenteditable="true" data-placeholder="List your traits..."></div>
+                </div>
             </div>
         </div>
     </div>
@@ -1288,7 +1372,13 @@
         </div>
         <div style="margin-top: 25px;">
             <label style="color: #ffffff; font-weight: 600; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Known Directives:</label>
-            <textarea id="directives" style="width: 100%; height: 90px; background: #000000; border: 2px solid #ffffff; color: #ffffff; font-family: 'Cinzel', serif; border-radius: 0; padding: 15px; resize: vertical; margin-top: 10px; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8); box-sizing: border-box;" placeholder="List your known directives..."></textarea>
+            <div class="rich-field-wrap" style="margin-top: 10px;">
+                <div class="rich-toolbar">
+                    <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                    <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                </div>
+                <div id="directives" class="rich-field" contenteditable="true" data-placeholder="List your known directives..." style="width: 100%; min-height: 90px; background: #000000; border: 2px solid #ffffff; color: #ffffff; font-family: 'Cinzel', serif; border-radius: 0; padding: 15px; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8); box-sizing: border-box;"></div>
+            </div>
         </div>
     </div>
 
@@ -1300,8 +1390,12 @@
                     <input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;">
                     <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeBlessingItem(this)">✕</button>
                 </div>
-                <div class="blessing-description">
-                    <textarea class="blessing-desc-input" placeholder="Explain the blessing's effects and abilities..."></textarea>
+                <div class="blessing-description rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div class="blessing-desc-input rich-field" contenteditable="true" data-placeholder="Explain the blessing's effects and abilities..."></div>
                 </div>
             </div>
         </div>
@@ -1318,8 +1412,12 @@
                     <input type="text" class="blessing-name-input" placeholder="Outsider Name..." style="flex:1;">
                     <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeContractItem(this)">✕</button>
                 </div>
-                <div class="blessing-description">
-                    <textarea class="blessing-desc-input" placeholder="Explain the powers granted to you..."></textarea>
+                <div class="blessing-description rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div class="blessing-desc-input rich-field" contenteditable="true" data-placeholder="Explain the powers granted to you..."></div>
                 </div>
             </div>
         </div>
@@ -1333,20 +1431,32 @@
         <div class="equipment-grid">
             <div class="equipment-category">
                 <h4>Weapons</h4>
-                <div class="equipment-list">
-                    <textarea id="weapons" placeholder="List weapons..."></textarea>
+                <div class="equipment-list rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div id="weapons" class="rich-field" contenteditable="true" data-placeholder="List weapons..."></div>
                 </div>
             </div>
             <div class="equipment-category">
                 <h4>Armor & Protection</h4>
-                <div class="equipment-list">
-                    <textarea id="armor" placeholder="List armor..."></textarea>
+                <div class="equipment-list rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div id="armor" class="rich-field" contenteditable="true" data-placeholder="List armor..."></div>
                 </div>
             </div>
             <div class="equipment-category">
                 <h4>Tools & Gear</h4>
-                <div class="equipment-list">
-                    <textarea id="tools" placeholder="List gear..."></textarea>
+                <div class="equipment-list rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div id="tools" class="rich-field" contenteditable="true" data-placeholder="List gear..."></div>
                 </div>
             </div>
         </div>
@@ -1357,11 +1467,23 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
             <div>
                 <label style="color: #ffffff; font-weight: 600; display: block; margin-bottom: 8px; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Personal History:</label>
-                <textarea id="history" class="notes-textarea" placeholder="Character background..."></textarea>
+                <div class="rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div id="history" class="notes-textarea rich-field" contenteditable="true" data-placeholder="Character background..."></div>
+                </div>
             </div>
             <div>
                 <label style="color: #ffffff; font-weight: 600; display: block; margin-bottom: 8px; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;">Goals & Motivations:</label>
-                <textarea id="goals" class="notes-textarea" placeholder="What drives this character..."></textarea>
+                <div class="rich-field-wrap">
+                    <div class="rich-toolbar">
+                        <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                        <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                    </div>
+                    <div id="goals" class="notes-textarea rich-field" contenteditable="true" data-placeholder="What drives this character..."></div>
+                </div>
             </div>
         </div>
     </div>
@@ -1910,15 +2032,13 @@ buildBar();
 /* ═══════════════════════════════════════════════════
    HACKER PERK DETECTION & MODAL
 ═══════════════════════════════════════════════════ */
-function checkHackerPerk(input) {
-    const val = input.value.trim().toLowerCase();
-    const perkItem = input.closest('.perk-item');
-    if (!perkItem) return;
+function checkHackerBackground(field) {
+    const text = (field.innerText || field.textContent || '').toLowerCase();
+    const slot = document.getElementById('bgHackSlot');
+    if (!slot) return;
+    slot.innerHTML = '';
 
-    const existingEye = perkItem.querySelector('.hack-eye-btn');
-    if (existingEye) existingEye.remove();
-
-    if (val === 'hacker') {
+    if (/\bhacker\b/.test(text)) {
         const eyeBtn = document.createElement('button');
         eyeBtn.className = 'hack-eye-btn';
         eyeBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block;vertical-align:middle;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
@@ -1927,8 +2047,7 @@ function checkHackerPerk(input) {
             e.preventDefault();
             openHackModal();
         };
-        const xBtn = perkItem.querySelector('.btn');
-        perkItem.insertBefore(eyeBtn, xBtn);
+        slot.appendChild(eyeBtn);
     }
 }
 
@@ -1955,6 +2074,72 @@ function launchHack(difficulty) {
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
     setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+
+/* ═══════════════════════════════════════════════════
+   RICH TEXT FIELDS — bold/italic toolbar
+═══════════════════════════════════════════════════ */
+document.addEventListener('mousedown', e => {
+    const btn = e.target.closest('.rf-btn');
+    if (!btn) return;
+    e.preventDefault(); // keep the text selection alive
+    const wrap = btn.closest('.rich-field-wrap');
+    const field = wrap ? wrap.querySelector('.rich-field') : null;
+    if (!field) return;
+    field.focus();
+    document.execCommand(btn.dataset.cmd, false, null);
+    syncToolbarState(field);
+});
+
+document.addEventListener('selectionchange', () => {
+    const active = document.activeElement;
+    if (active && active.classList && active.classList.contains('rich-field')) {
+        syncToolbarState(active);
+    }
+});
+
+function syncToolbarState(field) {
+    const wrap = field.closest('.rich-field-wrap');
+    if (!wrap) return;
+    const boldBtn = wrap.querySelector('.rf-btn[data-cmd="bold"]');
+    const italicBtn = wrap.querySelector('.rf-btn[data-cmd="italic"]');
+    try {
+        if (boldBtn) boldBtn.classList.toggle('active', document.queryCommandState('bold'));
+        if (italicBtn) italicBtn.classList.toggle('active', document.queryCommandState('italic'));
+    } catch (e) { /* no-op */ }
+}
+
+// Keep truly-empty contenteditable fields empty so the CSS placeholder shows
+function cleanupRichField(field) {
+    const onlyWhitespace = (field.innerText || '').trim() === '';
+    if (onlyWhitespace && field.innerHTML !== '') field.innerHTML = '';
+}
+
+document.addEventListener('blur', e => {
+    if (e.target.classList && e.target.classList.contains('rich-field')) {
+        cleanupRichField(e.target);
+    }
+}, true);
+
+function initRichFields() {
+    document.querySelectorAll('.rich-field').forEach(f => cleanupRichField(f));
+}
+
+/* ═══════════════════════════════════════════════════
+   NAME FIELD — grows with content, same minimum footprint
+═══════════════════════════════════════════════════ */
+function autoGrowName() {
+    const input = document.getElementById('characterName');
+    const measure = document.getElementById('nameMeasure');
+    const section = input.closest('.name-section');
+    if (!input || !measure || !section) return;
+
+    measure.textContent = input.value || input.placeholder || '';
+    const contentWidth = measure.offsetWidth + 40; // padding allowance
+    const maxAvail = section.clientWidth - 70;      // section padding allowance
+    const minWidth = Math.min(600, maxAvail);
+
+    input.style.width = Math.max(minWidth, Math.min(contentWidth, maxAvail)) + 'px';
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1995,10 +2180,10 @@ function compressTextData(data) {
         if (compressed[key] === '' || (Array.isArray(compressed[key]) && compressed[key].length === 0))
             delete compressed[key];
     });
-    ['perks','traits','blessings','facets'].forEach(k => {
+    ['blessings','contracts','facets'].forEach(k => {
         if (compressed[k]) {
-            if (k === 'blessings')
-                compressed[k] = compressed[k].filter(b => b.name?.trim() || b.description?.trim());
+            if (k === 'blessings' || k === 'contracts')
+                compressed[k] = compressed[k].filter(b => (b.name && b.name.trim()) || (b.description && b.description.trim()));
             else
                 compressed[k] = compressed[k].filter(i => typeof i === 'string' ? i.trim() : i);
             if (compressed[k].length === 0) delete compressed[k];
@@ -2093,23 +2278,29 @@ function renderArtGallery() {
     });
 }
 
+const PLAIN_FIELD_IDS = ['characterName','titles','level','race','age','alignment',
+    'indomitability','fluidity','lucidity','authority',
+    'currentHP','maxHP','defense','currentAtramenta','maxAtramenta','movement'];
+const RICH_FIELD_IDS = ['directives','weapons','armor','tools','history','goals','backgrounds','traits'];
+
 function getAllFormData() {
-    const ids = ['characterName','titles','level','race','age','alignment',
-        'indomitability','fluidity','lucidity','authority',
-        'currentHP','maxHP','defense','currentAtramenta','maxAtramenta','movement',
-        'directives','weapons','armor','tools','history','goals'];
     const data = {};
-    ids.forEach(id => { data[id] = document.getElementById(id)?.value || ''; });
-    data.perks = [];
-    document.querySelectorAll('.perk-input').forEach(i => { if (i.value.trim()) data.perks.push(i.value); });
-    data.traits = [];
-    document.querySelectorAll('.trait-input').forEach(i => { if (i.value.trim()) data.traits.push(i.value); });
+    PLAIN_FIELD_IDS.forEach(id => { data[id] = document.getElementById(id)?.value || ''; });
+    RICH_FIELD_IDS.forEach(id => { data[id] = document.getElementById(id)?.innerHTML || ''; });
+
     data.blessings = [];
     const bns = document.querySelectorAll('#blessings-list .blessing-name-input');
     const bds = document.querySelectorAll('#blessings-list .blessing-desc-input');
     for (let i = 0; i < bns.length; i++) {
-        if (bns[i].value.trim() || bds[i].value.trim())
-            data.blessings.push({name: bns[i].value, description: bds[i].value});
+        if (bns[i].value.trim() || (bds[i].innerText || '').trim())
+            data.blessings.push({name: bns[i].value, description: bds[i].innerHTML});
+    }
+    data.contracts = [];
+    const cns = document.querySelectorAll('#contracts-list .blessing-name-input');
+    const cds = document.querySelectorAll('#contracts-list .blessing-desc-input');
+    for (let i = 0; i < cns.length; i++) {
+        if (cns[i].value.trim() || (cds[i].innerText || '').trim())
+            data.contracts.push({name: cns[i].value, description: cds[i].innerHTML});
     }
     data.facets = [];
     document.querySelectorAll('.facet.active').forEach(f => data.facets.push(f.dataset.facet));
@@ -2117,51 +2308,46 @@ function getAllFormData() {
     return data;
 }
 
+function blessingItemTemplate(namePlaceholder, removeFn) {
+    return `<div class="blessing-name" style="display:flex;align-items:center;gap:8px;">
+            <input type="text" class="blessing-name-input" placeholder="${namePlaceholder}" style="flex:1;">
+            <button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="${removeFn}(this)">✕</button>
+        </div>
+        <div class="blessing-description rich-field-wrap">
+            <div class="rich-toolbar">
+                <button type="button" class="rf-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                <button type="button" class="rf-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+            </div>
+            <div class="blessing-desc-input rich-field" contenteditable="true" data-placeholder="Effects..."></div>
+        </div>`;
+}
+
 function loadFormData(data) {
     if (!data) return;
-    const ids = ['characterName','titles','level','race','age','alignment',
-        'indomitability','fluidity','lucidity','authority',
-        'currentHP','maxHP','defense','currentAtramenta','maxAtramenta','movement',
-        'directives','weapons','armor','tools','history','goals'];
-    ids.forEach(id => { const el = document.getElementById(id); if (el) el.value = data[id] || ''; });
-
-    if (data.perks) {
-        const list = document.getElementById('perks-list');
-        while (list.querySelectorAll('.perk-input').length < data.perks.length) {
-            const c = list.querySelectorAll('.perk-input').length + 1;
-            const d = document.createElement('div');
-            d.className = 'perk-item';
-            d.style.cssText = 'display:flex;align-items:center;gap:8px;';
-            d.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${c}..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button>`;
-            list.appendChild(d);
-        }
-        list.querySelectorAll('.perk-input').forEach((inp, i) => {
-            if (data.perks[i] !== undefined) { inp.value = data.perks[i]; checkHackerPerk(inp); }
-        });
-    }
-
-    if (data.traits) {
-        const list = document.getElementById('traits-list');
-        while (list.querySelectorAll('.trait-input').length < data.traits.length) {
-            const c = list.querySelectorAll('.trait-input').length + 1;
-            const d = document.createElement('div');
-            d.className = 'trait-item';
-            d.style.cssText = 'display:flex;align-items:center;gap:8px;';
-            d.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${c}..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button>`;
-            list.appendChild(d);
-        }
-        list.querySelectorAll('.trait-input').forEach((inp, i) => { if (data.traits[i] !== undefined) inp.value = data.traits[i]; });
-    }
+    PLAIN_FIELD_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = data[id] || ''; });
+    RICH_FIELD_IDS.forEach(id => { const el = document.getElementById(id); if (el) { el.innerHTML = data[id] || ''; cleanupRichField(el); } });
+    checkHackerBackground(document.getElementById('backgrounds'));
 
     if (data.blessings) {
         const bl = document.getElementById('blessings-list');
         while (bl.querySelectorAll('.blessing-name-input').length < data.blessings.length) {
             const d = document.createElement('div'); d.className = 'blessing-item';
-            d.innerHTML = `<div class="blessing-name" style="display:flex;align-items:center;gap:8px;"><input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;" onclick="removeBlessingItem(this)">✕</button></div><div class="blessing-description"><textarea class="blessing-desc-input" placeholder="Effects..."></textarea></div>`;
+            d.innerHTML = blessingItemTemplate('Blessing Name...', 'removeBlessingItem');
             bl.appendChild(d);
         }
         const bns = bl.querySelectorAll('.blessing-name-input'), bds = bl.querySelectorAll('.blessing-desc-input');
-        data.blessings.forEach((b, i) => { if (bns[i]) bns[i].value = b.name||''; if (bds[i]) bds[i].value = b.description||''; });
+        data.blessings.forEach((b, i) => { if (bns[i]) bns[i].value = b.name||''; if (bds[i]) { bds[i].innerHTML = b.description||''; cleanupRichField(bds[i]); } });
+    }
+
+    if (data.contracts) {
+        const cl = document.getElementById('contracts-list');
+        while (cl.querySelectorAll('.blessing-name-input').length < data.contracts.length) {
+            const d = document.createElement('div'); d.className = 'blessing-item';
+            d.innerHTML = blessingItemTemplate('Outsider Name...', 'removeContractItem');
+            cl.appendChild(d);
+        }
+        const cns = cl.querySelectorAll('.blessing-name-input'), cds = cl.querySelectorAll('.blessing-desc-input');
+        data.contracts.forEach((c, i) => { if (cns[i]) cns[i].value = c.name||''; if (cds[i]) { cds[i].innerHTML = c.description||''; cleanupRichField(cds[i]); } });
     }
 
     document.querySelectorAll('.facet').forEach(f => f.classList.remove('active'));
@@ -2170,7 +2356,7 @@ function loadFormData(data) {
     artImages = data.artImages || [];
     renderArtGallery();
     const n = document.getElementById('characterName');
-    if (n) document.title = n.value.trim() || 'Character Codex';
+    if (n) { document.title = n.value.trim() || 'Character Codex'; autoGrowName(); }
 }
 
 function showNotification(message, type = 'success') {
@@ -2182,42 +2368,20 @@ function showNotification(message, type = 'success') {
     setTimeout(() => n.classList.remove('show'), 2000);
 }
 
-function addPerk() {
-    const list = document.getElementById('perks-list');
-    const c = list.querySelectorAll('.perk-input').length + 1;
-    const d = document.createElement('div');
-    d.className = 'perk-item';
-    d.style.cssText = 'display:flex;align-items:center;gap:8px;';
-    d.innerHTML = `<input type="text" class="perk-input" placeholder="Perk ${c}..." style="flex:1;" oninput="checkHackerPerk(this)"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removePerkItem(this)">✕</button>`;
-    list.appendChild(d);
-}
-
-function addTrait() {
-    const list = document.getElementById('traits-list');
-    const c = list.querySelectorAll('.trait-input').length + 1;
-    const d = document.createElement('div');
-    d.className = 'trait-item';
-    d.style.cssText = 'display:flex;align-items:center;gap:8px;';
-    d.innerHTML = `<input type="text" class="trait-input" placeholder="Trait ${c}..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeTraitItem(this)">✕</button>`;
-    list.appendChild(d);
-}
-
 function addBlessing() {
     const list = document.getElementById('blessings-list');
     const d = document.createElement('div'); d.className = 'blessing-item';
-    d.innerHTML = `<div class="blessing-name" style="display:flex;align-items:center;gap:8px;"><input type="text" class="blessing-name-input" placeholder="Blessing Name..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeBlessingItem(this)">✕</button></div><div class="blessing-description"><textarea class="blessing-desc-input" placeholder="Describe the blessing's effects and abilities..."></textarea></div>`;
+    d.innerHTML = blessingItemTemplate('Blessing Name...', 'removeBlessingItem');
     list.appendChild(d);
 }
 
 function addContract() {
     const list = document.getElementById('contracts-list');
     const d = document.createElement('div'); d.className = 'blessing-item';
-    d.innerHTML = `<div class="blessing-name" style="display:flex;align-items:center;gap:8px;"><input type="text" class="blessing-name-input" placeholder="Outsider Name..." style="flex:1;"><button class="btn" style="padding:4px 10px;font-size:0.7em;white-space:nowrap;" onclick="removeContractItem(this)">✕</button></div><div class="blessing-description"><textarea class="blessing-desc-input" placeholder="Describe the powers granted to you..."></textarea></div>`;
+    d.innerHTML = blessingItemTemplate('Outsider Name...', 'removeContractItem');
     list.appendChild(d);
 }
 
-function removePerkItem(btn) { btn.closest('.perk-item').remove(); }
-function removeTraitItem(btn) { btn.closest('.trait-item').remove(); }
 function removeBlessingItem(btn) { btn.closest('.blessing-item').remove(); }
 function removeContractItem(btn) { btn.closest('.blessing-item').remove(); }
 
@@ -2235,7 +2399,12 @@ document.addEventListener('DOMContentLoaded', () => {
             ? '0 0 15px rgba(255,255,255,0.8), 0 0 25px rgba(255,255,255,0.4)'
             : '0 0 15px rgba(255,255,255,0.5)';
         document.title = nameInput.value.trim() || 'Character Codex';
+        autoGrowName();
     });
+    window.addEventListener('resize', autoGrowName);
+    autoGrowName();
+    initRichFields();
+    checkHackerBackground(document.getElementById('backgrounds'));
 });
 </script>
 </body>
