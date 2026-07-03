@@ -22,9 +22,18 @@
         
         /* ── SMOOTH, PLEASING TYPING FEEL — applies to all text fields ── */
         input[type="text"], textarea, .rich-field {
-            caret-color: #ff3333;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, width 0.15s ease;
-        }
+    transition: border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                background-color 0.25s ease;
+}
+
+.name-input {
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        width 0.15s ease;
+}
         input[type="text"]::selection, textarea::selection, .rich-field ::selection {
             background: rgba(255, 0, 0, 0.35);
             color: #ffffff;
