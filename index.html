@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap');
 *{box-sizing:border-box}
 body{margin:0;height:100vh;padding:14px;display:flex;flex-direction:column;gap:12px;overflow:hidden;color:#fff;font-family:'Cinzel',serif;
- background:#000 radial-gradient(circle at 15% 40%,rgba(255,0,0,.1),transparent 50%),radial-gradient(circle at 85% 15%,rgba(0,100,255,.08),transparent 50%)}
+ background-color:#000;background-image:radial-gradient(circle at 15% 40%,rgba(255,0,0,.1),transparent 50%),radial-gradient(circle at 85% 15%,rgba(0,100,255,.08),transparent 50%)}
 input,textarea{font:inherit;color:#fff;background:transparent;border:0;outline:0;min-width:0;transition:box-shadow .25s,background .25s}
 input:focus,textarea:focus{box-shadow:0 2px 0 #f00;background:rgba(255,255,255,.04)}
 ::selection{background:rgba(255,0,0,.4)}
@@ -51,11 +51,11 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
 #pf.adj{cursor:grab;touch-action:none;border-color:#f00}
 #hint{position:absolute;top:8px;left:0;right:0;text-align:center;font-size:.6em;letter-spacing:2px;text-shadow:0 0 6px #000;opacity:0;transition:.3s;pointer-events:none}
 #pf.adj #hint{opacity:1}
-.ov{position:absolute;left:0;right:0;bottom:4px;padding:34px 12px 8px;display:flex;justify-content:space-between;align-items:flex-end;background:linear-gradient(transparent,rgba(0,0,0,.9))}
-.ov span{display:flex;align-items:center;gap:6px}
-.ov svg{width:24px;height:24px;fill:currentColor;flex:none}
+.ov{position:absolute;left:0;right:0;bottom:4px;padding:34px 8px 10px;gap:6px;display:flex;justify-content:space-between;align-items:flex-end;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.ov span{display:flex;align-items:center;gap:3px;padding:3px 9px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(3px)}
+.ov svg{width:20px;height:20px;fill:currentColor;flex:none}
 .hp{color:#f22}.hp svg{filter:drop-shadow(0 0 7px #f00)}.df svg{filter:drop-shadow(0 0 6px #fff)}
-.ov input{width:3.1ch;text-align:center;font:700 1.55em 'Cinzel Decorative',serif;text-shadow:0 2px 8px #000,0 0 12px rgba(255,255,255,.4)}
+.ov input{width:2.3ch;text-align:center;font:700 1.15em 'Cinzel Decorative',serif;text-shadow:0 2px 8px #000,0 0 12px rgba(255,255,255,.4)}
 #hpbar{position:absolute;left:0;right:0;bottom:0;height:4px;background:#300}
 #hpbar i{display:block;height:100%;width:0;background:#f00;box-shadow:0 0 10px #f00;transition:width .5s}
 .prow{display:flex;gap:6px;align-items:center;margin-top:8px}
@@ -78,35 +78,39 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
 /* sections */
 .sh{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:2px solid #fff;padding-bottom:6px;margin:0 0 10px}
 .sh h3{margin:0;font:700 1.1em 'Cinzel Decorative',serif;letter-spacing:3px;text-transform:uppercase}
-.sec{margin-bottom:22px}
+.sec{--c:#fff;margin-bottom:18px;padding:10px;border:1px solid color-mix(in srgb,var(--c) 55%,#000);background:color-mix(in srgb,var(--c) 11%,#050505)}.sec[data-k=traits]{--c:#e0453a}.sec[data-k=bgs]{--c:#e0a82e}.sec[data-k=thau]{--c:#9b5cff}.sec[data-k=cons]{--c:#22c0b4}.sec[data-k=bles]{--c:#e8e2b8}.sec .sh{border-color:var(--c)}.sec .sh h3{color:var(--c)}.sec .grp{border-color:color-mix(in srgb,var(--c) 50%,#000)}
 .grp{border:1px solid #666;padding:8px;margin-bottom:10px;background:#050505}
 .gh{display:flex;align-items:center;gap:6px;margin-bottom:6px}
 .gn{flex:1;font-weight:700;font-size:1em;letter-spacing:1px;border-bottom:2px solid #fff;padding:3px 0}
-.list{display:flex;flex-direction:column;gap:4px}
-.ent,.row{display:flex;align-items:center;gap:6px;padding:3px 6px;background:#0b0b0b;border-left:2px solid #fff;animation:fi .3s;transition:background .2s,border-color .2s,padding-left .2s}
-.ent:hover,.row:hover{background:#181818;border-color:#f00;padding-left:10px}
-.en,.ei{flex:1;width:100%;font-size:.88em;padding:3px 0}
-.th{width:24px;height:24px;object-fit:cover;border:1px solid #888;flex:none}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.ent{min-width:0;display:flex;align-items:center;gap:6px;padding:3px 6px;background:#0b0b0b;border-left:3px solid var(--c,#fff);animation:fi .3s;transition:background .2s,border-color .2s,padding-left .2s}
+.ent:hover{background:#181818;border-color:#f00;padding-left:10px}
+.en{flex:1;width:100%;font-size:.88em;padding:3px 0}
+.th{width:30px;height:30px;flex:none;border:1px dashed #666;display:flex;align-items:center;justify-content:center;color:#777;cursor:pointer;overflow:hidden;transition:.2s}.th:hover{border-color:#fff;color:#fff}.th img{width:100%;height:100%;object-fit:cover}
 
 /* hover box */
-#tip{position:fixed;z-index:50;width:310px;padding:10px;background:#000;border:2px solid #fff;box-shadow:0 0 30px rgba(255,255,255,.2);
+#tip{position:fixed;z-index:50;width:max-content;max-width:min(560px,94vw);padding:10px;align-items:flex-start;background:#000;border:2px solid #fff;box-shadow:0 0 30px rgba(255,255,255,.2);
  display:flex;gap:10px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .2s,transform .2s,visibility .2s}
 #tip.on{opacity:1;visibility:visible;transform:none}
 #tim{position:relative;flex:none;width:72px;height:72px;border:1px dashed #666;display:flex;align-items:center;justify-content:center;color:#777;font-size:1.6em;cursor:pointer;transition:.2s}
 #tim:hover{border-color:#fff;color:#fff}#tim img{width:100%;height:100%;object-fit:cover}
 #tim .x{position:absolute;top:0;right:0;background:rgba(0,0,0,.8);font-size:1em}
-#ta{flex:1;height:110px;resize:none;border:1px solid #555;padding:6px;font-size:.78em;line-height:1.5;background:#050505}
+#ta{min-width:190px;max-width:440px;min-height:72px;border:1px solid #555;padding:6px;font-size:.78em;line-height:1.5;background:#050505;white-space:pre-wrap;overflow-wrap:anywhere;outline:0}
 
 /* info */
 #info .p{display:flex;flex-direction:column;gap:8px}
-#info textarea{flex:1;resize:none;border:2px solid #fff;padding:12px;background:#000;line-height:1.7}
-#info textarea:focus{border-color:#f00;box-shadow:0 0 15px rgba(255,0,0,.4)}
+.rt{border:2px solid #fff;background:#000;padding:10px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;outline:0;transition:border-color .25s,box-shadow .25s}
+.rt:focus{border-color:#f00;box-shadow:0 0 15px rgba(255,0,0,.4)}
+.rt:empty:before,#ta:empty:before{content:attr(data-ph);color:#666;pointer-events:none}
+#info .rt{flex:1;overflow-y:auto;padding:12px;line-height:1.7}
+#right{display:flex;flex-direction:column}#right .sec{flex:1;display:flex;flex-direction:column}#right .rt{flex:1;min-height:130px}
+
 #info label{font-size:.85em;color:#fff}
 
-#toast{position:fixed;top:20px;right:20px;padding:14px 20px;background:#000;border:2px solid #0f0;box-shadow:0 0 25px rgba(0,255,0,.4);transform:translateX(130%);transition:transform .35s;z-index:99}
-#toast.on{transform:none}
+#toast{position:fixed;top:20px;right:20px;padding:14px 20px;background:#000;border:2px solid #0f0;box-shadow:0 0 25px rgba(0,255,0,.4);opacity:0;visibility:hidden;transform:translateX(30px);transition:.35s;z-index:99}
+#toast.on{opacity:1;visibility:visible;transform:none}
 
-@media(max-width:1150px){body{height:auto;overflow:auto}main{display:flex!important;flex-direction:column}[data-v=info] #info{display:flex!important}.p{overflow:visible}#info textarea{min-height:260px}}
+@media(max-width:1150px){body{height:auto;overflow:auto}main{display:flex!important;flex-direction:column}[data-v=info] #info{display:flex!important}.p{overflow:visible}#info .rt{min-height:260px}}
 @media(max-width:620px){.top{grid-template-columns:1fr}}
 </style>
 </head>
@@ -161,12 +165,12 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
 </main>
 
 <main id="info">
- <div class="p"><label>Personal History</label><textarea data-f="history" placeholder="Character background…"></textarea></div>
- <div class="p"><label>Goals &amp; Motivations</label><textarea data-f="goals" placeholder="What drives this character…"></textarea></div>
- <div class="p"><label>Diary</label><textarea data-f="diary" placeholder="Dear diary…"></textarea></div>
+ <div class="p"><label>Personal History</label><div class="rt" contenteditable data-r="history" data-ph="Character background…"></div></div>
+ <div class="p"><label>Goals &amp; Motivations</label><div class="rt" contenteditable data-r="goals" data-ph="What drives this character…"></div></div>
+ <div class="p"><label>Diary</label><div class="rt" contenteditable data-r="diary" data-ph="Dear diary…"></div></div>
 </main>
 
-<div id="tip"><div id="tim"></div><textarea id="ta" placeholder="What does it do?"></textarea></div>
+<div id="tip"><div id="tim"></div><div id="ta" contenteditable data-ph="What does it do?"></div></div>
 <div id="toast"></div>
 <input type="file" id="pin" accept="image/*" hidden>
 <input type="file" id="ein" accept="image/*" hidden>
@@ -175,7 +179,7 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
 <script>
 const $=s=>document.querySelector(s),
  esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),
- fresh=()=>({f:{},portrait:null,traits:[],bgs:[],thau:[],cons:[],bles:[],eq:{w:[],a:[],g:[]}});
+ fresh=()=>({f:{},portrait:null,traits:[],bgs:[],thau:[],cons:[],bles:[]});
 
 /* Sections: f = flat list of entries, otherwise groups containing entries */
 const SECS=[
@@ -184,7 +188,7 @@ const SECS=[
  {k:'thau',t:'Thaumaturgy',a:'Add Facet',i:'Add Incantation',p:'Facet…'},
  {k:'cons',t:'Contracts',a:'Add Contract',i:'Add Boon',p:'Outsider…'},
  {k:'bles',t:'Blessings',a:'Add Blessing',i:'Add Power',p:'Blessing…'}];
-const EQ=[['w','Weapons','Add Weapon'],['a','Armor & Protection','Add Armor'],['g','Items & Gear','Add Item']];
+const EQ=[['ew','Weapons','Weapons, damage, notes…'],['ea','Armor & Protection','Armor, resistances…'],['eg','Items & Gear','Items, tools, supplies…']];
 
 /* State — sessionStorage survives reloads but is wiped when the tab closes */
 let S=fresh();
@@ -195,14 +199,18 @@ const ent=c=>list(c.dataset.k,c.dataset.g)[+c.dataset.i];
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1900)};
 
 /* Rendering */
-const entHTML=(k,g,i,e)=>`<div class="ent" data-k="${k}" data-g="${g}" data-i="${i}">${e.img?`<img class="th" src="${e.img}">`:''}<input class="en" placeholder="Name…" value="${esc(e.n)}"><button class="x" data-act="delI">×</button></div>`;
+const entHTML=(k,g,i,e)=>`<div class="ent" data-k="${k}" data-g="${g}" data-i="${i}"><div class="th" data-act="img">${e.img?`<img src="${e.img}">`:'＋'}</div><input class="en" placeholder="Name…" value="${esc(e.n)}"><button class="x" data-act="delI">×</button></div>`;
 const secHTML=c=>`<section class="sec" data-k="${c.k}" data-g=""><div class="sh"><h3>${c.t}</h3><button class="b s" data-act="${c.f?'addI':'addG'}">+ ${c.a}</button></div>`+
  (c.f?`<div class="list">${S[c.k].map((e,i)=>entHTML(c.k,'',i,e)).join('')}</div>`
  :S[c.k].map((g,j)=>`<div class="grp" data-k="${c.k}" data-g="${j}"><div class="gh"><input class="gn" placeholder="${c.p}" value="${esc(g.n)}"><button class="b s" data-act="addI">+ ${c.i}</button><button class="x" data-act="delG">×</button></div><div class="list">${g.items.map((e,i)=>entHTML(c.k,j,i,e)).join('')}</div></div>`).join(''))+`</section>`;
-function renderMid(){const m=$('#mid'),y=m.scrollTop;m.innerHTML=SECS.map(secHTML).join('');m.scrollTop=y}
-function renderEq(){const r=$('#right'),y=r.scrollTop;
- r.innerHTML=EQ.map(([e,t,a])=>`<section class="sec"><div class="sh"><h3>${t}</h3><button class="b s" data-act="addE" data-e="${e}">+ ${a}</button></div><div class="list">${S.eq[e].map((v,i)=>`<div class="row"><input class="ei" data-e="${e}" data-i="${i}" value="${esc(v)}" placeholder="…"><button class="x" data-act="delE" data-e="${e}" data-i="${i}">×</button></div>`).join('')}</div></section>`).join('');
- r.scrollTop=y}
+function renderMid(){const m=$('#mid'),y=m.scrollTop;m.innerHTML=SECS.map(secHTML).join('');m.scrollTop=y;fitAll()}
+function renderEq(){$('#right').innerHTML=EQ.map(([k,t,p])=>`<section class="sec"><div class="sh"><h3>${t}</h3></div><div class="rt" contenteditable data-r="${k}" data-ph="${p}"></div></section>`).join('');bindR()}
+const bindR=()=>document.querySelectorAll('[data-r]').forEach(el=>el.innerHTML=clean(S.f[el.dataset.r]||''));
+const clean=h=>{const o=document.createElement('div');(function w(n,p){n.childNodes.forEach(c=>{if(c.nodeType==3)p.append(c.textContent);else if(c.nodeType==1){const t=c.tagName.toLowerCase(),k=['b','strong','i','em','u','br','div'].includes(t)?p.appendChild(document.createElement(t)):p;if(t!='br')w(c,k)}})})(new DOMParser().parseFromString(h,'text/html').body,o);return o.innerHTML};
+/* names shrink to fit their box */
+const FIT='.nm,.tt,.en,.gn,.g2 input';
+function fit(el){el.style.fontSize='';let z=parseFloat(getComputedStyle(el).fontSize);while(el.scrollWidth>el.clientWidth&&z>9){z--;el.style.fontSize=z+'px'}}
+const fitAll=()=>document.querySelectorAll(FIT).forEach(fit);
 function updHP(){const h=parseFloat(S.f.hp),m=parseFloat(S.f.mhp);$('#hpbar i').style.width=(m>0?Math.max(0,Math.min(100,h/m*100)):0)+'%'}
 
 /* Image helpers */
@@ -232,8 +240,8 @@ window.addEventListener('resize',renderP);
 /* Hover box: opens 0.5s after hovering an entry */
 const tip=$('#tip'),ta=$('#ta'),tim=$('#tim');let ref,tr,hide;
 function renderTi(){tim.innerHTML=ref.img?`<img src="${ref.img}"><button class="x" id="ri">×</button>`:'＋'}
-function showTip(en){ref=ent(en);ta.value=ref.d||'';renderTi();const r=en.getBoundingClientRect(),h=150;
- tip.style.left=Math.max(8,Math.min(r.left,innerWidth-326))+'px';tip.style.top=(r.bottom+h>innerHeight?r.top-h+2:r.bottom-2)+'px';tip.classList.add('on')}
+function showTip(en){ref=ent(en);ta.innerHTML=clean(ref.d||'');renderTi();const r=en.getBoundingClientRect(),h=150;
+ const up=r.bottom+h>innerHeight;tip.style.left=Math.max(8,Math.min(r.left,innerWidth-580))+'px';tip.style.top=up?'auto':r.bottom-2+'px';tip.style.bottom=up?innerHeight-r.top-2+'px':'auto';tip.classList.add('on')}
 const hideTip=()=>{if(!tip.contains(document.activeElement)){tip.classList.remove('on')}};
 document.addEventListener('mouseover',e=>{
  const en=e.target.closest('.ent');
@@ -241,19 +249,19 @@ document.addEventListener('mouseover',e=>{
  else if(e.target.closest('#tip'))clearTimeout(hide)});
 document.addEventListener('mouseout',e=>{if(e.target.closest('.ent,#tip')){clearTimeout(tr);hide=setTimeout(hideTip,250)}});
 ta.onblur=()=>setTimeout(()=>{if(!tip.matches(':hover'))tip.classList.remove('on')},200);
-tim.onclick=e=>{if(e.target.id=='ri'){ref.img='';save();renderTi();renderMid()}else $('#ein').click()};
-$('#ein').onchange=e=>{const f=e.target.files[0];if(f&&ref)sq(f,160,d=>{ref.img=d;save();renderTi();renderMid()});e.target.value=''};
+tim.onclick=e=>{if(e.target.id=='ri'){ref.img='';save();renderTi();renderMid()}else{tgt=ref;$('#ein').click()}};
+$('#ein').onchange=e=>{const f=e.target.files[0];if(f&&tgt)sq(f,160,d=>{tgt.img=d;save();if(ref===tgt&&tip.classList.contains('on'))renderTi();renderMid()});e.target.value=''};
 
 /* Input + clicks (delegated, so re-rendering never loses handlers) */
-document.addEventListener('input',e=>{const t=e.target,c=t.closest('[data-k]'),d=t.dataset;
+document.addEventListener('input',e=>{const t=e.target,c=t.closest('[data-k]'),d=t.dataset;if(t.isContentEditable&&!t.textContent.trim()&&t.innerHTML)t.innerHTML='';if(t.matches(FIT))fit(t);
  if(d.f){S.f[d.f]=t.value;if(d.f=='name')document.title=t.value.trim()||'Character Codex';if(d.f=='hp'||d.f=='mhp')updHP()}
  else if(t.classList.contains('en'))ent(c).n=t.value;
  else if(t.classList.contains('gn'))S[c.dataset.k][+c.dataset.g].n=t.value;
- else if(t.classList.contains('ei'))S.eq[d.e][+d.i]=t.value;
- else if(t.id=='ta'&&ref)ref.d=t.value;
+ else if(d.r)S.f[d.r]=t.innerHTML;
+ else if(t.id=='ta'&&ref)ref.d=t.innerHTML;
  save()});
 
-const A={
+let tgt;const A={img(b){tgt=ent(b.closest('[data-k]'));$('#ein').click()},
  v(b){document.body.dataset.v=b.dataset.v;document.querySelectorAll('[data-act=v]').forEach(x=>x.classList.toggle('on',x==b))},
  imp(){$('#impf').click()},pup(){$('#pin').click()},
  adj(){const on=pf.classList.toggle('adj');$('#adj').classList.toggle('on',on);$('#zr').style.display=on?'block':'none'},
@@ -268,10 +276,10 @@ document.addEventListener('click',e=>{
  else if(a=='addG')S[k].push({n:'',items:[]});
  else if(a=='delI')list(k,g).splice(i,1);
  else if(a=='delG')S[k].splice(+g,1);
- else if(a=='addE')S.eq[b.dataset.e].push('');
- else if(a=='delE')S.eq[b.dataset.e].splice(+b.dataset.i,1);
- tip.classList.remove('on');save();renderMid();renderEq();
- if(/^add/.test(a)){const q=a=='addE'?`#right .ei[data-e="${b.dataset.e}"]`:a=='addG'?`.sec[data-k="${k}"] .gn`:`${g===''?'.sec':'.grp'}[data-k="${k}"][data-g="${g}"] .en`;
+ 
+ 
+ tip.classList.remove('on');save();renderMid();
+ if(/^add/.test(a)){const q=a=='addG'?`.sec[data-k="${k}"] .gn`:`${g===''?'.sec':'.grp'}[data-k="${k}"][data-g="${g}"] .en`;
   [...document.querySelectorAll(q)].pop()?.focus()}});
 
 /* Import (older v2 exports bring over their basic fields) */
@@ -285,7 +293,9 @@ $('#impf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileR
 function init(){
  document.querySelectorAll('[data-f]').forEach(el=>el.value=S.f[el.dataset.f]??'');
  document.title=(S.f.name||'').trim()||'Character Codex';
- tip.classList.remove('on');ps='';renderMid();renderEq();renderP();updHP()}
+ tip.classList.remove('on');ps='';renderMid();renderEq();renderP();updHP();fitAll();document.fonts?.ready.then(fitAll)}
+document.addEventListener('paste',e=>{if(!e.target.isContentEditable)return;e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'))});
+addEventListener('resize',fitAll);
 init();
 </script>
 </body>
