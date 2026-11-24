@@ -69,7 +69,7 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
 .side{display:flex;flex-direction:column;gap:10px;min-width:0}
 .nm{font:700 1.7em 'Cinzel Decorative',serif;text-shadow:0 0 12px rgba(255,255,255,.5);border-bottom:3px solid #fff;padding:2px 0;width:100%}
 .tt{font-style:italic;color:#ccc;border-bottom:1px solid #555;padding:2px 0;width:100%}
-.g2{display:grid;grid-template-columns:1fr;gap:12px}.g2 input{font-size:1.05em}
+.g2{display:grid;grid-template-columns:1fr;gap:12px}.g2 input{font-size:1.9em}
 .at{display:flex;align-items:center;gap:8px;border:1px solid #fff;padding:4px 8px;background:#050505;transition:.25s}
 .at:hover{border-color:#f00;box-shadow:0 0 14px rgba(255,0,0,.3)}
 .at b{font:700 1.7em 'Cinzel Decorative',serif;margin-right:1px}
@@ -116,6 +116,7 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
 .sec>*:not(.wm){position:relative}
 .sec[data-k=cons] .gn,.sec[data-k=cons] .en,.sec[data-k=cons] .sh h3{letter-spacing:.07em;font-weight:400;text-shadow:0 0 8px rgba(255,0,0,.55)}
 #right .sh h3{font:400 .85em 'Cinzel',serif;letter-spacing:2px}
+.ftb{display:flex;justify-content:center;align-items:baseline;gap:2px}.ftb input{width:2ch}.ftb span{font:700 1.2em 'Cinzel',serif;text-transform:none;letter-spacing:0}
 #toast{position:fixed;top:20px;right:20px;padding:14px 20px;background:#000;border:2px solid #0f0;box-shadow:0 0 25px rgba(0,255,0,.4);opacity:0;visibility:hidden;transform:translateX(30px);transition:.35s;z-index:99}
 #toast.on{opacity:1;visibility:visible;transform:none}
 
@@ -152,7 +153,7 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
    </div>
    <div class="side">
     <input class="nm" data-f="name" placeholder="Name" maxlength="50">
-    <input class="tt" data-f="title" placeholder="Titles, Epithets, Monikers…" maxlength="100">
+    <input class="tt" data-f="title" placeholder="Title / Epithet…" maxlength="100">
     <div class="g2">
      <label>Race<input data-f="race"></label><label>Level<input data-f="level"></label>
      <label>Alignment<input data-f="align"></label><label>Age<input data-f="age"></label>
@@ -167,7 +168,7 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
   </div>
   <div class="sb">
    <div>AT <input data-f="at" placeholder="0">/<input data-f="mat" placeholder="0"></div>
-   <div>FT <input data-f="ft" placeholder="0"></div>
+   <div class="ftb"><input data-f="ft" placeholder="0"><span>ft</span></div>
   </div>
    </div>
  <div class="p" id="mid"></div>
@@ -300,7 +301,7 @@ $('#ein').onchange=e=>{const f=e.target.files[0];if(f&&tgt)sq(f,160,d=>{tgt.img=
 
 /* Input + clicks (delegated, so re-rendering never loses handlers) */
 document.addEventListener('input',e=>{const t=e.target,c=t.closest('[data-k]'),d=t.dataset;if(t.isContentEditable&&!t.textContent.trim()&&t.innerHTML)t.innerHTML='';if(t.matches(FIT))fit(t);
- if(d.f){S.f[d.f]=t.value;if(d.f=='name')document.title=t.value.trim()||'Character Codex';if(d.f=='hp'||d.f=='mhp')updHP()}
+ if(d.f){S.f[d.f]=t.value;if(d.f=='ft')sz(t);if(d.f=='name')document.title=t.value.trim()||'Character Codex';if(d.f=='hp'||d.f=='mhp')updHP()}
  else if(t.classList.contains('en'))ent(c).n=t.value;
  else if(t.classList.contains('gn'))S[c.dataset.k][+c.dataset.g].n=t.value;
  else if(d.r)S.f[d.r]=t.innerHTML;
@@ -336,9 +337,10 @@ $('#impf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileR
  r.onload=()=>{try{const j=JSON.parse(r.result);S=j.v>=3?Object.assign(fresh(),j.data):migrate(j.data||j);save();init();toast('Character imported')}catch(x){toast('Invalid file')}};
  r.readAsText(f);e.target.value=''};
 
+const sz=el=>el.style.width=Math.max(2,el.value.length+.5)+'ch';
 function init(){
  document.querySelectorAll('[data-f]').forEach(el=>el.value=S.f[el.dataset.f]??'');
- document.title=(S.f.name||'').trim()||'Character Codex';
+ document.title=(S.f.name||'').trim()||'Character Codex';sz($('[data-f=ft]'));
  tip.classList.remove('on');ps='';renderMid();renderEq();renderP();updHP();fitAll();document.fonts?.ready.then(fitAll)}
 document.addEventListener('paste',e=>{if(!e.target.isContentEditable)return;e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'))});
 document.addEventListener('contextmenu',e=>{const t=e.target.closest('.th'),en=t&&ent(t.closest('[data-k]'));if(en&&en.img){e.preventDefault();en.img='';save();renderMid()}});
