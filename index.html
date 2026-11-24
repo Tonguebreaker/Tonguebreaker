@@ -6,14 +6,14 @@
 <title>Character Codex</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Special+Elite&family=Philosopher:wght@400;700&family=Grenze+Gotisch:wght@400;700&family=Cormorant+Garamond:wght@500;700&family=Arsenal:wght@400;700&family=Chonburi&family=Bevan&family=Jost:wght@800&family=Abril+Fatface&family=Libre+Franklin:wght@800&family=Rozha+One&family=UnifrakturMaguntia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Philosopher:wght@400;700&family=IM+Fell+English+SC&family=Cormorant+Garamond:wght@500;700&family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&display=swap');
 *{box-sizing:border-box}
 body{margin:0;height:100vh;padding:14px;display:flex;flex-direction:column;gap:12px;overflow:hidden;color:#fff;font-family:'Cinzel',serif;
  background-color:#000;background-image:radial-gradient(circle at 15% 40%,rgba(255,0,0,.1),transparent 50%),radial-gradient(circle at 85% 15%,rgba(0,100,255,.08),transparent 50%)}
 input,textarea{font:inherit;color:#fff;background:transparent;border:0;outline:0;min-width:0;transition:box-shadow .25s,background .25s}
 input:focus,textarea:focus{box-shadow:0 2px 0 #f00;background:rgba(255,255,255,.04)}
 ::selection{background:rgba(255,0,0,.4)}
-::-webkit-scrollbar{width:7px}::-webkit-scrollbar-thumb{background:#fff}::-webkit-scrollbar-track{background:#000}
+*{scrollbar-width:thin;scrollbar-color:#fff #000}::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-thumb{background:#fff}::-webkit-scrollbar-track{background:#000}
 header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:3px solid #fff;padding-bottom:10px;position:relative}
 header::after{content:'';position:absolute;bottom:-3px;left:0;width:60px;height:3px;background:#f00}
 .ttl{font:700 1.7em 'Cinzel Decorative',serif;letter-spacing:4px;text-shadow:0 0 14px rgba(255,255,255,.5)}
@@ -30,13 +30,14 @@ nav{display:flex;gap:8px;flex-wrap:wrap}
 .b.s{padding:4px 10px;font-size:.62em;white-space:nowrap;opacity:0;transition:opacity .4s ease,transform .2s,box-shadow .3s,background .3s,color .3s,border-color .3s}
 .sh:hover .b.s,.gh:hover .b.s,.b.s:focus-visible{opacity:1}
 @media(hover:none){.b.s{opacity:1}}
+.prow .b.s{opacity:1}
 .x{background:none;border:0;color:#777;font-size:1.2em;line-height:1;cursor:pointer;padding:0 4px;transition:color .2s,transform .25s}
 .x:hover{color:#f00;transform:rotate(90deg) scale(1.2)}
 
 /* layout */
 main{flex:1;min-height:0;display:grid;gap:14px;animation:fi .45s ease}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}}
-#sheet{grid-template-columns:clamp(500px,36vw,640px) minmax(0,1fr) clamp(260px,22vw,340px)}
+#sheet{grid-template-columns:clamp(540px,38vw,690px) minmax(0,1fr) clamp(260px,22vw,340px)}
 #info{display:none;grid-template-columns:1fr 1fr 1.4fr}
 [data-v=info] #sheet{display:none}[data-v=info] #info{display:grid}
 .p{min-height:0;overflow-y:auto;padding:16px;border:2px solid #fff;background:linear-gradient(135deg,#000,#161616 50%,#000);box-shadow:0 0 25px rgba(255,255,255,.1),inset 0 0 25px #000}
@@ -44,20 +45,20 @@ label{display:block;font-size:.6em;letter-spacing:2px;text-transform:uppercase;c
 label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #555;padding:2px 0}
 
 /* left */
-.top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
-#pf{position:relative;aspect-ratio:3/4;overflow:hidden;border:2px solid #fff;background:#080808;box-shadow:0 0 25px rgba(255,0,0,.2)}
+.top{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px}
+#pf{position:relative;aspect-ratio:3/4;overflow:hidden;background:#080808}
 #pim{position:absolute;display:none;max-width:none;user-select:none;-webkit-user-drag:none;pointer-events:none}
 #pf.has #pim{display:block}#pf.has #ph{display:none}
 #ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;border:2px dashed #555;margin:10px;cursor:pointer;
  font:700 1.1em 'Cinzel Decorative',serif;letter-spacing:2px;color:#ccc;transition:.3s}
 #ph small{font:.55em 'Cinzel',serif;color:#777}#pf:hover #ph{border-color:#fff;background:rgba(255,255,255,.05)}
-#pf.adj{cursor:grab;touch-action:none;border-color:#f00}
+#pf.adj{cursor:grab;touch-action:none;outline:2px solid #f00}
 #hint{position:absolute;top:46px;left:0;right:0;text-align:center;font-size:.6em;letter-spacing:2px;text-shadow:0 0 6px #000;opacity:0;transition:.3s;pointer-events:none}
 #pf.adj #hint{opacity:1}
-.ov{position:absolute;left:0;right:0;bottom:4px;padding:34px 8px 10px;gap:6px;display:flex;justify-content:space-between;align-items:flex-end;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.ov{position:absolute;left:0;right:0;bottom:4px;padding:34px 15px 17px;gap:6px;display:flex;justify-content:space-between;align-items:flex-end;background:linear-gradient(transparent,rgba(0,0,0,.9))}
 .ov span{flex:1;display:flex;align-items:center;gap:3px;padding:3px 9px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(3px)}
 .ov svg{width:20px;height:20px;fill:currentColor;flex:none}
-.dfp{position:absolute;top:8px;right:8px;max-width:62%;display:flex;align-items:center;gap:4px;padding:3px 9px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(3px)}.dfp svg{width:20px;height:20px;fill:#fff;flex:none}.dfp input{width:8ch;min-width:0;text-align:center;font:700 1.15em 'Cinzel Decorative',serif;text-shadow:0 2px 8px #000}
+.dfp{position:absolute;top:15px;right:15px;max-width:62%;display:flex;align-items:center;gap:4px;padding:3px 9px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(3px)}.dfp svg{width:20px;height:20px;fill:#fff;flex:none}.dfp input{width:8ch;min-width:0;text-align:center;font:700 1.15em 'Cinzel Decorative',serif;text-shadow:0 2px 8px #000}
 .hp{color:#f22}.hp svg{filter:drop-shadow(0 0 7px #f00)}.df svg{filter:drop-shadow(0 0 6px #fff)}
 .ov input{flex:1;width:0;min-width:0;text-align:center;font:700 1.15em 'Cinzel Decorative',serif;text-shadow:0 2px 8px #000,0 0 12px rgba(255,255,255,.4)}
 #hpbar{position:absolute;left:0;right:0;bottom:0;height:4px;background:#300}
@@ -82,7 +83,7 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
 .sh{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:2px solid #fff;padding-bottom:6px;margin:0 0 10px}
 .sh h3{margin:0;font:700 1.1em 'Cinzel Decorative',serif;letter-spacing:3px;text-transform:uppercase}
 .sec{position:relative;overflow:hidden;min-height:150px;margin-bottom:18px;padding:10px;border:2px solid #fff;background:linear-gradient(135deg,#000,#0a0a0a);box-shadow:inset 0 0 15px #000}
-.sec[data-k=traits]{--f:'Rubik Dirt',system-ui}.sec[data-k=bgs]{--f:'Special Elite',monospace}.sec[data-k=thau]{--f:'Philosopher',serif}.sec[data-k=cons]{--f:'Arsenal',sans-serif}.sec[data-k=bles]{--f:'Cormorant Garamond',serif}
+.sec[data-k=traits]{--f:'Special Elite',monospace}.sec[data-k=bgs]{--f:'Special Elite',monospace}.sec[data-k=thau]{--f:'Philosopher',serif}.sec[data-k=cons]{--f:'IM Fell English SC',serif}.sec[data-k=bles]{--f:'Cormorant Garamond',serif}
 .sec[data-k=bles] .sh h3,.sec[data-k=bles] .gn,.sec[data-k=bles] .en{font-weight:700}
 .sec[data-k] .sh h3,.sec[data-k] .gn,.sec[data-k] .en{font-family:var(--f)}
 .grp{border:1px solid #666;padding:8px;margin-bottom:10px;background:#050505}
@@ -98,27 +99,26 @@ label input{display:block;width:100%;font-size:1.5em;border-bottom:1px solid #55
 #tip{position:fixed;z-index:50;width:max-content;max-width:min(560px,94vw);padding:10px;align-items:flex-start;background:#000;border:2px solid #fff;box-shadow:0 0 30px rgba(255,255,255,.2);
  display:flex;gap:10px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .2s,transform .2s,visibility .2s}
 #tip.on{opacity:1;visibility:visible;transform:none}
-#ta{min-width:190px;max-width:440px;min-height:72px;border:1px solid #555;padding:6px;font-size:.78em;line-height:1.5;background:#050505;white-space:pre-wrap;overflow-wrap:anywhere;outline:0}
+#ta{font-family:'Lora',serif;min-width:190px;max-width:440px;min-height:72px;border:1px solid #555;padding:6px;font-size:.78em;line-height:1.5;background:#050505;white-space:pre-wrap;overflow-wrap:anywhere;outline:0}
 
 /* info */
 #info .p{display:flex;flex-direction:column;gap:8px}
-.rt{border:2px solid #fff;background:#000;padding:10px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;outline:0;transition:border-color .25s,box-shadow .25s}
+.rt{font-family:'Lora',serif;border:2px solid #fff;background:#000;padding:10px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;outline:0;transition:border-color .25s,box-shadow .25s}
 .rt:focus{border-color:#f00;box-shadow:0 0 15px rgba(255,0,0,.4)}
 .rt:empty:before,#ta:empty:before{content:attr(data-ph);color:#666;pointer-events:none}
 #info .rt{flex:1;overflow-y:auto;padding:12px;line-height:1.7}
-#right{display:flex;flex-direction:column}#right .sec{flex:1;display:flex;flex-direction:column}#right .rt{flex:1;min-height:130px}
+#right{display:flex;flex-direction:column;overflow:hidden}#right .sec{flex:1 1 0;min-height:150px;display:flex;flex-direction:column}#right .rt{flex:1;min-height:0;overflow-y:auto;font-size:.76em;line-height:1.55}
 
 #info label{font-size:.85em;color:#fff}
 
 .wm{position:absolute;right:-26px;top:50%;transform:translateY(-50%);width:200px;height:200px;opacity:.18;color:#fff;pointer-events:none}
 .sec>*:not(.wm){position:relative}
-.sec[data-k=cons] .gn,.sec[data-k=cons] .en{font-weight:700;letter-spacing:.06em}
-.gn{min-width:0;outline:0;white-space:nowrap;overflow:hidden}.gn:empty:before{content:attr(data-ph);color:#666;font-weight:400}.sp{display:inline-block;width:.4em;white-space:pre}
-.rl{display:inline-block;padding:0 4px;margin:0 1px;line-height:1.1;letter-spacing:0;box-shadow:2px 2px 0 #f00}
+.sec[data-k=cons] .gn,.sec[data-k=cons] .en,.sec[data-k=cons] .sh h3{letter-spacing:.07em;font-weight:400;text-shadow:0 0 8px rgba(255,0,0,.55)}
+#right .sh h3{font:400 .85em 'Cinzel',serif;letter-spacing:2px}
 #toast{position:fixed;top:20px;right:20px;padding:14px 20px;background:#000;border:2px solid #0f0;box-shadow:0 0 25px rgba(0,255,0,.4);opacity:0;visibility:hidden;transform:translateX(30px);transition:.35s;z-index:99}
 #toast.on{opacity:1;visibility:visible;transform:none}
 
-@media(max-width:1150px){body{height:auto;overflow:auto}main{display:flex!important;flex-direction:column}[data-v=info] #info{display:flex!important}.p{overflow:visible}#info .rt{min-height:260px}}
+@media(max-width:1150px){body{height:auto;overflow:auto}main{display:flex!important;flex-direction:column}[data-v=info] #info{display:flex!important}.p{overflow:visible}#info .rt{min-height:260px}#right{overflow:visible}#right .sec{flex:none}#right .rt{min-height:130px;max-height:280px}}
 @media(max-width:620px){.top{grid-template-columns:1fr}}
 </style>
 </head>
@@ -206,14 +206,6 @@ const ent=c=>list(c.dataset.k,c.dataset.g)[+c.dataset.i];
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1900)};
 
 /* Rendering */
-/* Persona-style lettering: every letter gets its own font, size, tilt and box (see the P5R font guide) */
-const RF=['Chonburi','Bevan','Jost','Abril Fatface','Libre Franklin','Rozha One'],RC=[['#000','#fff'],['#fff','#000'],['#f00','#fff'],['#000','#fff'],['#fff','#000']];
-const ransom=(t,z=1.1)=>[...t].map((ch,i)=>{if(/\s/.test(ch))return '<span class="sp"> </span>';const h=(ch.charCodeAt(0)*31+i*17)%97,c=RC[h%5];
- return `<span class="rl" style="font-family:'${RF[h%6]}',serif;font-weight:800;font-size:${(z*(.85+h%5*.1)).toFixed(2)}em;transform:rotate(${h%9-4}deg);text-transform:${i%2?'lowercase':'uppercase'};background:${c[0]};color:${c[1]}">${esc(ch)}</span>`}).join('');
-const caret=el=>{const g=getSelection();if(!g.rangeCount)return 0;const r=g.getRangeAt(0),q=r.cloneRange();q.selectNodeContents(el);q.setEnd(r.endContainer,r.endOffset);return q.toString().length};
-function setCaret(el,n){const w=document.createTreeWalker(el,4),r=document.createRange(),g=getSelection();let t;
- while(t=w.nextNode()){if(n<=t.length){r.setStart(t,n);break}n-=t.length}if(!t)r.setStart(el,0);r.collapse(true);g.removeAllRanges();g.addRange(r)}
-document.addEventListener('keydown',e=>{if(e.key=='Enter'&&e.target.classList?.contains('gn'))e.preventDefault()});
 /* Section watermarks (white/red line art, 15% opacity) */
 const sv=b=>`<svg class="wm" viewBox="-2.1 -2.1 4.2 4.2" fill="none" stroke="currentColor" stroke-width=".04" stroke-linecap="round" stroke-linejoin="round">${b}</svg>`,
  rot=(n,f)=>Array.from({length:n},(_,i)=>f(i*360/n)).join(''),
@@ -248,14 +240,14 @@ const brain=(()=>{const O='M-1.8.15C-1.95-.6-1.3-1.4-.3-1.5C.7-1.6 1.7-1.1 1.8-.
 const sun=sv('<circle r="1.78" stroke-dasharray=".4 .2"/>'+rot(12,a=>`<path d="M0-.9Q.16-1.2-.08-1.5T0-1.95" transform="rotate(${a})"/><path d="M0-.92V-1.2" transform="rotate(${a+15})"/>`)+'<circle r=".78"/><circle r=".72" stroke-width=".02"/><path d="M-.55 0Q0-.42.55 0Q0 .42-.55 0Z"/><circle r=".17"/><circle r=".07"/>'+[-60,-40,-20,0,20,40,60].map(a=>`<path d="M0-.5v-.12" transform="rotate(${a})"/>`).join(''));
 const WM={
  traits:face,
- bgs:sv('<path d="M-.8-.78V-1.95H.8V-.78"/><path d="M-.6-1.7H.6M-.6-1.5H.45M-.6-1.3H.55M-.6-1.1H.25" stroke-width=".03"/><path d="M-.6-.95H.05" stroke="#f00" stroke-width=".05"/><rect x="-1.5" y="-.8" width="3" height=".32" rx=".16"/><path d="M-1.25-.8v.32M-.75-.8v.32M-.25-.8v.32M.25-.8v.32M.75-.8v.32M1.25-.8v.32" stroke-width=".02"/>'+[-1,1].map(d=>`<path d="M${d*1.5}-.64H${d*1.68}"/><circle cx="${d*1.85}" cy="-.64" r=".2"/><circle cx="${d*1.85}" cy="-.64" r=".08"/>`).join('')+Array.from({length:9},(_,i)=>{const x=-.8+i*.2;return `<path d="M${x*.4} -.12L${x} -.44" stroke-width=".025"/><circle cx="${x}" cy="-.46" r=".03"/>`}).join('')+'<path d="M-1.5-.26H1.5Q1.65-.26 1.7-.1L2 1.4V1.75Q2 1.85 1.9 1.85H-1.9Q-2 1.85-2 1.75V1.4L-1.7-.1Q-1.65-.26-1.5-.26Z"/>'+[[.1,-1.44,9],[.46,-1.26,8],[.82,-1.44,9],[1.18,-1.08,7]].map(([y,x0,n])=>Array.from({length:n},(_,i)=>`<circle cx="${x0+i*.36}" cy="${y}" r=".12"/><circle cx="${x0+i*.36}" cy="${y}" r=".05" stroke-width=".02"/>`).join('')).join('')+'<rect x="-.8" y="1.46" width="1.6" height=".14" rx=".07"/><circle cx="-.36" cy=".46" r=".12" stroke="#f00"/>'),
+ bgs:sv('<g transform="rotate(-12)"><path d="M-1.67-.95H1.67Q1.75-.95 1.75-.87V.75L1.6.95H-1.6L-1.75.75V-.87Q-1.75-.95-1.67-.95Z"/><path d="M-1.75-.95L-1.62-1.08H1.88V.67L1.75.8M1.75-.95L1.88-1.08" stroke-width=".03"/><rect x="-1.55" y="-.8" width="3.1" height="1" rx=".04"/><path d="M-1.45-.52H1.45" stroke="#f00" stroke-width=".06"/><path d="M-1.4-.68H-.3M-1.4-.36H1.4M-1.4-.2H1.4M-1.4-.04H1.4" stroke-width=".025"/><rect x=".95" y="-.74" width=".45" height=".16" stroke-width=".03"/><rect x="-1.22" y=".25" width="2.44" height=".58" rx=".29"/>'+[[-.62,.26],[.62,.2]].map(([x,r])=>`<circle cx="${x}" cy=".54" r="${r}" stroke-width=".02"/><circle cx="${x}" cy=".54" r=".12"/>`+rot(6,a=>`<path d="M0-.05V-.1" transform="translate(${x} .54) rotate(${a})" stroke-width=".025"/>`)).join('')+'<path d="M-.5.78Q0 .86.55.74" stroke-width=".025"/><circle cx="-1.05" cy=".84" r=".04"/><circle cx="1.05" cy=".84" r=".04"/>'+[[-1.62,-.87],[1.62,-.87],[-1.5,.87],[1.5,.87]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r=".045" stroke-width=".02"/>`).join('')+'<path d="M-1.65.35V.7M-1.57.35V.7M-1.49.35V.7" stroke-width=".02"/><rect x="1.42" y=".38" width=".2" height=".16" stroke-width=".025"/></g>'),
  thau:brain,
  cons:sigil(),
  bles:sun};
 const entHTML=(k,g,i,e)=>`<div class="ent" data-k="${k}" data-g="${g}" data-i="${i}"><div class="th" data-act="img">${e.img?`<img src="${e.img}">`:'＋'}</div><input class="en" placeholder="Name…" value="${esc(e.n)}"><button class="x" data-act="delI">×</button></div>`;
-const secHTML=c=>`<section class="sec" data-k="${c.k}" data-g="">${WM[c.k]}<div class="sh"><h3>${c.k=='cons'?ransom(c.t,1):c.t}</h3><button class="b s" data-act="${c.f?'addI':'addG'}">+${c.a}</button></div>`+
+const secHTML=c=>`<section class="sec" data-k="${c.k}" data-g="">${WM[c.k]}<div class="sh"><h3>${c.t}</h3><button class="b s" data-act="${c.f?'addI':'addG'}">+${c.a}</button></div>`+
  (c.f?`<div class="list">${S[c.k].map((e,i)=>entHTML(c.k,'',i,e)).join('')}</div>`
- :S[c.k].map((g,j)=>`<div class="grp" data-k="${c.k}" data-g="${j}"><div class="gh">${c.k=='cons'?`<div class="gn" contenteditable data-ph="${c.p}">${ransom(g.n)}</div>`:`<input class="gn" placeholder="${c.p}" value="${esc(g.n)}">`}<button class="b s" data-act="addI">+${c.i}</button><button class="x" data-act="delG">×</button></div><div class="list">${g.items.map((e,i)=>entHTML(c.k,j,i,e)).join('')}</div></div>`).join(''))+`</section>`;
+ :S[c.k].map((g,j)=>`<div class="grp" data-k="${c.k}" data-g="${j}"><div class="gh"><input class="gn" placeholder="${c.p}" value="${esc(g.n)}"><button class="b s" data-act="addI">+${c.i}</button><button class="x" data-act="delG">×</button></div><div class="list">${g.items.map((e,i)=>entHTML(c.k,j,i,e)).join('')}</div></div>`).join(''))+`</section>`;
 function renderMid(){const m=$('#mid'),y=m.scrollTop;m.innerHTML=SECS.map(secHTML).join('');m.scrollTop=y;fitAll()}
 function renderEq(){$('#right').innerHTML=EQ.map(([k,t,p])=>`<section class="sec"><div class="sh"><h3>${t}</h3></div><div class="rt" contenteditable data-r="${k}" data-ph="${p}"></div></section>`).join('');bindR()}
 const bindR=()=>document.querySelectorAll('[data-r]').forEach(el=>el.innerHTML=clean(S.f[el.dataset.r]||''));
@@ -307,7 +299,7 @@ $('#ein').onchange=e=>{const f=e.target.files[0];if(f&&tgt)sq(f,160,d=>{tgt.img=
 document.addEventListener('input',e=>{const t=e.target,c=t.closest('[data-k]'),d=t.dataset;if(t.isContentEditable&&!t.textContent.trim()&&t.innerHTML)t.innerHTML='';if(t.matches(FIT))fit(t);
  if(d.f){S.f[d.f]=t.value;if(d.f=='name')document.title=t.value.trim()||'Character Codex';if(d.f=='hp'||d.f=='mhp')updHP()}
  else if(t.classList.contains('en'))ent(c).n=t.value;
- else if(t.classList.contains('gn')){const v=t.isContentEditable?t.textContent.replace(/\u00a0/g,' '):t.value;S[c.dataset.k][+c.dataset.g].n=v;if(t.isContentEditable){const o=caret(t);t.innerHTML=ransom(v);setCaret(t,o)}}
+ else if(t.classList.contains('gn'))S[c.dataset.k][+c.dataset.g].n=t.value;
  else if(d.r)S.f[d.r]=t.innerHTML;
  else if(t.id=='ta'&&ref)ref.d=t.innerHTML;
  save()});
